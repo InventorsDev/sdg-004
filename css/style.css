@@ -464,6 +464,343 @@
 
 
   /*---------------------------------------
+     CHAT BOT BUTTON           
+  -----------------------------------------*/
+ 
+       
+       .float{
+       position:fixed;
+       width:60px;
+       height:60px;
+       bottom:40px;
+       right:40px;
+       background-color:#499bea;
+       color:#FFF;
+       border-radius:50px;
+       text-align:center;
+       box-shadow: 2px 2px 3px #999;
+       z-index:1000;
+       animation: bottom-to-top 2s ease-out;
+       font-size:24px;
+       }
+
+       .float:hover{
+        color: var(--secondary-color);
+       }
+
+       
+       button#menu-share:hover + #chatbot{
+       animation: scale-in 0.5s;
+       }
+       
+       button#menu-share i{
+       animation: rotate-in 0.5s;
+       }
+       
+       button#menu-share:hover > i{
+       animation: rotate-out 0.5s;
+       }
+       
+        @keyframes bot-to-top {
+       0%   {bottom:-40px}
+       50%  {bottom:40px}
+       }
+       
+       @keyframes scale-in {
+       from {transform: scale(0);opacity: 0;}
+       to {transform: scale(1);opacity: 1;}
+       }
+       
+       @keyframes rotate-in {
+       from {transform: rotate(0deg);}
+       to {transform: rotate(360deg);}
+       }
+       
+       @keyframes rotate-out {
+       from {transform: rotate(360deg);}
+       to {transform: rotate(0deg);}
+       }
+
+
+       .bot-header{
+        display: inline-block;
+        padding: 10px;
+        min-height: 16.42857px;
+        text-align: center;
+        justify-content: center;
+        background: var(--primary-color);
+        color: var(--white-color);
+        font-weight: var(--font-weight-bold);
+        font-size: var(--p-font-size);
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+       }
+
+       .bot-header button{
+        float: right;
+        color: var(--white-color);
+      }
+      
+       .bot-footer{
+        text-align: center;
+        justify-content: center;
+        background-color: var(--primary-color);
+        color: var(--white-color);
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+        border: none;
+       } 
+
+       .message-box{
+        background: var(--white-color);
+        width: 100%;
+        border-radius: 5px;
+        display: flex;
+        padding: 10px;
+       }
+
+       .message-box .form-control{
+        border: none;
+        height: auto;
+        padding: 0;
+       }
+
+
+      .message-box .form-control:focus {
+          border-color: none;
+          outline: 0;
+          -webkit-box-shadow: none;
+          box-shadow: none;
+        }
+
+       .message-box button{
+        margin-left: 4px;
+        width: 95px;
+        font-size: 14px;
+       }
+
+      @media (max-width: 765px) {
+       .message-box{
+        background: var(--white-color);
+        width: 100%;
+        border-radius: 5px;
+        display: flex;
+        padding: 8px;
+       }
+
+       .message-box button{
+        margin-left: 4px;
+        width: 90px;
+        font-size: 12px;
+        padding: 5px;
+       }
+     }
+
+
+
+  /*---------------------------------------
+     CHAT BOT MODAL           
+  -----------------------------------------*/
+
+.chats{
+  list-style-type: none;
+  margin: 0px;
+}
+
+
+.chats li{
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  justify-content: justify;
+
+}
+
+
+.chats .by-me img{
+  width: 40px;
+  margin-top: 5px;
+  margin-left: -40px;
+  border-radius: 50%;
+
+  padding: 1px;
+
+  background: var(--primary-color);
+
+  border: 1px solid #6380d1;
+
+}
+
+
+
+.chats .by-me .chat-meta{
+
+  font-size: 11px;
+  color: var(--white-color);
+
+}
+
+
+
+.chats .by-me .chat-content{
+
+  margin-right: 60px;
+  margin-left: 20px;
+
+  position: relative;
+
+  background: var(--primary-color);
+  color: var(--white-color);
+
+  border: 1px solid #6380d1;;
+
+  padding: 7px 10px;
+
+  border-radius: 5px;
+
+  font-size: 13px;
+
+}
+
+
+
+.chats .by-me .chat-content:after, .chats .by-me .chat-content:before {
+
+  right: 100%;
+
+  border: solid transparent;
+
+  content: " ";
+
+  height: 0;
+
+  width: 0;
+
+  position: absolute;
+
+  pointer-events: none;
+
+}
+
+
+
+.chats .by-me .chat-content:after {
+
+  border-color: var(--white-color);
+
+  border-right-color: var(--primary-color);
+
+  border-width: 10px;
+
+  top: 30%;
+
+  margin-top: -10px;
+
+}
+
+
+
+.chats .by-me .chat-content:before {
+
+  border-color: var(--white-color);
+
+  border-right-color: var(--primary-color);
+
+  border-width: 11px;
+
+  top: 30%;
+
+  margin-top: -11px;
+
+}
+
+
+.chats .by-other .chat-meta{
+  font-size: 11px;
+  color: #999;
+}
+
+
+
+.chats .by-other .chat-content{
+  margin-left: 60px;
+  margin-right: 10px;
+  position: relative;
+  background: var(--featured-bg);
+  border: 1px solid #ddd;
+  padding: 7px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+
+
+.chats .by-other .chat-content:after, .chats .by-other .chat-content:before {
+  left: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+
+
+.chats .by-other .chat-content:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-left-color: var(--featured-bg);
+  border-width: 10px;
+  top: 30%;
+  margin-top: -10px;
+}
+
+
+
+.chats .by-other .chat-content:before {
+  border-color: rgba(238, 238, 238, 0);
+  border-left-color: #ddd;
+  border-width: 11px;
+  top: 30%;
+  margin-top: -11px;
+
+}
+
+ .my-scroll-border .my-scroll-div {
+    border-left: 1px solid #6380d1;
+    border-right: 1px solid #6380d1;
+}
+
+.my-scroll-border .my-scroll-footer {
+    border-top: none;
+}
+.my-scroll-div {
+    max-height: 424px;
+    position: relative;
+    overflow-y: auto;
+}
+
+@media (max-width: 765px) {
+.chats .by-me .chat-content{
+  margin-right: 40px;
+}
+.chats .by-other .chat-content{
+  margin-left: 40px;
+}
+}
+
+/*.modal-dialog{
+  position: absolute;
+  top: 100;
+  right: 0;
+  bottom: 10px;
+  left: 800px;
+  z-index: 10040;
+  overflow: auto;
+  overflow-y: auto;
+} */
+
+
+  /*---------------------------------------
      FOOTER              
   -----------------------------------------*/
 
