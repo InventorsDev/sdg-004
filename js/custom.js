@@ -46,25 +46,4 @@
       }
     });
 
-
- // CHATBOT
-    $("#message").keyup(function(){
-          var message = $(this).val();
-         if (message != '') {
-          $("#reply-bot").show();
-         }else{
-          $("#reply-bot").hide();
-        }
   });
-
-
-
-  });
-
-
- // MODAL POP-UP
-function botFunction(){
-  setTimeout(function(){
-  $('#chatbot').modal('show');
-},10000);
-}
