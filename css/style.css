@@ -598,19 +598,28 @@
 
 
    /*---------------------------------------
-     Achievement session           
+     ACHIEVEMENT SECTION         
   -----------------------------------------*/
+  .achievement{
+    padding-top: 90px;
+  }
+  .achievement-space{
+    text-align: center;
+    margin-bottom: 80px;
+  }
   .reports{
-    margin: 20px;
-    background: rgb(70,130,300);
-    color: #fff;
-    padding: 20px;
+    background: var(--primary-color);
+    color: var(--white-color);
+    text-align: center;
+    padding: 25px 20px;
     border-radius: 50%;
-    font-size: 30px;
+    font-size: var(--h3-font-size);
   }
 
   .report-text{
-    padding: 20px 2px 50px 0px;
+    margin-top: 50px;
+    color: var(--p-color);
+    font-weight: var(--font-weight-bold);
   }
 
 
