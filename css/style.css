@@ -597,6 +597,22 @@
      }
 
 
+   /*---------------------------------------
+     Achievement session           
+  -----------------------------------------*/
+  .reports{
+    margin: 20px;
+    background: rgb(70,130,300);
+    color: #fff;
+    padding: 20px;
+    border-radius: 50%;
+    font-size: 30px;
+  }
+
+  .report-text{
+    padding: 20px 2px 50px 0px;
+  }
+
 
   /*---------------------------------------
      CHAT BOT MODAL           
