@@ -471,6 +471,9 @@ body {
     @media (max-width: 768px) {
       .howit-bg{
         display: none; }
+
+        .how{
+        margin-bottom: 30px; }
       }
       
       .how .icon {
@@ -879,13 +882,188 @@ body {
   } */
 
 
+/*---------------------------------------
+LOGIN PAGE           
+     -----------------------------------------*/
+.body-full-height {
+  height: 100%;
+}
+.body-full-height body {
+  height: 100%;
+}
+
+.login-container {
+  float: left;
+  width: 100%;
+  min-height: 100%;
+  background: var(--menu-bg);
+}
+
+.login-container .login-box .login-header{
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  margin-bottom: 10px;
+  color: var(--white-color);
+}
+
+.login-container .login-box {
+  max-width: 350px;
+    margin: 120px auto 0;
+}
+
+.login-container .login-box .login-body {
+  width: 100%;
+  float: left;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+}
+.login-container .login-box .login-body .login-title {
+  color: #FFF;
+  font-size: 19px;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+.login-container .login-box .login-body .form-control {
+  brder: 0px;
+  background: var(--menu-bg);
+  padding: 10px 15px;
+  color: #CCC;
+  line-height: 20px;
+  height: auto;
+}
+
+.login-container .login-box .login-body .input-group{
+ margin-bottom: 20px;
+}
+
+.login-container .login-box .login-body .input-group .form-control{
+ border-right: 0px;
+}
+
+.login-container .login-box .login-body .input-group-text{
+  border-left: 0px;
+  background: var(--menu-bg);
+  padding: 10px 15px;
+  color: #CCC;
+  line-height: 20px;
+  height: auto;
+}
+
+.login-container .login-box .login-body .form-control::-moz-placeholder {
+  color: #CCC;
+  opacity: 1;
+}
+.login-container .login-box .login-body .form-control:-ms-input-placeholder {
+  color: #CCC;
+}
+.login-container .login-box .login-body .form-control::-webkit-input-placeholder {
+  color: #CCC;
+}
+
+.login-container .login-box .login-body .btn-link {
+  color: var(--white-color);
+  border: 0px;
+  padding-left: 0;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.login-container .login-box .login-body a:hover,
+.login-container .login-box .login-footer a:hover{
+  color: var(--secondary-color);
+}
+
+
+.login-container .login-box .login-body .login-subtitle {
+  line-height: 20px;
+  padding: 5px 0px;
+  font-size: 12px;
+  color: var(--white-color);
+}
+
+.login-container .login-box .login-body .login-subtitle a {
+  color: var(--secondary-color);
+}
+
+.login-container .login-box .login-body .login-subtitle a:hover {
+  color: var(--dark-color);
+}
+
+.login-container .login-box .login-footer {
+  width: 100%;
+  float: left;
+  padding: 10px;
+  color: var(--white-color);
+  font-size: 13px;
+}
+.login-container .login-box .login-footer a {
+  color: var(--white-color);
+}
+
+
+.error_alert{
+    width: 90%;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  text-align: center;
+   font-weight:400; 
+   margin-bottom:20px;
+   border: 2px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+  background-color: #fff;
+  color: #ee002d;
+  }
+
+  .error_alert p{
+    padding-top: 15px;
+   color: gray;
+   font-size:12px;
+   justify-content: justify;
+  }
+
+.error_alert p span{
+  float: none;
+   color: gray;
+   font-size:12px;
+  }  
+
+ .error_alert span{
+  float: right;
+   font-size:18px;
+  color: #a94442;
+  cursor: pointer;
+}
+
+  .error_alert:hover{
+  text-decoration:none;
+  color:gray;
+  -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+  -moz-box-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,0.4);
+  
+  }
+
+  .error_alert:hover p{
+   color: #ee002d;
+  }
+
+
+
+
   /*---------------------------------------
      FOOTER              
      -----------------------------------------*/
 
      .site-footer {
       background: var(--dark-color);
-      padding-top: 3em;
+      padding-top: 20px;
     }
 
     .site-footer a {
