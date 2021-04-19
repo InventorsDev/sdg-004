@@ -26,7 +26,7 @@
  <!-- MENU BAR -->
  <nav class="navbar navbar-expand-lg">
   <div class="container">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="./">
       <i class="fa fa-bullhorn"></i>
       SpeakUp
     </a>
@@ -42,16 +42,16 @@
         <a href="#how-it-works" class="nav-link smoothScroll">How it Works</a>
       </li>
       <li class="nav-item">
-        <a href="tips.html" class="nav-link smoothScroll">Guides & Tips</a>
+        <a href="tips" class="nav-link smoothScroll">Guides & Tips</a>
       </li>
       <li class="nav-item">
         <a href="#frequently-question" class="nav-link smoothScroll">FAQ's</a>
       </li>
       <li class="nav-item">
-        <a href="signup.html" class="nav-link">Signup</a>
+        <a href="signup" class="nav-link">Signup</a>
       </li>
       <li class="nav-item">
-        <a href="login.html" class="nav-link login">Login</a>
+        <a href="login" class="nav-link login">Login</a>
       </li>
     </ul>
   </div>

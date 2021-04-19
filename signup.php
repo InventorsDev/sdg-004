@@ -26,7 +26,7 @@
  <!-- MENU BAR -->
  <nav class="navbar navbar-expand-lg">
   <div class="container">
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="./">
       <i class="fa fa-bullhorn"></i>
       SpeakUp
     </a>
@@ -39,19 +39,19 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a href="index.html#how-it-works" class="nav-link smoothScroll">How it Works</a>
+        <a href="home#how-it-works" class="nav-link smoothScroll">How it Works</a>
       </li>
       <li class="nav-item">
-        <a href="tips.html" class="nav-link smoothScroll">Guides & Tips</a>
+        <a href="tips" class="nav-link smoothScroll">Guides & Tips</a>
       </li>
       <li class="nav-item">
-        <a href="index.html#frequently-question" class="nav-link smoothScroll">FAQ's</a>
+        <a href="home#frequently-question" class="nav-link smoothScroll">FAQ's</a>
       </li>
       <li class="nav-item">
-        <a href="signup.html" class="nav-link active">Signup</a>
+        <a href="signup" class="nav-link active">Signup</a>
       </li>
       <li class="nav-item">
-        <a href="login.html" class="nav-link login">Login</a>
+        <a href="login" class="nav-link login">Login</a>
       </li>
     </ul>
   </div>
@@ -89,7 +89,7 @@
              <p><i class="fa fa-exclamation-circle"></i> <span id="alert"></span></p>
              </div>
 
-                    <form action="" autocomplete="off" class="form-horiontal" method="post">
+                    <form action="" autocomplete="off" id="signup-form1" class="form-horiontal" method="post">
                     <div class="form-row">
                         <div class="col-md-6">
                           <label>Lastname</label>
@@ -143,7 +143,7 @@
                       </div>
 
                     <div class="signup-subtitle text-center">
-                        Already have an account? <a href="login.html">Login</a>
+                        Already have an account? <a href="login">Login</a>
                     </div>
                     </form>
                 </div>
@@ -152,8 +152,8 @@
                         &copy; <script>document.write(new Date().getFullYear());</script> SpeakUp
                     </div>
                     <div class="pull-right">
-                        <a href="#">Tips</a> |
-                        <a href="#">Privacy</a>
+                        <a href="tips">Tips</a> |
+                        <a href="privacy">Privacy</a>
                     </div>
                 </div>
             </div>
@@ -166,12 +166,7 @@
                 <div class="signup-body">
                     <div class="signup-title"><strong>Basic Information</strong></div>
 
-                     <div id="alert_box" style="display: none;" class="error_alert" >
-          <span aria-label="close" onclick="close_alert('alert_box')" >&times;</span>
-             <p><i class="fa fa-exclamation-circle"></i> <span id="alert"></span></p>
-             </div>
-
-                    <form action="" autocomplete="off" class="form-horiontal" method="post">
+                    <form action="" autocomplete="off" id="signup-form2" class="form-horiontal" method="post">
                      <div class="form-row">
                         <div class="col-md-6">
                           <label>Lastname</label>
@@ -224,7 +219,7 @@
                       </div>
 
                     <div class="signup-subtitle text-center">
-                        Already have an account? <a href="login.html">Login</a>
+                        Already have an account? <a href="login">Login</a>
                     </div>
                     </form>
                 </div>
@@ -233,8 +228,8 @@
                         &copy; <script>document.write(new Date().getFullYear());</script> SpeakUp
                     </div>
                     <div class="pull-right">
-                        <a href="#">Tips</a> |
-                        <a href="#">Privacy</a>
+                        <a href="tips">Tips</a> |
+                        <a href="privacy">Privacy</a>
                     </div>
                 </div>
             </div>
@@ -247,12 +242,12 @@
                 <div class="signup-body">
                     <div class="signup-title"><strong>Additional Information</strong></div>
 
-                     <div id="alert_box" style="display: none;" class="error_alert" >
-          <span aria-label="close" onclick="close_alert('alert_box')" >&times;</span>
-             <p><i class="fa fa-exclamation-circle"></i> <span id="alert"></span></p>
+                     <div id="alert1_box" style="display: none;" class="error_alert" >
+          <span aria-label="close" onclick="close_alert('alert1_box')" >&times;</span>
+             <p><i class="fa fa-exclamation-circle"></i> <span id="alert1"></span></p>
              </div>
 
-                    <form action="" autocomplete="off" class="form-horiontal" method="post">
+                    <form action="" autocomplete="off" id="signup-form3" class="form-horiontal" method="post">
                    <div class="form-row">
                         <div class="col-md-6">
                           <label>Gender</label>
@@ -333,12 +328,13 @@
 
                      <div class="form-row">
                         <div class="col-md-12 text-center">
+                            <button class="btn btn-success btn-sm" type="button" id="responder-pre"><i class="fa fa-long-arrow-left"></i> Previous</button>
                             <button class="btn btn-info btn-sm" type="button" id="responder-signup">Signup <i class="fa fa-sign-in"></i></button>
                         </div>
                       </div>
 
                     <div class="signup-subtitle text-center">
-                        Already have an account? <a href="login.html">Login</a>
+                        Already have an account? <a href="login">Login</a>
                     </div>
                     </form>
                 </div>
@@ -347,8 +343,8 @@
                         &copy; <script>document.write(new Date().getFullYear());</script> SpeakUp
                     </div>
                     <div class="pull-right">
-                        <a href="#">Tips</a> |
-                        <a href="#">Privacy</a>
+                        <a href="tips">Tips</a> |
+                        <a href="privacy">Privacy</a>
                     </div>
                 </div>
             </div>
@@ -357,6 +353,26 @@
   </div>
 </section>
 
+
+<button class="float btn" id="menu-share" data-toggle="modal" data-target="#success"><i class="fa fa-wechat"></i></button>
+
+ <div aria-hidden="true" aria-labelledby="staticBackdropLabel" role="dialog" tabindex="-1" id="success" class="modal fade">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-body text-center success-box">
+
+                           <center class="alert"><i class="fa fa-check"></i></center>
+                        <p id="success_text">Signed up successfully!</p>
+                        <p class="redirect">redirecting in 5 seconds...</p>
+                        
+
+                      <button class="btn btn-primary pull-right" data-dismiss="modal" type="button">Ok</button>
+
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
 
 <footer class="site-footer">

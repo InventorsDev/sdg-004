@@ -1,0 +1,14 @@
+RewriteEngine On
+# RewriteBase /speakup
+
+# Redirect to .php
+RewriteRule ^home index.php [NC,L]
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# disallow access to folders
+ Options -Indexes
+
+
+RewriteCond %{REQUEST_FILENAME} !-d [NC]
+RewriteCond %{REQUEST_FILENAME} !-f [NC]
+
