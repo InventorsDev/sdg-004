@@ -111,7 +111,7 @@
                       document.getElementById("email1").style.border='1px solid red';
                       document.getElementById("email1_alert").innerHTML='Please enter a valid email address';
                     }else{
-                      var valEmail = ''; 
+                      var valEmail = 'true'; 
                       document.getElementById("email1").style.border='';
                       document.getElementById("email1_alert").innerHTML='';
                     }
@@ -144,12 +144,7 @@
                      if (cpassword == '') {
                       document.getElementById("cpassword1").style.border='1px solid red';
                       document.getElementById("cpassword1_alert").innerHTML='Please confirm your password';
-                    } else{
-                       document.getElementById("cpassword1").style.border='';
-                      document.getElementById("cpassword1_alert").innerHTML='';
-                    }
-
-                     if (password != cpassword) {
+                    } else if (password != cpassword) {
                       document.getElementById("cpassword1").style.border='1px solid red';
                       document.getElementById("cpassword1_alert").innerHTML='Passwords do not match';
                     } else{
@@ -157,9 +152,11 @@
                       document.getElementById("cpassword1_alert").innerHTML='';
                     }
 
-                  if(lastname != "" && firstname != "" && email != "" && phone != "" && password != "" && cpassword != "" && !isNaN(phone) &&  valEmail != '' && !isNaN(phone) && password.length >= 8 && password.match(number) && password.match(lowercase) && password.match(uppercase)){
-                    document.getElementById("responder-next").innerHTML='<img src="images/loading.gif" width="20px" height="20px"> Processing';
+                  if(lastname != "" && firstname != "" && email != "" && phone != "" && password != "" && cpassword != ""  && password == cpassword && !isNaN(phone) &&  valEmail != '' && password.length >= 8 && password.match(number) && password.match(lowercase) && password.match(uppercase)){
+                    document.getElementById("responder-next").innerHTML='<img src="images/loading.gif" width="15px" height="15px"> Processing';
+                    document.getElementById("responder-pre").innerHTML='<i class="fa fa-long-arrow-left"></i> Previous';
                     document.getElementById("responder-next").disable='true';
+                    document.getElementById("responder-pre").disable='false';
                      setTimeout(function(){
                     $('#signup-as').hide();
                     $('#signup-as-responder1').hide();
@@ -171,19 +168,34 @@
 
                 });
 
+  
+
+                  $('#responder-pre').click(function(){
+                    document.getElementById("responder-pre").innerHTML='<img src="images/loading.gif" width="15px" height="15px"> Processing';
+                    document.getElementById("responder-pre").disable='true';
+                    document.getElementById("responder-next").disable='false';
+                     setTimeout(function(){
+                    $('#signup-as').hide();
+                    $('#signup-as-responder2').hide();
+                    $('#signup-as-responder1').show();
+                    document.getElementById("responder-next").innerHTML='Next <i class="fa fa-long-arrow-right"></i>';
+                    document.getElementById("responder-next").disable='false';
+                   },500);
+                    });
+
  
                       $("#responder-signup").click(function(){
                     var lastname = $("#lastname1").val().trim();
                     var firstname = $("#firstname1").val().trim();
                     var email = $("#email1").val().trim();
-                    var occupation = $("#occupation1").val().trim();
+                    var phone = $("#phone").val().trim();
                     var password = $("#password1").val().trim();
                     var cpassword = $("#cpassword1").val().trim();
                     var gender = $("#gender").val().trim();
                     var dob = $("#dob").val().trim();
                     var state = $("#state").val().trim();
                     var address = $("#address").val().trim();
-                    var occupation = $("#occupation").val().trim();
+                    var occupation = $("#occupation1").val().trim();
                     var organization = $("#organization").val().trim();
                     var position = $("#position").val().trim();
                     var cv = $("#cv").val().trim();
@@ -290,6 +302,7 @@
                           document.getElementById("reporter-signup").disable='true';
                         },
                             success:function(response){
+                              alert(response.status);
                                 if(response.status == 1){
                                 }else{
                                   document.getElementById("alert_box").style.display="block";
@@ -346,7 +359,7 @@
                       document.getElementById("email").style.border='1px solid red';
                       document.getElementById("email_alert").innerHTML='Please enter a valid email address';
                     }else{
-                      var valEmail = ''; 
+                      var valEmail = 'true'; 
                       document.getElementById("email").style.border='';
                       document.getElementById("email_alert").innerHTML='';
                     }
@@ -389,8 +402,7 @@
                       document.getElementById("cpassword_alert").innerHTML='';
                     }
 
-
-                      if(lastname != "" && firstname != "" && email != "" && occupation != "" && password != "" && password == cpassword && valEmail != '' && !isNaN(phone) && password.length >= 8 && password.match(number) && password.match(lowercase) && password.match(uppercase)){
+                      if(lastname != "" && firstname != "" && email != "" && occupation != "" && password != "" && password == cpassword && valEmail != '' && password.length >= 8 && password.match(number) && password.match(lowercase) && password.match(uppercase)){
                          $.ajax({
                             url:'ajaxfile.php',
                             type:'post',
@@ -401,7 +413,18 @@
                           document.getElementById("reporter-signup").disable='true';
                         },
                             success:function(response){
+
                                 if(response.status == 1){
+
+                            document.getElementById("signup-form2").reset();
+                            document.getElementById("signup-form3").reset();
+                                
+                            $('#success').modal('show');   
+                           document.getElementById("success_text").innerHTML=response.message;
+
+                             setTimeout(function(){
+                                   location.replace('./app/reporter');
+                            },1500); 
 
                                 }else{
                                   document.getElementById("alert_box").style.display="block";

@@ -38,7 +38,7 @@
              <p><i class="fa fa-exclamation-circle"></i> <span id="alert"></span></p>
              </div>
 
-                    <form action="index.html" class="form-horiontal" method="post">
+                    <form action="" autocomplete="off" class="form-horiontal" method="post">
                     <div class="form-group">
                         <div class="col-md-12">
                             <input type="text" id="email" class="form-control" placeholder="E-mail"/>
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="login-subtitle">
-                        Don't have an account yet? <a href="signup.html">Create an account</a>
+                        Don't have an account yet? <a href="signup">Create an account</a>
                     </div>
                     </form>
                 </div>
@@ -71,8 +71,8 @@
                         &copy; <script>document.write(new Date().getFullYear());</script> SpeakUp
                     </div>
                     <div class="pull-right">
-                        <a href="#">Tips</a> |
-                        <a href="#">Privacy</a>
+                        <a href="tips">Tips</a> |
+                        <a href="privacy">Privacy</a>
                     </div>
                 </div>
             </div>

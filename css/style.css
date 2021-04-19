@@ -1147,6 +1147,29 @@ LOGIN PAGE
 }
 
 
+.success-box .alert{
+  padding: 40px 40px 20px 40px;
+}
+.success-box .alert i{
+ border:1px solid var(--primary-color);
+ color: var(--primary-color);
+ border-radius: 50%; 
+ padding: 20px; 
+ font-size: 50px;
+  margin-bottom: -50px;
+}
+
+.success-box p{
+  margin-bottom: 4px;
+}
+.success-box button{
+ margin-top: 20px;
+}
+
+.success-box .redirect{
+ font-size: 11px;
+}
+
 .error_alert{
     width: 90%;
   margin: 0 auto;
