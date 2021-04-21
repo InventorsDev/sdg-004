@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2021 at 11:36 PM
+-- Generation Time: Apr 21, 2021 at 10:04 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -81,6 +81,7 @@ CREATE TABLE `users` (
   `email` text NOT NULL,
   `phone` text DEFAULT NULL,
   `gender` text DEFAULT NULL,
+  `status` text NOT NULL,
   `dob` date DEFAULT NULL,
   `state` text DEFAULT NULL,
   `address` text DEFAULT NULL,
@@ -97,15 +98,13 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_type`, `lastname`, `firstname`, `email`, `phone`, `gender`, `dob`, `state`, `address`, `occupation`, `organization`, `position`, `cv`, `motive`, `password`, `date_reg`) VALUES
-(1, 'reporter', 'olanipekun', 'seyi', 'EGIFFORD@MVCC.EDU', '', '', '0000-00-00', '', '', 'student', '', '', '', '', '11111111Aa', '2021-04-19 20:26:07'),
-(2, 'reporter', 'olanipekun', 'seyi', 'EGIFFORD@MVCC.EDU', NULL, NULL, NULL, NULL, NULL, 'student', NULL, NULL, NULL, NULL, '11111111Aa', '2021-04-19 20:29:08'),
-(3, 'reporter', 'olanipekun', 'seyi', 'EGIFFORD@M.hh', NULL, NULL, NULL, NULL, NULL, 'student', NULL, NULL, NULL, NULL, '11111111Aa', '2021-04-19 20:38:54'),
-(4, 'reporter', 'olanipekun', 'seyi', 'EGIFFORD@M.wsd', NULL, NULL, NULL, NULL, NULL, 'student', NULL, NULL, NULL, NULL, '11111111Aa', '2021-04-19 20:41:23'),
-(5, 'reporter', 'olanipekun', 'seyi', '12345890Aa@ss.ss', NULL, NULL, NULL, NULL, NULL, 'student', NULL, NULL, NULL, NULL, '11111111Aa', '2021-04-19 20:42:35'),
-(6, 'reporter', 'olanipekun', 'seyi', '12345890Aa@hh.aa', NULL, NULL, NULL, NULL, NULL, 'student', NULL, NULL, NULL, NULL, '11111111Aa', '2021-04-19 20:46:20'),
-(7, 'reporter', 'college', 'de-young', '12345890Aa@www.ss', NULL, NULL, NULL, NULL, NULL, 'student', NULL, NULL, NULL, NULL, '11111111Aa', '2021-04-19 20:48:58'),
-(8, 'reporter', 'olanipekun', 'seyi', '12345890Aa@we.ww', NULL, NULL, NULL, NULL, NULL, 'student', NULL, NULL, NULL, NULL, '11111111Aa', '2021-04-19 21:12:23');
+INSERT INTO `users` (`user_id`, `user_type`, `lastname`, `firstname`, `email`, `phone`, `gender`, `status`, `dob`, `state`, `address`, `occupation`, `organization`, `position`, `cv`, `motive`, `password`, `date_reg`) VALUES
+(19, 'reporter', 'olanipekun', 'seyi', '12345890Aa@wm.ee', NULL, NULL, 'active', NULL, NULL, NULL, 'student', NULL, NULL, NULL, NULL, '$2y$10$Ge1hSUHoCrBebkpsj9GcneQBjelRW0bFyLfYwMDwtSp9vhU9Vlrpe', '2021-04-20 21:00:26'),
+(20, 'reporter', 'college', 'de-young', 'jkj@fggf.hhjhs', NULL, NULL, 'active', NULL, NULL, NULL, 'student', NULL, NULL, NULL, NULL, '$2y$10$JhxyYmO/AX9/ooT5tODlWO1/3xbmj94zmryQI4SjtrUgVfsaEJOom', '2021-04-20 21:38:00'),
+(21, 'reporter', 'college', 'de-young', 'onabajo@gmail.com', NULL, NULL, '', NULL, NULL, NULL, 'student', NULL, NULL, NULL, NULL, '$2y$10$EmUu3jSMsWYDzp/M94X2pujFq5CGXYiWCv6GJ7j.bPDnStv4d5I7O', '2021-04-20 21:51:21'),
+(22, 'reporter', 'olanipekun', 'seyi', 'oluwakeji@gmail.com', NULL, NULL, 'active', NULL, NULL, NULL, 'student', NULL, NULL, NULL, NULL, '$2y$10$ols/Y.bu1HZ.rQhAg5Cc0OcogNmUSWTxRh6Tc1YFq5ubavTh9T.CC', '2021-04-20 21:56:57'),
+(23, 'responder', 'olanipekun', 'seyi', 'EGIFFORD@MVCC.EDU', '08093104529', 'male', 'reviewing', '2021-04-09', 'abia', '1101 SHERMAN DRIVE, UTICA, NEW YORK', 'ed', 'ddd', 'ddd', 'EGIFFORD@MVCC.EDU_cv.pdf', 'ddddd', '$2y$10$RYbYgMbAr0ikT79DG/V7AO2ZOZzqycemi3rnlVoZQvQvIU0lwLWZG', '2021-04-20 22:21:52'),
+(24, 'responder', 'olanipekun', 'seyi', 'EGIFFORD@MVCC.EDUw', '08093104529', 'male', 'reviewing', '2021-04-16', 'Benue', 'ww', 'www', 'www', 'www', 'EGIFFORD@MVCC.EDUw_cv.docx', 'ww', '$2y$10$w5ENkoTlJ.xz7/9XKuqVjuHjM6ZLeIlHt2rjjihjW6BbjbxLsIWna', '2021-04-21 07:46:29');
 
 --
 -- Indexes for dumped tables
@@ -149,7 +148,7 @@ ALTER TABLE `reports`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
