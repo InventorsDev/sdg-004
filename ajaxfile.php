@@ -138,4 +138,37 @@ function test_input($text){
   }
 
 
+   if ($request == 4) {
+
+  	$msg = test_input($_POST["msg"]);
+  	$msg = "[[:<:]]".$msg."[[:>:]]";
+    $status = 0;
+    $html = '';
+
+  	 $stmt = $conn->prepare("SELECT answer FROM chatbot WHERE question RLIKE ? ");
+        $stmt->bind_param("s", $msg);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($answer);
+        if($stmt->num_rows > 0 ) {
+        while($stmt->fetch()){
+        $status = 1;
+
+        $html .= '<li class="by-me msg">
+            <div class="avatar pull-left">
+              <img class="bot-img" src="images/avatar.jpg" alt="" />
+            </div>
+            <div class="chat-content">
+              <div class="chat-meta">SpeakUp <span class="pull-right">'.date("h:i:s A").'</span></div>
+              '.$answer.'
+              <div class="clearfix"></div>
+            </div>
+          </li>';
+
+        }}
+
+         echo json_encode( array("status" => $status, "message" => $html) );
+         exit;
+       }
+
 ?>

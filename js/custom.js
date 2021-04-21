@@ -58,6 +58,39 @@
   });
 
 
+     $("#reply-bot").click(function(){
+      var msg = $("#message").val();
+      var d = new Date();
+      var html = '<li class="by-other msg"><div class="chat-content"><div class="chat-meta">'+ d.toLocaleTimeString('en-US', {hour12: true }) + '<span class="pull-right">You</span></div>' + msg + '<div class="clearfix"></div></div></li>';
+      $(".msg:last").after(html).show().fadeIn("slow");
+      $(".modal .modal-body").animate({ scrollTop: $('.modal .modal-body').offset().top }, 'slow');
+
+                         $.ajax({
+                            url:'ajaxfile.php',
+                            type:'post',
+                            data:{request:4, msg:msg},
+                            dataType: 'json',
+                            beforeSend: function(){
+                           document.getElementById("reply-bot").innerHTML='Sending...';
+                          document.getElementById("reply-bot").disable='true';
+                        },
+                            success:function(response){
+                                if(response.status == 1){
+                                  $(".msg:last").after(response.message).show().fadeIn("slow");
+                                 $(".modal .modal-body").animate({ scrollTop: $('.modal .modal-body').offset().top }, 'slow');
+                                }else{
+                                  var html = '<li class="by-me msg"><div class="avatar pull-left"><img class="bot-img" src="images/avatar.jpg" alt="" /> </div><div class="chat-content"><div class="chat-meta">SpeakUp <span class="pull-right">'+ d.toLocaleTimeString('en-US', {hour12: true }) + '</span></div>I\'m sorry but I am not exactly clear how to help you<div class="clearfix"></div> </div> </li>';
+                                  $(".msg:last").after(html).show().fadeIn("slow");
+                                }
+                           },
+                         complete: function(data){
+                           document.getElementById("reply-bot").innerHTML='Send <i class="fa fa-send"></i>';
+                          document.getElementById("reply-bot").disable='false';
+                        },
+                        });
+          });
+
+
      // SIGNUP 
       $('#reporter').click(function(){
           $('#signup-as').hide();
