@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2021 at 10:04 AM
+-- Generation Time: Apr 22, 2021 at 12:12 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -25,12 +25,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bot_help`
+-- Table structure for table `chatbot`
 --
 
-CREATE TABLE `bot_help` (
-  `help_id` int(11) NOT NULL
+CREATE TABLE `chatbot` (
+  `chat_id` int(11) NOT NULL,
+  `question` longtext NOT NULL,
+  `answer` longtext NOT NULL,
+  `added_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chatbot`
+--
+
+INSERT INTO `chatbot` (`chat_id`, `question`, `answer`, `added_updated`) VALUES
+(1, 'Hello Hi', 'Welcome! I care about you and am here to help in any way I can', '2021-04-21 20:29:17'),
+(2, 'Good day good afternoon good evening', 'I\'m speakUp bot. You are not alone\r\n', '2021-04-21 20:29:44'),
+(3, 'assaulted raped bullied, mollested', 'This must be really tough for you and I\'m glad you are sharing this with me.\r\n', '2021-04-21 20:39:45'),
+(4, 'what can i do', 'If you or someone you know have been affected by sexual voilence or related cases. It\'s not you fault. You are not alone.<br> Help is available 24/7 signup to get help from a professional responder ', '2021-04-21 20:36:44'),
+(5, 'assaulted raped bullied, mollested', 'Use this link to read up helpful tips, to keep you safe <a href=\"./tips\"> Tips and Guides <a/>\r\n', '2021-04-21 20:45:39');
 
 -- --------------------------------------------------------
 
@@ -111,10 +125,10 @@ INSERT INTO `users` (`user_id`, `user_type`, `lastname`, `firstname`, `email`, `
 --
 
 --
--- Indexes for table `bot_help`
+-- Indexes for table `chatbot`
 --
-ALTER TABLE `bot_help`
-  ADD PRIMARY KEY (`help_id`);
+ALTER TABLE `chatbot`
+  ADD PRIMARY KEY (`chat_id`);
 
 --
 -- Indexes for table `reports`
@@ -133,10 +147,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `bot_help`
+-- AUTO_INCREMENT for table `chatbot`
 --
-ALTER TABLE `bot_help`
-  MODIFY `help_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `chatbot`
+  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `reports`
