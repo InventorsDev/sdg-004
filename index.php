@@ -310,8 +310,6 @@
       <button type="button" class="close btn" data-dismiss="modal" >&times;</button></div>
       <div class="modal-body my-scroll-div">
 
-       <div clas="padd sscroll">
-
         <ul class="chats">
 
           <!-- Chat by us. Use the class "by-me". -->
@@ -321,76 +319,22 @@
             </div>
 
             <div class="chat-content">
-              <div class="chat-meta">SpeakUp <span class="pull-right">3 hours ago</span></div>
-              Vivamus diam elit diam, consectetur dapibus adipiscing elit.
+              <div class="chat-meta">SpeakUp <span class="pull-right">now</span></div>
+              Hello there, how can I help you?
               <div class="clearfix"></div>
             </div>
           </li>
 
           <!-- Chat by other. Use the class "by-other". -->
-          <li class="by-other">
-            <div class="chat-content">
-              <div class="chat-meta">3 hours ago <span class="pull-right">You</span></div>
-              Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.
-              <div class="clearfix"></div>
-            </div>
-          </li>
-
-
-          <!-- Chat by us. Use the class "by-me". -->
-          <li class="by-me">
-            <div class="avatar pull-left">
-              <img class="bot-img" src="images/avatar.jpg" alt="" />
-            </div>
-
-            <div class="chat-content">
-              <div class="chat-meta">SpeakUp <span class="pull-right">3 hours ago</span></div>
-              Vivamus diam elit diam, consectetur dapibus adipiscing elit.
-              <div class="clearfix"></div>
-            </div>
-          </li>
-
-          <!-- Chat by other. Use the class "by-other". -->
-          <li class="by-other">
-            <div class="chat-content">
-              <div class="chat-meta">3 hours ago <span class="pull-right">You</span></div>
-              Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.
-              <div class="clearfix"></div>
-            </div>
-          </li>
-
-
-          <!-- Chat by us. Use the class "by-me". -->
-          <li class="by-me">
-            <div class="avatar pull-left">
-              <img class="bot-img" src="images/avatar.jpg" alt="" />
-            </div>
-
-            <div class="chat-content">
-              <div class="chat-meta">SpeakUp <span class="pull-right">3 hours ago</span></div>
-              Vivamus diam elit diam, consectetur dapibus adipiscing elit.
-              <div class="clearfix"></div>
-            </div>
-          </li>
-
-          <!-- Chat by other. Use the class "by-other". -->
-          <li class="by-other">
-            <div class="chat-content">
-              <div class="chat-meta">3 hours ago <span class="pull-right">You</span></div>
-              Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.
-              <div class="clearfix"></div>
-            </div>
-          </li>
+          <div class="msg"> </div>
 
         </ul>
-
-      </div>
 
     </div>
     <div class="modal-footer bot-footer my-scroll-footer"> 
       <div class="message-box">
         <input type="text" id="message" class="form-control" placeholder="Enter your reply...">
-        <button class="btn btn-primary" style="display: none;" id="reply-bot"> Send <i class="fa fa-send"></i></button>
+        <button class="btn btn-primary" style="display: none;" id="reply-bot">Send <i class="fa fa-send"></i></button>
       </div> 
     </div>
 

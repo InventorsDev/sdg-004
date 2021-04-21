@@ -897,15 +897,13 @@ body {
     .my-scroll-border .my-scroll-div {
       border-left: 1px solid #6380d1;
       border-right: 1px solid #6380d1;
+      height: 424px;
+      position: relative;
+      overflow-y: auto;
     }
 
     .my-scroll-border .my-scroll-footer {
       border-top: none;
-    }
-    .my-scroll-div {
-      max-height: 424px;
-      position: relative;
-      overflow-y: auto;
     }
 
     @media (max-width: 765px) {
@@ -1220,6 +1218,60 @@ LOGIN PAGE
   .error_alert:hover p{
    color: #ee002d;
   }
+
+
+
+/* ==============================================================
+   TIPS
+   ============================================================== */
+.tips-wrap {
+  -webkit-box-shadow: 0px 0px 31px -8px #d6d2d2;
+  box-shadow: 0px 0px 31px -8px #d6d2d2;
+  margin: 0 0 25px; }
+
+.tips-img {
+  width: 100%;
+  height: 240px; }
+
+.tips-avatar {
+  text-align: center; }
+  .tips-avatar img {
+    border-radius: 50%;
+    margin: -40px auto 0 auto;
+    display: block;
+    width: 60px; }
+  .tips-avatar p {
+    font-size: 15px;
+    color: #7c7c7c;
+    margin: 10px 0 0; }
+
+.tips-content_wrap {
+  padding: 23px 30px;
+  font-size: var(--menu-font-size);
+  height: 250px; }
+  @media (max-width: 992px) {
+    .tips-content_wrap {
+      padding: 16px; } }
+  .tips-content_wrap h5 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 14px; }
+  .tips-content_wrap p {
+    font-size: 15px;
+    line-height: 1.6;
+     }
+  .tips-content_wrap a {
+    color: var(--p-color);
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s; }
+    .tips-content_wrap a:hover {
+      color: #ea5555;
+      text-decoration: none; }
+
+.tips-title:hover {
+  text-decoration: none; }
+
 
 
 
