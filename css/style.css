@@ -949,7 +949,8 @@ SIGNUP PAGE
 
 .signup .signup-button{
   color: var(--menu-bg);
-  margin-bottom: 150px;
+  margin-bottom: 200px;
+  margin-top: 50px;
  margin-left: 20px;
  margin-right: 20px;
 }
@@ -1161,6 +1162,7 @@ LOGIN PAGE
 
 .success-box p{
   margin-bottom: 4px;
+  font-size: var(--menu-font-size);
 }
 .success-box button{
  margin-top: 20px;
