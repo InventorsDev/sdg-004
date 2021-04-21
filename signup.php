@@ -78,7 +78,7 @@
      </div>
 
 
-   <div style="display: none;" class="signup-container" id="signup-as-reporter">
+   <div style="display: none;" class="signup-container mb-5" id="signup-as-reporter">
         
             <div class="signup-box" data-aos="fade-up">
                 <div class="signup-body">
@@ -136,7 +136,7 @@
                         </div>
                     </div>
 
-                     <div class="form-row">
+                     <div class="form-group">
                         <div class="col-md-12 text-center">
                             <button class="btn btn-info btn-sm" type="button" id="reporter-signup">Signup <i class="fa fa-sign-in"></i></button>
                         </div>
@@ -160,7 +160,7 @@
           </div>
 
 
-          <div style="display: none;" class="signup-container" id="signup-as-responder1">
+          <div style="display: none;" class="signup-container mb-5" id="signup-as-responder1">
         
             <div class="signup-box" data-aos="fade-up">
                 <div class="signup-body">
@@ -212,7 +212,7 @@
                         </div>
                     </div>
 
-                     <div class="form-row">
+                     <div class="form-group">
                         <div class="col-md-12 text-center">
                             <button class="btn btn-info btn-sm" type="button" id="responder-next">Next <i class="fa fa-long-arrow-right"></i></button>
                         </div>
@@ -236,7 +236,7 @@
           </div>
 
 
-          <div style="display: none;" class="signup-container" id="signup-as-responder2">
+          <div style="display: none;" class="signup-container mb-5" id="signup-as-responder2">
         
             <div class="signup-box" data-aos="fade-up">
                 <div class="signup-body">
@@ -272,6 +272,43 @@
                           <label>State of residence</label>
                           <select class="form-control" id="state">
                             <option value="">--Select state--</option>
+                            <option value="Abia">Abia</option>
+                          <option value="Adamawa">Adamawa</option>
+                          <option value="AkwaIbom">AkwaIbom</option>
+                          <option value="Anambra">Anambra</option>
+                          <option value="Bauchi">Bauchi</option>
+                          <option value="Bayelsa">Bayelsa</option>
+                          <option value="Benue">Benue</option>
+                          <option value="Borno">Borno</option>
+                          <option value="Cross River">Cross River</option>
+                          <option value="Delta">Delta</option>
+                          <option value="Ebonyi">Ebonyi</option>
+                          <option value="Edo">Edo</option>
+                          <option value="Ekiti">Ekiti</option>
+                          <option value="Enugu">Enugu</option>
+                          <option value="FCT">FCT</option>
+                          <option value="Gombe">Gombe</option>
+                          <option value="Imo">Imo</option>
+                          <option value="Jigawa">Jigawa</option>
+                          <option value="Kaduna">Kaduna</option>
+                          <option value="Kano">Kano</option>
+                          <option value="Katsina">Katsina</option>
+                          <option value="Kebbi">Kebbi</option>
+                          <option value="Kogi">Kogi</option>
+                          <option value="Kwara">Kwara</option>
+                          <option value="Lagos">Lagos</option>
+                          <option value="Nasarawa">Nasarawa</option>
+                          <option value="Niger">Niger</option>
+                          <option value="Ogun">Ogun</option>
+                          <option value="Ondo">Ondo</option>
+                          <option value="Osun">Osun</option>
+                          <option value="Oyo">Oyo</option>
+                          <option value="Plateau">Plateau</option>
+                          <option value="Rivers">Rivers</option>
+                          <option value="Sokoto">Sokoto</option>
+                          <option value="Taraba">Taraba</option>
+                          <option value="Yobe">Yobe</option>
+                          <option value="Zamfara">Zamafara</option>
                           </select>
                             <p id="state_alert" class="form-alert"></p> 
                         </div>
@@ -300,10 +337,7 @@
                     <div class="form-row">
                         <div class="col-md-6">
                           <label>Position in your organization</label>
-                             <select class="form-control" id="position">
-                            <option>--Select position--</option>
-                            <option value="others">Others</option>
-                          </select>
+                            <input type="text" id="position" class="form-control" placeholder="Enter your Organization"/>
                             <p id="position_alert" class="form-alert"></p> 
                         </div>
 
@@ -326,7 +360,7 @@
                         </div>
                     </div>
 
-                     <div class="form-row">
+                     <div class="form-group">
                         <div class="col-md-12 text-center">
                             <button class="btn btn-success btn-sm" type="button" id="responder-pre"><i class="fa fa-long-arrow-left"></i> Previous</button>
                             <button class="btn btn-info btn-sm" type="button" id="responder-signup">Signup <i class="fa fa-sign-in"></i></button>
@@ -353,9 +387,6 @@
   </div>
 </section>
 
-
-<button class="float btn" id="menu-share" data-toggle="modal" data-target="#success"><i class="fa fa-wechat"></i></button>
-
  <div aria-hidden="true" aria-labelledby="staticBackdropLabel" role="dialog" tabindex="-1" id="success" class="modal fade">
                   <div class="modal-dialog">
                     <div class="modal-content">
@@ -364,6 +395,25 @@
                            <center class="alert"><i class="fa fa-check"></i></center>
                         <p id="success_text">Signed up successfully!</p>
                         <p class="redirect">redirecting in 5 seconds...</p>
+                        
+
+                      <button class="btn btn-primary pull-right" data-dismiss="modal" type="button">Ok</button>
+
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div aria-hidden="true" aria-labelledby="staticBackdropLabel" role="dialog" tabindex="-1" id="success1" class="modal fade">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-body text-center success-box">
+
+                           <center class="alert"><i class="fa fa-check"></i></center>
+                        <p id="success_text">Application under review!</p>
+                        <p class="get-back">We would get back to you shortly through the details provided.</p>
                         
 
                       <button class="btn btn-primary pull-right" data-dismiss="modal" type="button">Ok</button>

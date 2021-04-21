@@ -42,6 +42,7 @@
                     <div class="form-group">
                         <div class="col-md-12">
                             <input type="text" id="email" class="form-control" placeholder="E-mail"/>
+                            <p id="email_alert" class="form-alert"></p> 
                         </div>
                     </div>
 
@@ -50,12 +51,13 @@
                             <input type="password" id="password" class="form-control" placeholder="Password"/>
                       <div class="input-group-append">
                       <div class="input-group-text" id="show-hide"><span class="eye fa fa-eye"></span></div>
-                    </div></div>
+                    </div> </div>
+                     <p id="password_alert" class="form-alert mt-n3 mb-n4"></p>
                     </div>
 
-                    <div class="form-row">
+                    <div class="form-row mt-5">
                         <div class="col-md-6">
-                            <a href="#" class="btn btn-link btn-block forget">Forgot your password?</a>
+                            <a href="#" class="btn btn-link">Forgot your password?</a>
                         </div>
                         <div class="col-md-6">
                             <button class="btn btn-info btn-block" type="button" id="login">Log In</button>
