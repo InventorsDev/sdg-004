@@ -33,6 +33,15 @@
                 <div class="login-body">
                     <div class="login-title"><strong>Log In</strong> to your account</div>
 
+                    <?php 
+                    session_start();
+                    if(isset($_SESSION['msg'])){ ?>
+                      <div id="alert1_box" class="error_alert" >
+          <span aria-label="close" onclick="close_alert('alert1_box')" >&times;</span>
+             <p><i class="fa fa-exclamation-circle"></i> <span id="alert1">Session expired! Please login again</span></p>
+             </div>
+                   <?php }  unset($_SESSION['msg']); ?>
+
                      <div id="alert_box" style="display: none;" class="error_alert" >
           <span aria-label="close" onclick="close_alert('alert_box')" >&times;</span>
              <p><i class="fa fa-exclamation-circle"></i> <span id="alert"></span></p>

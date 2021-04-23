@@ -564,16 +564,17 @@
                                   document.getElementById("alert_box").style.display="none";
                                   document.getElementById("alert").innerHTML="";
 
+                                    setTimeout(function(){
                                     window.location = "./app/"+response.user_type;
+                                    },1000);
                                 }else{
                                   document.getElementById("alert_box").style.display="block";
                                   document.getElementById("alert").innerHTML=response.message;
+
+                                document.getElementById("login").innerHTML='Login';
+                                document.getElementById("login").disable='false';
                                 }
                              },
-                         complete: function(data){
-                          document.getElementById("login").innerHTML='Login';
-                    document.getElementById("login").disable='false';
-                        },
                         });
                     }
 
@@ -586,7 +587,7 @@
 
 
  // MODAL POP-UP
-function botFunction(){
+window.onload = function(){
   setTimeout(function(){
   $('#chatbot').modal('show');
 },10000);

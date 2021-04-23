@@ -39,6 +39,10 @@ function test_input($text){
   		 $stmt = $conn->prepare("INSERT INTO users (lastname, firstname, email, occupation, password, status, user_type) VALUES ( ?, ?, ?, ?, ?, ?, ?)");
           $stmt->bind_param("sssssss", $lastname, $firstname, $email, $occupation, $password, $status, $user_type);
           if($stmt->execute()){
+
+        $_SESSION["user_id"] = $stmt->insert_id;
+        $_SESSION["user_type"] = $user_type;
+
           echo json_encode( array("status" => 1, "message" => "Signed up successfully!") );
             exit;	
           } 
@@ -107,16 +111,19 @@ function test_input($text){
 
   	if ($email != "" && $password != "") {
 
-  		 $stmt = $conn->prepare("SELECT password, status, user_type FROM users WHERE email = ?");
+  		 $stmt = $conn->prepare("SELECT user_id, password, status, user_type FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
-        $stmt->bind_result($hash, $status, $user_type);
+        $stmt->bind_result($user_id, $hash, $status, $user_type);
         if($stmt->num_rows > 0 ) {
         $stmt->fetch();
 
         if ($status == 'active') {
-	        	if (password_verify($password, $hash)) {
+	        	if (password_verify($password, $hash)) {	     
+        $_SESSION["user_id"] = $user_id;
+        $_SESSION["user_type"] = $user_type;
+
 	        	echo json_encode( array("status" => 1, "user_type" => $user_type, "message" => 'Logged in successfully') );
 	          exit();
 	      		}else{
