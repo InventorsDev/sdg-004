@@ -75,11 +75,14 @@ $user_type = test_input($_SESSION["user_type"]);
 
         </div>
         <div class="row">
-          <div class="offset-md-1 col-md-10 text-center">
-        <h2 class="mt-4">Request for help below</h2>
-        <p>Describe the help you need or press the button and help would come</p>
+          <div class="offset-md-1 col-md-10">
+        <h2 class="mt-4 text-center">Request for help below</h2>
+        <p class="text-center mb-4">Describe the help you need or press the button and help would come</p>
+
         <textarea class="form-control" placeholder="Describe your situation..." id="help" rows="3" cols="3"></textarea>
-        <button class="btn btn-primary btn-help" id="get-help">Get Help</button>
+        <div class="invalid-feedback">Please describe your situation</div>
+
+        <div class="text-center"><button class="btn btn-primary btn-help" id="get-help">Get Help</button></div>
       </div>
     </div>
       </div>
@@ -97,6 +100,7 @@ $user_type = test_input($_SESSION["user_type"]);
   </div>
 
 
+    <!-- Alert modals -->
  <div aria-hidden="true" aria-labelledby="staticBackdropLabel" role="dialog" tabindex="-1" id="success" class="modal fade">
                   <div class="modal-dialog">
                     <div class="modal-content">
@@ -107,9 +111,23 @@ $user_type = test_input($_SESSION["user_type"]);
                           Stay calm! Heads up!
                         </p>
                         
-
                       <button class="btn btn-primary pull-right" data-dismiss="modal" type="button">Ok</button>
 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                 <div aria-hidden="true" aria-labelledby="staticBackdropLabel" role="dialog" tabindex="-1" id="fail" class="modal fade">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <center class="alert"><i class="icon_error-circle_alt"></i></center>
+                        <p class="text-center " id="fail_text"></p><br/>
+                        
+                      <div style="margin-bottom: 40px;">
+                      <button class="btn btn-primary pull-right" data-dismiss="modal" type="button">Ok</button>
+                      </div>
                         
                       </div>
                     </div>

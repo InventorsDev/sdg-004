@@ -90,48 +90,48 @@
 
                     <form action="" autocomplete="off" id="signup-form1" class="form-horiontal" method="post">
                     <div class="form-row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>Lastname</label>
                             <input type="text" id="lastname" class="form-control" placeholder="Enter your lastname"/>
-                            <p id="lastname_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback">Please enter your lastname</span>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>Firstname</label>
                             <input type="text" id="firstname" class="form-control" placeholder="Enter your firstname"/>
-                            <p id="firstname_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback">Please enter your firstname</span>
                         </div>
                     </div>
 
                      <div class="form-row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>Email</label>
                             <input type="text" id="email" class="form-control" placeholder="Enter your e-mail address"/>
-                            <p id="email_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback" id="email_alert">Please enter your email address</span>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>Occupation</label>
                             <select class="form-control" id="occupation">
                             <option value="">--Select occupation--</option>
                             <option value="student">Student</option>
                             <option value="others">Others</option>
                           </select>
-                            <p id="occupation_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback">Please select your occupation</span>
                         </div>
                     </div>
 
                     <div class="form-row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>Password</label>
                             <input type="password" id="password" class="form-control" placeholder="Enter your password"/>
-                            <p id="password_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback" id="password_alert">Please enter your password</span>
                         </div>
                    
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>Confirm password</label>
                             <input type="password" id="cpassword" class="form-control" placeholder="Confirm password"/>
-                            <p id="cpassword_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback" id="cpassword_alert">Please confirm your password</span>
                         </div>
                     </div>
 
@@ -167,47 +167,45 @@
 
                     <form action="" autocomplete="off" id="signup-form2" class="form-horiontal" method="post">
                      <div class="form-row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>Lastname</label>
                             <input type="text" id="lastname1" class="form-control" placeholder="Enter your lastname"/>
-                            <p id="lastname1_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback">Please enter your lastname</span>
                         </div>
-                    
 
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>Firstname</label>
                             <input type="text" id="firstname1" class="form-control" placeholder="Enter your firstname"/>
-                            <p id="firstname1_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback">Please enter your firstname</span>
                         </div>
                     </div>
 
                      <div class="form-row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>Email</label>
                             <input type="text" id="email1" class="form-control" placeholder="Enter your e-mail address"/>
-                            <p id="email1_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback" id="email1_alert">Please enter your email address</span>
                         </div>
 
 
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>Phone number</label>
                             <input type="tel" id="phone" class="form-control" placeholder="Enter phone number"/>
-                            <p id="phone_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback" id="phone_alert">Please enter your phone number</span>
                         </div>
                     </div>
 
                      <div class="form-row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>Password</label>
                             <input type="password" id="password1" class="form-control" placeholder="Enter your password"/>
-                            <p id="password1_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback" id="password1_alert">Please enter your password</span>
                         </div>
-
-
-                        <div class="col-md-6">
+                   
+                        <div class="col-md-6 mb-3">
                           <label>Confirm password</label>
                             <input type="password" id="cpassword1" class="form-control" placeholder="Confirm password"/>
-                            <p id="cpassword1_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback" id="cpassword1_alert">Please confirm your password</span>
                         </div>
                     </div>
 
@@ -248,26 +246,26 @@
 
                     <form action="" autocomplete="off" id="signup-form3" class="form-horiontal" method="post">
                    <div class="form-row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>Gender</label>
                            <select class="form-control" id="gender">
                             <option value="">--Select gender--</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                           </select>
-                            <p id="gender_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback">Please select your gender</span> 
                         </div>
 
 
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>Date of Birth</label>
                             <input type="date" id="dob" class="form-control" placeholder="Enter your address"/>
-                            <p id="dob_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback" id="dob_alert">Please select your date of birth</span>
                         </div>
                       </div>
 
                         <div class="form-row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>State of residence</label>
                           <select class="form-control" id="state">
                             <option value="">--Select state--</option>
@@ -309,54 +307,54 @@
                           <option value="Yobe">Yobe</option>
                           <option value="Zamfara">Zamafara</option>
                           </select>
-                            <p id="state_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback">Please select your state of residence</span>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>Address</label>
                             <input type="text" id="address" class="form-control" placeholder="Enter your address"/>
-                            <p id="address_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback">Please enter your address</span>
                         </div>
                     </div>
 
                     <div class="form-row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>Occupation</label>
                             <input type="text" id="occupation1" class="form-control" placeholder="Enter your occupation"/>
-                            <p id="occupation1_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback">Please enter your occupation</span>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>Organization</label>
                             <input type="text" id="organization" class="form-control" placeholder="Enter your Organization"/>
-                            <p id="organization_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback">Please enter your organization</span>
                         </div>
                     </div>
 
                     <div class="form-row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                           <label>Position in your organization</label>
-                            <input type="text" id="position" class="form-control" placeholder="Enter your Organization"/>
-                            <p id="position_alert" class="form-alert"></p> 
+                            <input type="text" id="position" class="form-control" placeholder="Enter your position in your organization"/>
+                            <span class="invalid-feedback">Please enter your position in your organization</span>
                         </div>
 
 
-                       <div class="col-md-6">
+                       <div class="col-md-6 mb-3">
                           <label>Curriculum vitae</label>
                           <div class="custom-file">
                             <input type="file" id="cv" class="form-control custom-file-input" id="custom-file" />
                           <label class="custom-file-label" id="cv1" for="custom-file">Select curriculum vitae</label>
-                            <p id="cv_alert" class="form-alert"></p> 
+                            <span class="invalid-feedback">Please upload your curriculum vitae</span>
                           </div>
                         </div>
                     </div>
 
                     <div class="form-row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 mb-3">
                           <label>What's your motive for doing this?</label>
                             <textarea id="motive" class="form-control" placeholder="Enter your motive for doing this"></textarea>
-                            <p id="motive_alert" class="form-alert"></p> 
-                        </div>
+                            <span class="invalid-feedback">Please enter your motive</span>     
+                          </div>
                     </div>
 
                      <div class="form-group">

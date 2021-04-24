@@ -538,6 +538,17 @@ margin-top: 30px;
   }
 
 
+  .card .card-body .footer{
+    text-align: right;
+  }
+
+  @media (max-width: 768px) {
+    .card .card-body .footer{
+      text-align: left;
+    }
+  }
+
+
 
 /* ==============================================================
   ALERT

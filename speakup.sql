@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2021 at 12:12 AM
+-- Generation Time: Apr 24, 2021 at 09:51 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -49,21 +49,55 @@ INSERT INTO `chatbot` (`chat_id`, `question`, `answer`, `added_updated`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `chats`
+--
+
+CREATE TABLE `chats` (
+  `chat_id` int(11) NOT NULL,
+  `sender` int(11) NOT NULL,
+  `receiver` int(11) NOT NULL,
+  `msg_type` text NOT NULL,
+  `message` text NOT NULL,
+  `label` text NOT NULL,
+  `status` text NOT NULL,
+  `file` varchar(225) NOT NULL,
+  `date_sent` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chats`
+--
+
+INSERT INTO `chats` (`chat_id`, `sender`, `receiver`, `msg_type`, `message`, `label`, `status`, `file`, `date_sent`) VALUES
+(1, 1, 0, '', 'ss', 'outbox', 'unread', '', '0000-00-00 00:00:00'),
+(2, 1, 0, '', 'ss', 'outbox', 'unread', '', '2021-04-24 08:46:23'),
+(3, 1, 0, '', 'ss', 'outbox', 'unread', '', '2021-04-24 18:40:49');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reports`
 --
 
 CREATE TABLE `reports` (
   `report_id` int(11) NOT NULL,
-  `reporter_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `responder_id` int(11) NOT NULL,
-  `case_title` text NOT NULL,
+  `submitted_as` text NOT NULL,
+  `title` text NOT NULL,
   `description` text NOT NULL,
-  `evidence1` varchar(225) NOT NULL,
-  `evidence2` varchar(225) NOT NULL,
+  `evidence` varchar(225) NOT NULL,
   `status` text NOT NULL,
   `featured` text NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reports`
+--
+
+INSERT INTO `reports` (`report_id`, `user_id`, `responder_id`, `submitted_as`, `title`, `description`, `evidence`, `status`, `featured`, `date_added`) VALUES
+(1, 1, 2, 'a reporter', 'none', 's', 's', 'pending', '', '2021-04-24 18:33:32');
 
 -- --------------------------------------------------------
 
@@ -90,6 +124,7 @@ CREATE TABLE `tips_guides` (
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `user_type` text NOT NULL,
+  `assign` int(11) NOT NULL,
   `lastname` text NOT NULL,
   `firstname` text NOT NULL,
   `email` text NOT NULL,
@@ -112,13 +147,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_type`, `lastname`, `firstname`, `email`, `phone`, `gender`, `status`, `dob`, `state`, `address`, `occupation`, `organization`, `position`, `cv`, `motive`, `password`, `date_reg`) VALUES
-(19, 'reporter', 'olanipekun', 'seyi', '12345890Aa@wm.ee', NULL, NULL, 'active', NULL, NULL, NULL, 'student', NULL, NULL, NULL, NULL, '$2y$10$Ge1hSUHoCrBebkpsj9GcneQBjelRW0bFyLfYwMDwtSp9vhU9Vlrpe', '2021-04-20 21:00:26'),
-(20, 'reporter', 'college', 'de-young', 'jkj@fggf.hhjhs', NULL, NULL, 'active', NULL, NULL, NULL, 'student', NULL, NULL, NULL, NULL, '$2y$10$JhxyYmO/AX9/ooT5tODlWO1/3xbmj94zmryQI4SjtrUgVfsaEJOom', '2021-04-20 21:38:00'),
-(21, 'reporter', 'college', 'de-young', 'onabajo@gmail.com', NULL, NULL, '', NULL, NULL, NULL, 'student', NULL, NULL, NULL, NULL, '$2y$10$EmUu3jSMsWYDzp/M94X2pujFq5CGXYiWCv6GJ7j.bPDnStv4d5I7O', '2021-04-20 21:51:21'),
-(22, 'reporter', 'olanipekun', 'seyi', 'oluwakeji@gmail.com', NULL, NULL, 'active', NULL, NULL, NULL, 'student', NULL, NULL, NULL, NULL, '$2y$10$ols/Y.bu1HZ.rQhAg5Cc0OcogNmUSWTxRh6Tc1YFq5ubavTh9T.CC', '2021-04-20 21:56:57'),
-(23, 'responder', 'olanipekun', 'seyi', 'EGIFFORD@MVCC.EDU', '08093104529', 'male', 'reviewing', '2021-04-09', 'abia', '1101 SHERMAN DRIVE, UTICA, NEW YORK', 'ed', 'ddd', 'ddd', 'EGIFFORD@MVCC.EDU_cv.pdf', 'ddddd', '$2y$10$RYbYgMbAr0ikT79DG/V7AO2ZOZzqycemi3rnlVoZQvQvIU0lwLWZG', '2021-04-20 22:21:52'),
-(24, 'responder', 'olanipekun', 'seyi', 'EGIFFORD@MVCC.EDUw', '08093104529', 'male', 'reviewing', '2021-04-16', 'Benue', 'ww', 'www', 'www', 'www', 'EGIFFORD@MVCC.EDUw_cv.docx', 'ww', '$2y$10$w5ENkoTlJ.xz7/9XKuqVjuHjM6ZLeIlHt2rjjihjW6BbjbxLsIWna', '2021-04-21 07:46:29');
+INSERT INTO `users` (`user_id`, `user_type`, `assign`, `lastname`, `firstname`, `email`, `phone`, `gender`, `status`, `dob`, `state`, `address`, `occupation`, `organization`, `position`, `cv`, `motive`, `password`, `date_reg`) VALUES
+(1, 'reporter', 0, 'Onabajo', 'Oluwakeji', 'onabajooluwakeji.daniel@gmail.com', NULL, NULL, 'active', NULL, NULL, NULL, 'student', NULL, NULL, NULL, NULL, '$2y$10$R7uU3aQYskpj.LXOo4G8W.j84Qg8cI83MX9FG4BO6KlZimDamGLCS', '2021-04-23 13:15:27');
 
 --
 -- Indexes for dumped tables
@@ -128,6 +158,12 @@ INSERT INTO `users` (`user_id`, `user_type`, `lastname`, `firstname`, `email`, `
 -- Indexes for table `chatbot`
 --
 ALTER TABLE `chatbot`
+  ADD PRIMARY KEY (`chat_id`);
+
+--
+-- Indexes for table `chats`
+--
+ALTER TABLE `chats`
   ADD PRIMARY KEY (`chat_id`);
 
 --
@@ -153,16 +189,22 @@ ALTER TABLE `chatbot`
   MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `chats`
+--
+ALTER TABLE `chats`
+  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

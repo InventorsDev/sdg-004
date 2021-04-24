@@ -60,46 +60,37 @@ $user_type = test_input($_SESSION["user_type"]);
 
 
             <div class="track-report">
-              <h3 class="mt-2 mb-3 text-center">Track Submitted Reports</h3>
+              <h3 class="mt-3 mb-3 text-center">Track Submitted Reports</h3>
 
-              <div class="card">
-                <div class="card-body">
-                  <a href=""><h5 class="card-title mb-n1">I was bullied today</h5></a>
-                  <small class="card-subtitle mb-3 text-muted">Submitted as annonymous</small>
-                  <!--<p class="card-text text-capitalize"> ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p> -->
-                  <div class="pull-right">
-                    <small class="text-muted">Status: Pending | </small>
-                  <small class="text-muted">Submitted: 24th of Jan, 2021</small>
-                </div>
-                </div>
-              </div>
+              <?php
+               $stmt = $conn->prepare("SELECT submitted_as, title, description, status, date_added FROM reports WHERE user_id = ?");
+              $stmt->bind_param("i", $user_id);
+              $stmt->execute();
+              $stmt->store_result();
+              $stmt->bind_result($submitted_as, $title, $description, $status, $date_added);
+              if($stmt->num_rows > 0 ) {
+              while($stmt->fetch()){
 
-             <div class="card">
+                echo '<div class="card report">
                 <div class="card-body">
-                  <a href=""><h5 class="card-title mb-n1">I was bullied today</h5></a>
-                  <small class="card-subtitle mb-3 text-muted">Submitted as annonymous</small>
-                  <!--<p class="card-text text-capitalize"> ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p> -->
-                  <div class="pull-right">
-                    <small class="text-muted">Status: Pending | </small>
-                  <small class="text-muted">Submitted: 24th of Jan, 2021</small>
+                  <a href=""><h5 class="card-title mb-n1">'.ucfirst($title).'</h5></a>
+                  <small class="card-subtitle mb-3 text-muted">Submitted as '.$submitted_as.'</small>
+                  <div class="footer">
+                    <small class="text-muted">Status: '.$status.' | </small>
+                  <small class="text-muted">Submitted: '.date('jS M Y ', strtotime($date_added)).'</small>
                 </div>
                 </div>
-              </div>
+              </div>';
 
-              <div class="card">
+
+              }}else{
+                echo '<div class="card report no-report">
                 <div class="card-body">
-                  <a href=""><h5 class="card-title mb-n1">I was bullied today</h5></a>
-                  <small class="card-subtitle mb-3 text-muted">Submitted as annonymous</small>
-                  <!--<p class="card-text text-capitalize"> ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p> -->
-                  <div class="pull-right">
-                    <small class="text-muted">Status: Pending | </small>
-                  <small class="text-muted">Submitted: 24th of Jan, 2021</small>
+                  <p class="card-subtitle p-2 text-center">No report submitted!</p>
                 </div>
-                </div>
-              </div>
+              </div>';
+              }
+              ?>
 
             </div>
 
@@ -110,32 +101,35 @@ $user_type = test_input($_SESSION["user_type"]);
 
         <div class="form-row mb-4">
         <label>Report Title</label>
-        <input type="text" name="" class="form-control" placeholder="Describe your situation...">
+        <input type="text" id="report-title" class="form-control" placeholder="Enter report title">
+        <div class="invalid-feedback">Please enter report title</div>
         </div>
 
         <div class="form-row mb-4">
         <label>Report Description</label>
-        <textarea class="form-control" placeholder="Describe your situation..." rows="3" cols="3"></textarea>
+        <textarea class="form-control" id="description" placeholder="Describe your situation..." rows="3" cols="3"></textarea>
+        <div class="invalid-feedback">Please enter report description</div>
       </div>
 
         <div class="form-row mb-4">
         <label>Upload Evidence</label>
       <div class="custom-file">
-                            <input type="file" id="cv" class="form-control custom-file-input" id="custom-file" multiple>
-                          <label class="custom-file-label text-left" id="cv1" for="custom-file">Select curriculum vitae</label>
+                            <input type="file" id="files" class="form-control custom-file-input" multiple>
+                          <label class="custom-file-label" id="files1" for="files">Select curriculum vitae</label>
                             <p id="cv_alert" class="form-alert"></p> 
                           </div>
                         </div>
+
         <div class="form-row mb-4">
         <div class="form-con=trol custom-checkbox ml-4" >
-          <input type="checkbox" class="custom-control-input" id="file">
-          <label class="custom-control-label" for="file">Submit as anonymous</label>
+          <input type="checkbox" value="no" class="custom-control-input" id="anonymous">
+          <label class="custom-control-label" for="anonymous">Submit as anonymous</label>
         </div>
       </div>
 
         <div class="form-group">
         <button class="btn btn-dark mr-4" type="button" id="close-new">Cancel</button>
-        <button class="btn btn-primary" type="button">Submit report</button>
+        <button class="btn btn-primary" type="button" id="report" >Submit report</button>
       </div>
     </form>
   </div>
@@ -155,6 +149,38 @@ $user_type = test_input($_SESSION["user_type"]);
     <!-- /#page-content-wrapper -->
 
   </div>
+
+
+       <!-- Alert modals -->
+ <div aria-hidden="true" aria-labelledby="staticBackdropLabel" role="dialog" tabindex="-1" id="success" class="modal fade">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-body text-center success-box">
+
+                           <center class="alert"><i class="fa fa-check"></i></center>
+                        <p id="success_text">Report submitted successfully!</p>
+                        
+                      <button class="btn btn-primary pull-right" data-dismiss="modal" type="button">Ok</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                 <div aria-hidden="true" aria-labelledby="staticBackdropLabel" role="dialog" tabindex="-1" id="fail" class="modal fade">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                     <div class="modal-body text-center success-box">
+
+                           <center class="alert"><i class="fa fa-exclamation-circle"></i></center>
+                        <p id="fail_text"></p>
+                        
+                      <button class="btn btn-primary pull-right" data-dismiss="modal" type="button">Ok</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->

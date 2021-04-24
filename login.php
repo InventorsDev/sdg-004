@@ -37,8 +37,8 @@
                     session_start();
                     if(isset($_SESSION['msg'])){ ?>
                       <div id="alert1_box" class="error_alert" >
-          <span aria-label="close" onclick="close_alert('alert1_box')" >&times;</span>
-             <p><i class="fa fa-exclamation-circle"></i> <span id="alert1">Session expired! Please login again</span></p>
+                 <span aria-label="close" onclick="close_alert('alert1_box')" >&times;</span>
+              <p><i class="fa fa-exclamation-circle"></i> <span id="alert1">Session expired! Please login again</span></p>
              </div>
                    <?php }  unset($_SESSION['msg']); ?>
 
@@ -51,7 +51,7 @@
                     <div class="form-group">
                         <div class="col-md-12">
                             <input type="text" id="email" class="form-control" placeholder="E-mail"/>
-                            <p id="email_alert" class="form-alert"></p> 
+                            <div class="invalid-feedback" id="email_alert">Please enter your email address</div>
                         </div>
                     </div>
 
