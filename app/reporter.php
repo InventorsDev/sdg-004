@@ -1,8 +1,32 @@
+<?php
+
+include_once '../functions.php'; 
+
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
+$user_id = preg_replace('#[^0-9]#','',$_SESSION['user_id']);
+$user_type = test_input($_SESSION["user_type"]);
+
+ $stmt = $conn->prepare("SELECT lastname, firstname FROM users WHERE user_id = ?");
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($lastname, $firstname);
+        $stmt->fetch();
+
+}else{
+      $_SESSION['msg'] ='You must login first';
+      header('location: ../login');
+      exit();
+      } 
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
-     <title>App | SpeakUp</title>
+     <title> App | SpeakUp</title>
      
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -15,6 +39,7 @@
      <link rel="stylesheet" href="../css/bootstrap.min.css">
      <link rel="stylesheet" href="../css/font-awesome.min.css">
     <link href="../css/bootstrap-sidebar.min.css" rel="stylesheet">
+    <link href="../css/app.css" rel="stylesheet">
 
    <!-- MAIN CSS -->
   <link href="../css/app.css" rel="stylesheet">
@@ -23,56 +48,7 @@
 
 <body>
 
-  <div class="d-flex" id="wrapper">
-
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-      <div class="sidebar-heading"><a href="../"> <i class="fa fa-bullhorn"></i> SpeakUp</a></div>
-     
-      <img class="img-fluid avatar" src="../images/avatar.jpg">
-      <h4 class="type">Responder</h4>
-     
-      <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action active">Help me!</a>
-        <a href="#" class="list-group-item list-group-item-action">Make a report</a>
-        <a href="#" class="list-group-item list-group-item-action">Profile</a>
-      </div>
-    </div>
-    <!-- /#sidebar-wrapper -->
-
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-
-      <nav class="navbar navbar-expand-lg navbar-lght border-bottom">
-         <button class="navbar-toggler" type="button" id="menu-toggle" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-      <a class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-       <img class="avaar" src="../images/avatar.jpg" ><span class="fa fa-caret-down"></span></a>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav notification-row ml-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" href="#"><i class="fa fa-bell-o"></i><span class="badge">3</span> <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fa fa-envelope-o"></i> <span class="badge">8</span> </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               Firstname Lastname
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Settings</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Logout</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </nav>
+  <?php include_once 'includes/navbar.php'; ?>
 
       <div class="container-fluid">
         <div class="row board-row">
@@ -102,8 +78,8 @@
           <div class="offset-md-1 col-md-10 text-center">
         <h2 class="mt-4">Request for help below</h2>
         <p>Describe the help you need or press the button and help would come</p>
-        <textarea class="form-control" placeholder="Describe your situation..." rows="3" cols="3"></textarea>
-        <button class="btn btn-primary btn-help ">Get Help</button>
+        <textarea class="form-control" placeholder="Describe your situation..." id="help" rows="3" cols="3"></textarea>
+        <button class="btn btn-primary btn-help" id="get-help">Get Help</button>
       </div>
     </div>
       </div>
@@ -119,11 +95,32 @@
     <!-- /#page-content-wrapper -->
 
   </div>
+
+
+ <div aria-hidden="true" aria-labelledby="staticBackdropLabel" role="dialog" tabindex="-1" id="success" class="modal fade">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-body text-center success-box">
+
+                           <center class="alert"><i class="fa fa-check"></i></center>
+                        <p id="success_text">Help request sent successfully!<br>
+                          Stay calm! Heads up!
+                        </p>
+                        
+
+                      <button class="btn btn-primary pull-right" data-dismiss="modal" type="button">Ok</button>
+
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
   <script src="../js/jquery-sidebar.min.js"></script>
   <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../js/app.js"></script>
 
   <!-- Menu Toggle Script -->
   <script>

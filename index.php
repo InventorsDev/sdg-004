@@ -21,7 +21,7 @@
  <link rel="stylesheet" href="css/style.css">
 
 </head>
-<body onload="botFuntion()">
+<body>
 
  <!-- MENU BAR -->
  <nav class="navbar navbar-expand-lg">
