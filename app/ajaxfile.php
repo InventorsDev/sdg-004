@@ -13,11 +13,109 @@ function test_input($text){
   return $text;
 }
 
- $stmt = $conn->prepare("SELECT assign FROM users WHERE user_id = ?");
+//TIME AGO FUNCTION
+function time_Ago($time) { 
+    
+    $time = strtotime($time);
+    // Calculate difference between current 
+    // time and given timestamp in seconds 
+    $diff     = time() - $time; 
+    
+    // Time difference in seconds 
+    $sec     = $diff; 
+    
+    // Convert time difference in minutes 
+    $min     = round($diff / 60 ); 
+    
+    // Convert time difference in hours 
+    $hrs     = round($diff / 3600); 
+    
+    // Convert time difference in days 
+    $days     = round($diff / 86400 ); 
+    
+    // Convert time difference in weeks 
+    $weeks     = round($diff / 604800); 
+    
+    // Convert time difference in months 
+    $mnths     = round($diff / 2600640 ); 
+    
+    // Convert time difference in years 
+    $yrs     = round($diff / 31207680 ); 
+    
+    // Check for seconds 
+    if($sec <= 60) { 
+    $date = "$sec sec ago"; 
+    } 
+    
+    // Check for minutes 
+    else if($min <= 60) { 
+    if($min==1) { 
+    $date = "one min ago"; 
+    } 
+    else { 
+     $date = "$min min ago"; 
+    } 
+    } 
+    
+    // Check for hours 
+    else if($hrs <= 24) { 
+    if($hrs == 1) {  
+     $date = "an hour ago"; 
+    } 
+    else { 
+     $date ="$hrs hours ago"; 
+    } 
+    } 
+    
+    // Check for days 
+    else if($days <= 7) { 
+    if($days == 1) { 
+     $date = "Yesterday"; 
+    } 
+    else { 
+     $date = "$days days ago"; 
+    } 
+    } 
+    
+    // Check for weeks 
+    else if($weeks <= 4.3) { 
+    if($weeks == 1) { 
+     $date = "a week ago"; 
+    } 
+    else { 
+     $date = "$weeks weeks ago"; 
+    } 
+    } 
+    
+    // Check for months 
+    else if($mnths <= 12) { 
+    if($mnths == 1) { 
+    $date = "a month ago"; 
+    } 
+    else { 
+     $date = "$mnths months ago"; 
+    } 
+    } 
+    
+    // Check for years 
+    else { 
+    if($yrs == 1) { 
+     $date = "one year ago"; 
+    } 
+    else { 
+     $date = "$yrs years ago"; 
+    } 
+    }
+
+    return $date;
+    } 
+
+
+ $stmt = $conn->prepare("SELECT assigned FROM users WHERE user_id = ?");
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
         $stmt->store_result();
-        $stmt->bind_result($assign);
+        $stmt->bind_result($assigned);
         $stmt->fetch();
 
   if (isset($_POST['request'])) {
@@ -31,48 +129,212 @@ function test_input($text){
   	if ($message != "") {
   		$status = 'unread';
   		$label = 'outbox';
-  		$sender = $user_id;
-  		 $stmt = $conn->prepare("INSERT INTO chats (sender, receiver, message, label, status) VALUES ( ?, ?, ?, ?, ?)");
-          $stmt->bind_param("iisss", $user_id, $assign, $message, $label, $status);
+      $date = date("Y-m-d H:i:s");
+
+        $stmt = $conn->prepare("SELECT lastname, firstname FROM users WHERE user_id = ?");
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($lastname, $firstname);
+        $stmt->fetch();
+
+        $subject = ucwords($firstname.' '.$lastname).' needs you help';
+        $body = $message;
+        $responder_id = 3;
+
+       $stmt = $conn->prepare("INSERT INTO notifications (user_id, subject, body, status, date_sent) VALUES ( ?, ?, ?, ?, ?)");
+          $stmt->bind_param("issss", $responder_id, $subject, $body, $status, $date);
+          if($stmt->execute()){
+
+  		 $stmt = $conn->prepare("INSERT INTO chats (sender, receiver, message, label, status, date_sent) VALUES ( ?, ?, ?, ?, ?, ?)");
+          $stmt->bind_param("iissss", $user_id, $assigned, $message, $label, $status, $date);
           if($stmt->execute()){
           echo json_encode( array("status" => 1, "message" => "help request sent!") );
             exit;	
           } 
+        }
       }
   	}
 
+
+//AUTO REFRESH MESSAGE
  if ($request == 2) {
 
   		$label = 'inbox';
   		$status = 'unread';
-  		$sender = $user_id;
+
+       if ($user_type == 'responder') {
+        $label = 'outbox';       
+      }
 
   		  $stmt = $conn->prepare("SELECT chat_id FROM chats WHERE receiver = ? and label = ? and status = ?");
         $stmt->bind_param("iss", $user_id, $label, $status);
         $stmt->execute();
         $stmt->store_result();
+        $unread = $stmt->num_rows;
 
-          echo $stmt->num_rows;
-            exit;
+          echo $unread;
+            exit;               
   	}
 
 
+
+    if ($request == 3) {
+
+      $label = 'inbox';
+      $status = 'unread';
+
+      if ($user_type == 'responder') {
+        $label = 'outbox';       
+      }
+
+        $stmt = $conn->prepare("SELECT chat_id FROM chats WHERE receiver = ? and label = ? and status = ?");
+        $stmt->bind_param("iss", $user_id, $label, $status);
+        $stmt->execute();
+        $stmt->store_result();
+        $unread = $stmt->num_rows;
+
+        $html = '<p class="dropdown-item new">You have <span >'.$unread.'</span> new messages</p>';
+
+        $limit = 4;
+         $stmt = $conn->prepare("SELECT sender, message, status, date_sent FROM chats WHERE receiver = ? and label = ? ORDER BY chat_id DESC LIMIT ? ");
+        $stmt->bind_param("isi", $user_id, $label, $limit);
+        $stmt->execute();
+        $stmt->store_result();
+              $stmt->bind_result($sender, $message, $status, $date_sent);
+        if($stmt->num_rows){
+        while ($stmt->fetch()) {
+
+          //change background of unread messages
+          $unread_message = '';
+          if ($status == 'unread') {
+           $unread_message = 'style="background: rgba(0,0,0,0.1);"';
+          }
+
+           $count= strlen($message);
+           if($count > 45){
+            $newcount = 45; 
+            // Define how many character you want to display.
+            $message = substr($message, 0, $newcount).'...'; 
+          }
+
+
+        //select sender's name
+        $stmt1 = $conn->prepare("SELECT firstname, lastname FROM users WHERE user_id = ?");
+        $stmt1->bind_param("i", $sender);
+        $stmt1->execute();
+        $stmt1->store_result();
+        $stmt1->bind_result($firstname, $lastname);
+        $stmt1->fetch();
+
+        $date_sent = time_Ago($date_sent);
+
+         $html .= '<a class="dropdown-item message-item" href="messages" '.$unread_message.'>
+                <span class="photo"><img alt="avatar" src="../images/profile-image.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">'.$firstname.' '.$lastname.'</span>
+                                    <span class="time">'.$date_sent.'</span>
+                                    </span>
+                                    <span class="message">'.$message.'</span>
+              </a>
+                <div class="dropdown-divider"></div>';
+        }
+              $html .= '<a class="dropdown-item last" href="messages">See all messages</a>';
+            }else{              
+              $html .= '<a class="dropdown-item last" href="#">You don\'t have any messages </a>';
+            }
+
+          echo $html;
+            exit;               
+    }
+
+
+
+//AUTO REFRESH NOTIFICATION
+ if ($request == 4) {
+
+      $status = 'unread';
+
+        $stmt = $conn->prepare("SELECT notification_id FROM notifications WHERE user_id = ? and status = ?");
+        $stmt->bind_param("is", $user_id, $status);
+        $stmt->execute();
+        $stmt->store_result();
+        $unread = $stmt->num_rows;
+
+          echo $unread;
+            exit;               
+    }
+
+
+
+    if ($request == 5) {
+
+      $status = 'unread';
+
+       $stmt = $conn->prepare("SELECT notification_id FROM notifications WHERE user_id = ? and status = ?");
+        $stmt->bind_param("is", $user_id, $status);
+        $stmt->execute();
+        $stmt->store_result();
+        $unread = $stmt->num_rows;
+
+        $html = '<p class="dropdown-item new">You have <span >'.$unread.'</span> new notifications</p>';
+
+        $limit = 4;
+         $stmt = $conn->prepare("SELECT subject, notification_slug, status, date_sent FROM notifications WHERE user_id = ? ORDER BY notification_id DESC LIMIT ? ");
+        $stmt->bind_param("ii", $user_id, $limit);
+        $stmt->execute();
+        $stmt->store_result();
+              $stmt->bind_result($subject, $notification_slug, $status, $date_sent);
+        if($stmt->num_rows){
+        while ($stmt->fetch()) {
+          $unread_notification = '';
+          if ($status == 'unread') {
+           $unread_notification = 'style="background: rgba(0,0,0,0.1);"';
+          }
+
+           $count= strlen($subject);
+           if($count > 40){
+            $newcount = 40; 
+            // Define how many character you want to display.
+            $subject = substr($subject, 0, $newcount).'...'; 
+          }
+
+         $date_sent = time_Ago($date_sent);
+
+         $html .= ' <a class="dropdown-item notification-item" href="notifications/'.$notification_slug.'" '.$unread_notification.'>
+                                    <span class="subject">
+                                    <span class="fa fa-bell"></span>
+                                    <span class="from">'.$subject.'</span>
+                                    <span class="time">'.$date_sent.'</span>
+                                    </span>
+              </a>
+                <div class="dropdown-divider"></div>';
+        }
+              $html .= '<a class="dropdown-item last" href="notifications">See all notifications</a>';
+            }else{              
+              $html .= '<a class="dropdown-item last" href="#">You don\'t have any notification </a>';
+            }
+
+          echo $html;
+            exit;               
+    }
+
+
+
   	//SUBMIT REPORT
-  	if ($request == 3) {
+  	if ($request == 6) {
 
   		$title = test_input($_POST['title']);
   		$description = test_input($_POST['description']);
       $anonymous = test_input($_POST['anonymous']);
       $file_status = test_input($_POST['file_status']);
+      $date = date("Y-m-d H:i:s");
     
     if ($anonymous == 'yes') {
      $submitted_as = 'anonymous';
     }else{
      $submitted_as = 'a reporter';
     }
-
-    $responder_id = 2;
-
     
     if ($title != "" && $description != "") {
 
@@ -115,12 +377,20 @@ function test_input($text){
           $evidence = 'none';        
       }
         
-      $status = "pending";
+      $status = "received";
       //Insert report into database
-			$stmt = $conn->prepare("INSERT INTO reports (user_id, responder_id, title, description, evidence, status, submitted_as) VALUES ( ?, ?, ?, ?, ?, ?, ?)");
-          $stmt->bind_param("iisssss", $user_id, $responder_id, $evidence, $title, $description, $status, $submitted_as);
+			$stmt = $conn->prepare("INSERT INTO reports (user_id, responder_id, title, description, evidence, status, submitted_as, date_added) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)");
+          $stmt->bind_param("iissssss", $user_id, $assigned, $title, $description, $evidence, $status, $submitted_as, $date);
           if($stmt->execute()){
 
+             $subject = 'A new report submitted: <b>'.ucwords($title).'</b>';
+            $notification_slug = rand();
+            $body = '<p>You have received a new report from one of your assigned reporter.<br>Please take your time to go through the doments and treat every reports received as important.</p><p>Good luck!</p>';
+            $notification_status = 'unread';
+
+            $stmt = $conn->prepare("INSERT INTO notifications (user_id, subject, notification_slug, body, status, date_sent) VALUES ( ?, ?, ?, ?, ?, ?)");
+          $stmt->bind_param("isssss", $assigned, $subject, $notification_slug, $body, $notification_status, $date);
+          $stmt->execute();
 
        if ($file_status == 1) {
       for($i=0; $i < $countfiles; $i++){
@@ -145,7 +415,7 @@ function test_input($text){
                   <small class="card-subtitle mb-3 text-muted">Submitted as '.$submitted_as.'</small>
                   <div class="footer">
                     <small class="text-muted">Status: Pending | </small>
-                  <small class="text-muted">Submitted: '.date('jS M Y ', strtotime(date("Y-m-d H:i:s"))).'</small>
+                  <small class="text-muted">Submitted: '.date('jS M Y ', strtotime($date)).'</small>
                 </div>
                 </div>
               </div>';

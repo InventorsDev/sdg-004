@@ -96,7 +96,7 @@ $(document).ready(function(){
 				fd.append("files[]", document.getElementById('files').files[index]);
 		}}
 
-		fd.append('request', 3);
+		fd.append('request', 6);
 		fd.append('title',title);
 		fd.append('description',description);
 		fd.append('anonymous',anonymous);
@@ -142,10 +142,10 @@ $(document).ready(function(){
 });
 
 
-
+//AUTO REFRESH MESSAGE
 var Interval_message = window.setInterval(update_message, 1000);
 function update_message(){
-         // alert("jkj");
+
                 // AJAX request
                 $.ajax({
                 	url: 'ajaxfile.php',
@@ -153,7 +153,50 @@ function update_message(){
                 	data: {request:2},
                 	success: function(response){
                 		document.getElementById("unread_message").innerHTML= response;
-                		document.getElementById("unread_message2").innerHTML= response;
+                	},
+                });
+            }
+
+ var Interval_message_box = window.setInterval(update_message_box, 1000);
+function update_message_box(){
+
+                // AJAX request
+                $.ajax({
+                	url: 'ajaxfile.php',
+                	type: 'post',
+                	data: {request:3},
+                	success: function(response){
+                		document.getElementById("message-row").innerHTML= response;
+                	},
+                });
+            }
+
+
+//AUTO REFRESH NOTIFICATION
+ var Interval_notification = window.setInterval(update_notification, 1000);
+function update_notification(){
+
+                // AJAX request
+                $.ajax({
+                	url: 'ajaxfile.php',
+                	type: 'post',
+                	data: {request:4},
+                	success: function(response){
+                		document.getElementById("unread_notification").innerHTML= response;
+                	},
+                });
+            }
+
+ var Interval_notification_box = window.setInterval(update_notification_box, 1000);
+function update_notification_box(){
+
+                // AJAX request
+                $.ajax({
+                	url: 'ajaxfile.php',
+                	type: 'post',
+                	data: {request:5},
+                	success: function(response){
+                		document.getElementById("notification-row").innerHTML= response;
                 	},
                 });
             }

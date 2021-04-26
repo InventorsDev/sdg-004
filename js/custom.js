@@ -115,6 +115,8 @@
                     var firstname = $("#firstname").val().trim();
                     var email = $("#email").val().trim();
                     var occupation = $("#occupation").val().trim();
+                    var state = $("#state").val().trim();
+                    var address = $("#address").val().trim();
                     var password = $("#password").val().trim();
                     var cpassword = $("#cpassword").val().trim();
                     var number = /([0-9])/;
@@ -152,6 +154,18 @@
                         $("#occupation").removeClass("is-invalid");
                     }
 
+                     if (state == '') {
+                        $("#state").addClass("is-invalid");
+                    } else{
+                        $("#state").removeClass("is-invalid");
+                    }
+
+                      if (address == '') {
+                        $("#address").addClass("is-invalid");
+                    } else{
+                        $("#address").removeClass("is-invalid");
+                    }
+
                      if (password == '') {
                         $("#password").addClass("is-invalid");
                       document.getElementById("password_alert").innerHTML='Please enter your password';
@@ -169,7 +183,8 @@
                         $("#cpassword").addClass("is-invalid");
                       document.getElementById("cpassword_alert").innerHTML='Please confirm your password';
                     } else{
-                        $("#cpassword").removeClass("is-invalid");                    }
+                        $("#cpassword").removeClass("is-invalid");                    
+                      }
 
                      if (password != cpassword) {
                         $("#cpassword").addClass("is-invalid");
@@ -178,17 +193,19 @@
                         $("#cpassword").removeClass("is-invalid");  
                     }
 
-                      if(lastname != "" && firstname != "" && email != "" && occupation != "" && password != "" && password == cpassword && valEmail != '' && password.length >= 8 && password.match(number) && password.match(lowercase) && password.match(uppercase)){
+
+                      if(lastname != "" && firstname != "" && email != "" && occupation != "" && state != "" && address != "" && password != "" && password == cpassword && valEmail != '' && password.length >= 8 && password.match(number) && password.match(lowercase) && password.match(uppercase)){
                          $.ajax({
                             url:'ajaxfile.php',
                             type:'post',
-                            data:{request:1,firstname:firstname, lastname:lastname, email:email, occupation:occupation, password:password},
+                            data:{request:1,firstname:firstname, lastname:lastname, email:email, occupation:occupation, state:state, address:address, password:password},
                             dataType: 'json',
                             beforeSend: function(){
                            document.getElementById("reporter-signup").innerHTML='<img src="images/loading.gif" width="20px" height="20px"> Processing';
                           document.getElementById("reporter-signup").disable='true';
                         },
                             success:function(response){
+
                                 if(response.status == 1){
 
                             document.getElementById("signup-form1").reset();
@@ -205,7 +222,7 @@
 
                                 }else{
                                   document.getElementById("alert_box").style.display="block";
-                                  document.getElementById("alert").style.display=response.message;
+                                  document.getElementById("alert").innerHTML=response.message;
                                 }
                              },
                          complete: function(data){
@@ -226,6 +243,8 @@
                     var firstname = $("#firstname1").val().trim();
                     var email = $("#email1").val().trim();
                     var phone = $("#phone").val().trim();
+                    var state = $("#state1").val().trim();
+                    var address = $("#address1").val().trim();
                     var password = $("#password1").val().trim();
                     var cpassword = $("#cpassword1").val().trim();
                     var number = /([0-9])/;
@@ -266,6 +285,18 @@
                     }else{      
                         $("#phone").removeClass("is-invalid");
                     }
+
+                     if (state == '') {
+                        $("#state1").addClass("is-invalid");
+                    } else{
+                        $("#state1").removeClass("is-invalid");
+                    }
+
+                     if (address == '') {
+                        $("#address1").addClass("is-invalid");
+                    } else{
+                        $("#address1").removeClass("is-invalid");
+                    }
                      
                      if (password == '') {
                         $("#password1").addClass("is-invalid");
@@ -293,7 +324,7 @@
                         $("#cpassword1").removeClass("is-invalid");  
                     }
 
-                  if(lastname != "" && firstname != "" && email != "" && phone != "" && password != "" && cpassword != ""  && password == cpassword && !isNaN(phone) &&  valEmail != '' && password.length >= 8 && password.match(number) && password.match(lowercase) && password.match(uppercase)){
+                  if(lastname != "" && firstname != "" && email != "" && phone != "" && state != "" && address != "" && password != "" && cpassword != ""  && password == cpassword && !isNaN(phone) &&  valEmail != '' && password.length >= 8 && password.match(number) && password.match(lowercase) && password.match(uppercase)){
                     document.getElementById("responder-next").innerHTML='<img src="images/loading.gif" width="15px" height="15px"> Processing';
                     document.getElementById("responder-pre").innerHTML='<i class="fa fa-long-arrow-left"></i> Previous';
                     document.getElementById("responder-next").disable='true';
@@ -338,12 +369,12 @@
                     var firstname = $("#firstname1").val().trim();
                     var email = $("#email1").val().trim();
                     var phone = $("#phone").val().trim();
+                    var state = $("#state1").val().trim();
+                    var address = $("#address1").val().trim();
                     var password = $("#password1").val().trim();
                     var cpassword = $("#cpassword1").val().trim();
                     var gender = $("#gender").val().trim();
                     var dob = $("#dob").val().trim();
-                    var state = $("#state").val().trim();
-                    var address = $("#address").val().trim();
                     var occupation = $("#occupation1").val().trim();
                     var organization = $("#organization").val().trim();
                     var position = $("#position").val().trim();
@@ -359,16 +390,6 @@
                         $("#dob").addClass("is-invalid");
                     } else{
                         $("#dob").removeClass("is-invalid");
-                    }
-                     if (address == '') {
-                        $("#address").addClass("is-invalid");
-                    } else{
-                        $("#address").removeClass("is-invalid");
-                    }
-                     if (state == '') {
-                        $("#state").addClass("is-invalid");
-                    } else{
-                        $("#state").removedClass("is-invalid");
                     }
                     if (occupation == '') {
                         $("#occupation1").addClass("is-invalid");
@@ -397,7 +418,7 @@
                     }
 
 
-                  if(gender != "" && dob != "" && state != "" && address != "" && occupation != "" && organization != "" && position != "" && cv != "" && motive != "" ){
+                  if(gender != "" && dob != "" && occupation != "" && organization != "" && position != "" && cv != "" && motive != "" ){
                     
                      var fd = new FormData();
                      var cv = $('#cv')[0].files[0];

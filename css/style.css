@@ -549,6 +549,40 @@ body {
       .how .desc {
         padding-top:10px; }
 
+
+
+
+/*---------------------------------------
+404         
+     -----------------------------------------*/
+.body-full-height {
+  height: 100%;
+}
+
+.body-full-height body {
+  height: 100%;
+}
+
+.notfound-container {
+  float: left;
+  width: 100%;
+  min-height: 100%;
+  background: var(--primary-color);
+}
+
+.notfound-container .box {
+  color: var(--white-color);
+  max-width: 800px;
+  margin: 300px auto 0;
+  text-align: center;
+}
+
+.notfound-container .box h1, .notfound-container .box p{
+  color: var(--white-color);
+}
+
+
+
   /*---------------------------------------
       FREQUENTLY QUESTIONS            
       -----------------------------------------*/

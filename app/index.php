@@ -29,6 +29,7 @@ $user_type = test_input($_SESSION["user_type"]);
      <title> App | SpeakUp</title>
      
      <meta charset="UTF-8">
+    <base href="/sdg-004/app/">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
      <meta name="description" content="">
      <meta name="keywords" content="">

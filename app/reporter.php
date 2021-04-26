@@ -13,6 +13,11 @@ $user_type = test_input($_SESSION["user_type"]);
         $stmt->bind_result($lastname, $firstname);
         $stmt->fetch();
 
+        if($user_type != 'reporter' ){
+      header('location: ../404');
+      exit();
+      } 
+
 }else{
       $_SESSION['msg'] ='You must login first';
       header('location: ../login');
@@ -48,27 +53,86 @@ $user_type = test_input($_SESSION["user_type"]);
 
 <body>
 
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <div class="sidebar-heading"><a href="../"> <i class="fa fa-bullhorn"></i> SpeakUp</a></div>
+     
+      <div class="round">
+        <img class="img-fluid avatar" src="../images/avatar.jpg">
+      <h4 class="type"> <?php echo $firstname; ?></h4>
+      <small>(<?php echo ucfirst($user_type); ?>)</small>
+    </div>
+
+     
+      <div class="list-group list-group-flush">
+        <a href="<?php echo $user_type; ?>" class="list-group-item list-group-item-action active">Help me!</a>
+        <a href="reports" class="list-group-item list-group-item-action">Reports</a>
+        <a href="profile" class="list-group-item list-group-item-action">Profile</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
   <?php include_once 'includes/navbar.php'; ?>
 
       <div class="container-fluid">
         <div class="row board-row">
           <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
           <div class="board bg-primary">
-            <h1 class="count">8</h1>
+            <span class="count">
+            <?php
+            $stmt = $conn->prepare("SELECT report_id FROM reports WHERE user_id = ?");
+              $stmt->bind_param("i", $user_id);
+              $stmt->execute();
+              $stmt->store_result();
+              echo $stmt->num_rows;
+            ?>
+          </span>
             <div class="title">Reports Filed</div>
           </div>
         </div>
           
            <div class="col-md-4">
           <div class="board bg-dark">
-            <span class="count">8</span>
+            <span class="count">
+            <?php
+            $status = 'treated';
+            $stmt = $conn->prepare("SELECT report_id FROM reports WHERE user_id = ? AND status = ?");
+              $stmt->bind_param("is", $user_id, $status);
+              $stmt->execute();
+              $stmt->store_result();
+              echo $stmt->num_rows;
+            ?>
+          </span>
             <div class="title">Resolved Cases</div>
           </div>
         </div>
          
            <div class="col-md-4">
           <div class="board bg-warning">
-            <h1 class="count">8</h1>
+            <span class="count">
+             <?php
+            $stmt = $conn->prepare("SELECT badge FROM users WHERE user_id = ?");
+              $stmt->bind_param("i", $user_id);
+              $stmt->execute();
+              $stmt->store_result();
+              $stmt->bind_result($badge);
+              $stmt->fetch();
+
+              $my_badge = 0;
+              if ($badge != '') {
+               $badge = explode(',', $badge);
+                  foreach ($badge as $key => $file) {
+                  $my_badge = $my_badge+1; 
+                   }
+              }
+               echo $my_badge;
+            ?>
+          </span>
             <div class="title">Badges Earned</div>
           </div>
         </div>

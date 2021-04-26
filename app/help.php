@@ -13,7 +13,7 @@ $user_type = test_input($_SESSION["user_type"]);
         $stmt->bind_result($lastname, $firstname);
         $stmt->fetch();
 
-      if($user_type != 'responder' ){
+if($user_type != 'responder' ){
       header('location: ../404');
       exit();
       } 
@@ -27,12 +27,11 @@ $user_type = test_input($_SESSION["user_type"]);
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
-     <title>App | SpeakUp</title>
+     <title>Help request | SpeakUp</title>
      
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -52,7 +51,7 @@ $user_type = test_input($_SESSION["user_type"]);
 </head>
 
 <body>
- 
+
   <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
@@ -67,8 +66,8 @@ $user_type = test_input($_SESSION["user_type"]);
 
      
       <div class="list-group list-group-flush">
-        <a href="responder" class="list-group-item list-group-item-action active">Dashbboard</a>
-        <a href="help" class="list-group-item list-group-item-action">Help Requests</a>
+        <a href="responder" class="list-group-item list-group-item-action">Dashbboard</a>
+        <a href="help" class="list-group-item list-group-item-action active">Help Requests</a>
         <a href="view-reports" class="list-group-item list-group-item-action">View Reports</a>
         <a href="#" class="list-group-item list-group-item-action">Profile</a>
       </div>
@@ -77,74 +76,23 @@ $user_type = test_input($_SESSION["user_type"]);
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
+
+ 
   <?php include_once 'includes/navbar.php'; ?>
 
-      <div class="container-fluid">
-        <div class="row board-row">
-          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-          <div class="board bg-primary">
-            <span class="count">
-            <?php
-            $stmt = $conn->prepare("SELECT report_id FROM reports WHERE responder_id = ?");
-              $stmt->bind_param("i", $user_id);
-              $stmt->execute();
-              $stmt->store_result();
-              echo $stmt->num_rows;
-            ?>
-          </span>
-            <div class="title">Assigned Cases</div>
-          </div>
-        </div>
-          
-           <div class="col-md-4">
-          <div class="board bg-dark">
-            <span class="count">
-            <?php
-            $status = 'treated';
-            $stmt = $conn->prepare("SELECT report_id FROM reports WHERE responder_id = ? AND status = ?");
-              $stmt->bind_param("is", $user_id, $status);
-              $stmt->execute();
-              $stmt->store_result();
-              echo $stmt->num_rows;
-            ?>
-          </span>
-            <div class="title">Resolved Cases</div>
-          </div>
-        </div>
-         
-           <div class="col-md-4">
-          <div class="board bg-warning">
-            <span class="count">
-            <?php
-            $stmt = $conn->prepare("SELECT badge FROM users WHERE user_id = ?");
-              $stmt->bind_param("i", $user_id);
-              $stmt->execute();
-              $stmt->store_result();
-              $stmt->bind_result($badge);
-              $stmt->fetch();
+      <div class="container-fluid">        
 
-              $my_badge = 0;
-              if ($badge != '') {
-               $badge = explode(',', $badge);
-                  foreach ($badge as $key => $file) {
-                  $my_badge = $my_badge+1; 
-                   }
-              }
-               echo $my_badge;
-            ?>
-          </span>
-            <div class="title">Badges Earned</div>
-          </div>
-        </div>
-
-        </div>
         <div class="row">
-          <div class="offset-md-1 col-md-10 text-center">
+          <div class="offset-md-1 col-md-10">
+
+
+           <!-- Code goes here -->
+           
       </div>
     </div>
       </div>
 
-      <div class="text-right container-fluid">
+        <div class="text-right container-fluid">
         <div class="credits">
           Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | SpeakUp
          
@@ -155,6 +103,38 @@ $user_type = test_input($_SESSION["user_type"]);
     <!-- /#page-content-wrapper -->
 
   </div>
+
+
+       <!-- Alert modals -->
+ <div aria-hidden="true" aria-labelledby="staticBackdropLabel" role="dialog" tabindex="-1" id="success" class="modal fade">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-body text-center success-box">
+
+                           <center class="alert"><i class="fa fa-check"></i></center>
+                        <p id="success_text">Report submitted successfully!</p>
+                        
+                      <button class="btn btn-primary pull-right" data-dismiss="modal" type="button">Ok</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                 <div aria-hidden="true" aria-labelledby="staticBackdropLabel" role="dialog" tabindex="-1" id="fail" class="modal fade">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                     <div class="modal-body text-center success-box">
+
+                           <center class="alert"><i class="fa fa-exclamation-circle"></i></center>
+                        <p id="fail_text"></p>
+                        
+                      <button class="btn btn-primary pull-right" data-dismiss="modal" type="button">Ok</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
