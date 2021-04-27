@@ -115,6 +115,8 @@
                     var firstname = $("#firstname").val().trim();
                     var email = $("#email").val().trim();
                     var occupation = $("#occupation").val().trim();
+                    var state = $("#state").val().trim();
+                    var address = $("#address").val().trim();
                     var password = $("#password").val().trim();
                     var cpassword = $("#cpassword").val().trim();
                     var number = /([0-9])/;
@@ -125,81 +127,85 @@
                     var valEmail = '';
 
                      if (lastname == '') {
-                      document.getElementById("lastname").style.border='1px solid red';
-                      document.getElementById("lastname_alert").innerHTML='Please enter your lastname';
+                        $("#lastname").addClass("is-invalid");
                     } else{
-                       document.getElementById("lastname").style.border='';
-                      document.getElementById("lastname_alert").innerHTML='';
+                        $("#lastname").removeClass("is-invalid");
                     }
                      if (firstname == '') {
-                      document.getElementById("firstname").style.border='1px solid red';
-                      document.getElementById("firstname_alert").innerHTML='Please enter your firstname';
+                        $("#firstname").addClass("is-invalid");
                     } else{
-                       document.getElementById("firstname").style.border='';
-                      document.getElementById("firstname_alert").innerHTML='';
+                        $("#firstname").removeClass("is-invalid");
                     }
 
                     if (email == '') {
-                      document.getElementById("email").style.border='1px solid red';
+                        $("#email").addClass("is-invalid");
                       document.getElementById("email_alert").innerHTML='Please enter your email address';
                     }else if(atposition < 1 || dotposition < atposition+2 || dotposition+2 >= email.length) {
-                      document.getElementById("email").style.border='1px solid red';
+                        $("#email").addClass("is-invalid");
                       document.getElementById("email_alert").innerHTML='Please enter a valid email address';
                     }else{
                       var valEmail = 'true'; 
-                      document.getElementById("email").style.border='';
-                      document.getElementById("email_alert").innerHTML='';
+                        $("#email").removeClass("is-invalid");
                     }
 
                      if (occupation == '') {
-                      document.getElementById("occupation").style.border='1px solid red';
-                      document.getElementById("occupation_alert").innerHTML='Please select your occupation';
+                        $("#occupation").addClass("is-invalid");
                     } else{
-                       document.getElementById("occupation").style.border='';
-                      document.getElementById("occupation_alert").innerHTML='';
+                        $("#occupation").removeClass("is-invalid");
+                    }
+
+                     if (state == '') {
+                        $("#state").addClass("is-invalid");
+                    } else{
+                        $("#state").removeClass("is-invalid");
+                    }
+
+                      if (address == '') {
+                        $("#address").addClass("is-invalid");
+                    } else{
+                        $("#address").removeClass("is-invalid");
                     }
 
                      if (password == '') {
-                      document.getElementById("password").style.border='1px solid red';
+                        $("#password").addClass("is-invalid");
                       document.getElementById("password_alert").innerHTML='Please enter your password';
                     }else if(password.length < 8 ){
-                      document.getElementById("password").style.border='1px solid red';
+                        $("#password").addClass("is-invalid");
                       document.getElementById("password_alert").innerHTML='password must be at least 8 characters long!';
                     }else if(password.match(number) && password.match(lowercase) && password.match(uppercase) ){ 
-                       document.getElementById("password").style.border='';
-                      document.getElementById("password_alert").innerHTML='';
+                      $("#password").removeClass("is-invalid");
                     }else{
-                      document.getElementById("password").style.border='1px solid red';
+                        $("#password").addClass("is-invalid");
                       document.getElementById("password_alert").innerHTML='password must have at least 1 numeric, 1 lowercase and 1 uppercase character';                      
                     }
 
                      if (cpassword == '') {
-                      document.getElementById("cpassword").style.border='1px solid red';
+                        $("#cpassword").addClass("is-invalid");
                       document.getElementById("cpassword_alert").innerHTML='Please confirm your password';
                     } else{
-                       document.getElementById("cpassword").style.border='';
-                      document.getElementById("cpassword_alert").innerHTML='';
-                    }
+                        $("#cpassword").removeClass("is-invalid");                    
+                      }
 
                      if (password != cpassword) {
-                      document.getElementById("cpassword").style.border='1px solid red';
+                        $("#cpassword").addClass("is-invalid");
                       document.getElementById("cpassword_alert").innerHTML='Passwords do not match';
                     } else{
-                       document.getElementById("cpassword").style.border='';
-                      document.getElementById("cpassword_alert").innerHTML='';
+                        $("#cpassword").removeClass("is-invalid");  
                     }
 
-                      if(lastname != "" && firstname != "" && email != "" && occupation != "" && password != "" && password == cpassword && valEmail != '' && password.length >= 8 && password.match(number) && password.match(lowercase) && password.match(uppercase)){
+
+                      if(lastname != "" && firstname != "" && email != "" && occupation != "" && state != "" && address != "" && password != "" && password == cpassword && valEmail != '' && password.length >= 8 && password.match(number) && password.match(lowercase) && password.match(uppercase)){
                          $.ajax({
                             url:'ajaxfile.php',
                             type:'post',
-                            data:{request:1,firstname:firstname, lastname:lastname, email:email, occupation:occupation, password:password},
+                            data:{request:1,firstname:firstname, lastname:lastname, email:email, occupation:occupation, state:state, address:address, password:password},
                             dataType: 'json',
                             beforeSend: function(){
                            document.getElementById("reporter-signup").innerHTML='<img src="images/loading.gif" width="20px" height="20px"> Processing';
                           document.getElementById("reporter-signup").disable='true';
                         },
                             success:function(response){
+
                                 if(response.status == 1){
 
                             document.getElementById("signup-form1").reset();
@@ -216,7 +222,7 @@
 
                                 }else{
                                   document.getElementById("alert_box").style.display="block";
-                                  document.getElementById("alert").style.display=response.message;
+                                  document.getElementById("alert").innerHTML=response.message;
                                 }
                              },
                          complete: function(data){
@@ -237,6 +243,8 @@
                     var firstname = $("#firstname1").val().trim();
                     var email = $("#email1").val().trim();
                     var phone = $("#phone").val().trim();
+                    var state = $("#state1").val().trim();
+                    var address = $("#address1").val().trim();
                     var password = $("#password1").val().trim();
                     var cpassword = $("#cpassword1").val().trim();
                     var number = /([0-9])/;
@@ -247,69 +255,76 @@
                     var valEmail = '';
 
                      if (lastname == '') {
-                      document.getElementById("lastname1").style.border='1px solid red';
-                      document.getElementById("lastname1_alert").innerHTML='Please enter your lastname';
+                        $("#lastname1").addClass("is-invalid");
                     } else{
-                       document.getElementById("lastname1").style.border='';
-                      document.getElementById("lastname1_alert").innerHTML='';
+                        $("#lastname1").removeClass("is-invalid");
                     }
                      if (firstname == '') {
-                      document.getElementById("firstname1").style.border='1px solid red';
-                      document.getElementById("firstname1_alert").innerHTML='Please enter your firstname';
+                        $("#firstname1").addClass("is-invalid");
                     } else{
-                       document.getElementById("firstname1").style.border='';
-                      document.getElementById("firstname1_alert").innerHTML='';
+                        $("#firstname1").removeClass("is-invalid");
                     }
-                   
+
                     if (email == '') {
-                      document.getElementById("email1").style.border='1px solid red';
+                        $("#email1").addClass("is-invalid");
                       document.getElementById("email1_alert").innerHTML='Please enter your email address';
                     }else if(atposition < 1 || dotposition < atposition+2 || dotposition+2 >= email.length) {
-                      document.getElementById("email1").style.border='1px solid red';
+                        $("#email1").addClass("is-invalid");
                       document.getElementById("email1_alert").innerHTML='Please enter a valid email address';
                     }else{
                       var valEmail = 'true'; 
-                      document.getElementById("email1").style.border='';
-                      document.getElementById("email1_alert").innerHTML='';
+                        $("#email1").removeClass("is-invalid");
                     }
 
                      if (phone == '') {
-                      document.getElementById("phone").style.border='1px solid red';
+                        $("#phone").addClass("is-invalid");
                       document.getElementById("phone_alert").innerHTML='Please enter your phone number';
                    }else if(isNaN(phone)){
-                      document.getElementById("phone").style.border='1px solid red';
+                        $("#phone").addClass("is-invalid");
                       document.getElementById("phone_alert").innerHTML='Please enter numeric value phone number only!';
                     }else{      
-                       document.getElementById("phone").style.border='';
-                      document.getElementById("phone_alert").innerHTML='';
+                        $("#phone").removeClass("is-invalid");
+                    }
+
+                     if (state == '') {
+                        $("#state1").addClass("is-invalid");
+                    } else{
+                        $("#state1").removeClass("is-invalid");
+                    }
+
+                     if (address == '') {
+                        $("#address1").addClass("is-invalid");
+                    } else{
+                        $("#address1").removeClass("is-invalid");
                     }
                      
                      if (password == '') {
-                      document.getElementById("password1").style.border='1px solid red';
+                        $("#password1").addClass("is-invalid");
                       document.getElementById("password1_alert").innerHTML='Please enter your password';
                     }else if(password.length < 8 ){
-                      document.getElementById("password1").style.border='1px solid red';
+                        $("#password1").addClass("is-invalid");
                       document.getElementById("password1_alert").innerHTML='password must be at least 8 characters long!';
                     }else if(password.match(number) && password.match(lowercase) && password.match(uppercase) ){ 
-                       document.getElementById("password1").style.border='';
-                      document.getElementById("password1_alert").innerHTML='';
+                      $("#password1").removeClass("is-invalid");
                     }else{
-                      document.getElementById("password1").style.border='1px solid red';
+                        $("#password1").addClass("is-invalid");
                       document.getElementById("password1_alert").innerHTML='password must have at least 1 numeric, 1 lowercase and 1 uppercase character';                      
                     }
 
                      if (cpassword == '') {
-                      document.getElementById("cpassword1").style.border='1px solid red';
+                        $("#cpassword1").addClass("is-invalid");
                       document.getElementById("cpassword1_alert").innerHTML='Please confirm your password';
-                    } else if (password != cpassword) {
-                      document.getElementById("cpassword1").style.border='1px solid red';
+                    } else{
+                        $("#cpassword1").removeClass("is-invalid");                    }
+
+                     if (password != cpassword) {
+                        $("#cpassword1").addClass("is-invalid");
                       document.getElementById("cpassword1_alert").innerHTML='Passwords do not match';
                     } else{
-                       document.getElementById("cpassword1").style.border='';
-                      document.getElementById("cpassword1_alert").innerHTML='';
+                        $("#cpassword1").removeClass("is-invalid");  
                     }
 
-                  if(lastname != "" && firstname != "" && email != "" && phone != "" && password != "" && cpassword != ""  && password == cpassword && !isNaN(phone) &&  valEmail != '' && password.length >= 8 && password.match(number) && password.match(lowercase) && password.match(uppercase)){
+                  if(lastname != "" && firstname != "" && email != "" && phone != "" && state != "" && address != "" && password != "" && cpassword != ""  && password == cpassword && !isNaN(phone) &&  valEmail != '' && password.length >= 8 && password.match(number) && password.match(lowercase) && password.match(uppercase)){
                     document.getElementById("responder-next").innerHTML='<img src="images/loading.gif" width="15px" height="15px"> Processing';
                     document.getElementById("responder-pre").innerHTML='<i class="fa fa-long-arrow-left"></i> Previous';
                     document.getElementById("responder-next").disable='true';
@@ -346,7 +361,6 @@
                 var split_imgPath = imgPath.split("\\");
                 var name = split_imgPath[2];
              document.getElementById("cv1").innerHTML=name;
-
            });
 
  
@@ -355,12 +369,12 @@
                     var firstname = $("#firstname1").val().trim();
                     var email = $("#email1").val().trim();
                     var phone = $("#phone").val().trim();
+                    var state = $("#state1").val().trim();
+                    var address = $("#address1").val().trim();
                     var password = $("#password1").val().trim();
                     var cpassword = $("#cpassword1").val().trim();
                     var gender = $("#gender").val().trim();
                     var dob = $("#dob").val().trim();
-                    var state = $("#state").val().trim();
-                    var address = $("#address").val().trim();
                     var occupation = $("#occupation1").val().trim();
                     var organization = $("#organization").val().trim();
                     var position = $("#position").val().trim();
@@ -368,71 +382,43 @@
                     var motive = $("#motive").val().trim();
 
                      if (gender == '') {
-                      document.getElementById("gender").style.border='1px solid red';
-                      document.getElementById("gender_alert").innerHTML='Please select your gender';
+                        $("#gender").addClass("is-invalid");
                     } else{
-                       document.getElementById("gender").style.border='';
-                      document.getElementById("gender_alert").innerHTML='';
+                        $("#gender").removeClass("is-invalid");
                     }
                      if (dob == '') {
-                      document.getElementById("dob").style.border='1px solid red';
-                      document.getElementById("dob_alert").innerHTML='Please select your date of birth';
+                        $("#dob").addClass("is-invalid");
                     } else{
-                       document.getElementById("dob").style.border='';
-                      document.getElementById("dob_alert").innerHTML='';
-                    }
-                     if (address == '') {
-                      document.getElementById("address").style.border='1px solid red';
-                      document.getElementById("address_alert").innerHTML='Please enter your address';
-                    } else{
-                       document.getElementById("address").style.border='';
-                      document.getElementById("address_alert").innerHTML='';
-                    }
-                     if (state == '') {
-                      document.getElementById("state").style.border='1px solid red';
-                      document.getElementById("state_alert").innerHTML='Please enter your state of residence';
-                    } else{
-                       document.getElementById("state").style.border='';
-                      document.getElementById("state_alert").innerHTML='';
+                        $("#dob").removeClass("is-invalid");
                     }
                     if (occupation == '') {
-                      document.getElementById("occupation1").style.border='1px solid red';
-                      document.getElementById("occupation1_alert").innerHTML='Please enter your occupation';
+                        $("#occupation1").addClass("is-invalid");
                     } else{
-                       document.getElementById("occupation1").style.border='';
-                      document.getElementById("occupation1_alert").innerHTML='';
+                        $("#occupation1").removeClass("is-invalid");
                     }
                      if (organization == '') {
-                      document.getElementById("organization").style.border='1px solid red';
-                      document.getElementById("organization_alert").innerHTML='Please enter your organization';
+                        $("#organization").addClass("is-invalid");
                     } else{
-                       document.getElementById("organization").style.border='';
-                      document.getElementById("organization_alert").innerHTML='';
+                        $("#organization").removeClass("is-invalid");
                     }
                      if (position == '') {
-                      document.getElementById("position").style.border='1px solid red';
-                      document.getElementById("position_alert").innerHTML='Please enter your position in your organization';
+                        $("#position").addClass("is-invalid");
                     } else{
-                       document.getElementById("position").style.border='';
-                      document.getElementById("position_alert").innerHTML='';
+                        $("#position").removeClass("is-invalid");
                     }
                      if (cv == '') {
-                      document.getElementById("cv1").style.border='1px solid red';
-                      document.getElementById("cv_alert").innerHTML='Please upload your curriculum vitae';
+                        $("#cv").addClass("is-invalid");
                     } else{
-                       document.getElementById("cv1").style.border='';
-                      document.getElementById("cv_alert").innerHTML='';
+                        $("#cv").removeClass("is-invalid");
                     }
                      if (motive == '') {
-                      document.getElementById("motive").style.border='1px solid red';
-                      document.getElementById("motive_alert").innerHTML='Please enter your motive';
+                        $("#motive").addClass("is-invalid");
                     } else{
-                       document.getElementById("motive").style.border='';
-                      document.getElementById("motive_alert").innerHTML='';
+                        $("#motive").removeClass("is-invalid");
                     }
 
 
-                  if(gender != "" && dob != "" && state != "" && address != "" && occupation != "" && organization != "" && position != "" && cv != "" && motive != "" ){
+                  if(gender != "" && dob != "" && occupation != "" && organization != "" && position != "" && cv != "" && motive != "" ){
                     
                      var fd = new FormData();
                      var cv = $('#cv')[0].files[0];
@@ -523,25 +509,23 @@
                     var valEmail = '';
 
                      if (email == '') {
-                      document.getElementById("email").style.border='1px solid red';
+                        $("#email").addClass("is-invalid");
                       document.getElementById("email_alert").innerHTML='Please enter your email address';
                     }else if(atposition < 1 || dotposition < atposition+2 || dotposition+2 >= email.length) {
-                      document.getElementById("email").style.border='1px solid red';
+                      $("#email").addClass("is-invalid");
                       document.getElementById("email_alert").innerHTML='Please enter a valid email address';
                     }else{
                       var valEmail = 'true'; 
-                      document.getElementById("email").style.border='';
-                      document.getElementById("email_alert").innerHTML='';
+                      $("#email").removeClass("is-invalid");
                     }
 
                     if (password == '') {
-                       document.getElementById("password").style.border='1px solid red';
-                       document.getElementById("password").style.borderRight='none';
+                        $("#password").addClass("is-invalid");
                        document.getElementById("show-hide").style.border='1px solid red';
                        document.getElementById("show-hide").style.borderLeft='none';
                       document.getElementById("password_alert").innerHTML='Please enter your password';
                     }else{
-                       document.getElementById("password").style.border='';
+                      $("#password").removeClass("is-invalid");
                        document.getElementById("password").style.borderRight='';
                        document.getElementById("show-hide").style.border='';
                        document.getElementById("show-hide").style.borderLeft='';

@@ -241,12 +241,6 @@ body {
   line-height: 18px;
 }
 
-    @media (min-width: 768px) {
-      #cv_alert{
-        margin-left: -20px;
-      }
-    }
-
 .form-control:focus , .custom-file-input:focus~.custom-file-label{
   border-color: #C5C5C5;
   -moz-box-shadow: none;
@@ -554,6 +548,40 @@ body {
 
       .how .desc {
         padding-top:10px; }
+
+
+
+
+/*---------------------------------------
+404         
+     -----------------------------------------*/
+.body-full-height {
+  height: 100%;
+}
+
+.body-full-height body {
+  height: 100%;
+}
+
+.notfound-container {
+  float: left;
+  width: 100%;
+  min-height: 100%;
+  background: var(--primary-color);
+}
+
+.notfound-container .box {
+  color: var(--white-color);
+  max-width: 800px;
+  margin: 300px auto 0;
+  text-align: center;
+}
+
+.notfound-container .box h1, .notfound-container .box p{
+  color: var(--white-color);
+}
+
+
 
   /*---------------------------------------
       FREQUENTLY QUESTIONS            
@@ -1042,8 +1070,8 @@ SIGNUP PAGE
 }
 
 .form-alert{
-    color: red;
-     font-size: 11px;
+  font-size:80%;
+  color:#dc3545;
   }
 
 

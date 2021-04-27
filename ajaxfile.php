@@ -15,17 +15,78 @@ function test_input($text){
    }
 
 
+   //SIGNUP REPORTER
    if ($request == 1) {
   	$lastname = test_input($_POST["lastname"]);
   	$firstname = test_input($_POST["firstname"]);
   	$email = test_input($_POST["email"]);
-  	$occupation = test_input($_POST["occupation"]);
+    $occupation = test_input($_POST["occupation"]);
+    $state = test_input($_POST["state"]);
+    $address = test_input($_POST["address"]);
   	$password = test_input($_POST["password"]);
     $password = password_hash($password, PASSWORD_DEFAULT);
   	$user_type = 'reporter';
+    $status = 'active';
+    $date = date("Y-m-d H:i:s");
 
-  	if ($lastname != "" && $firstname != "" && $email != "" && $password != "" && $occupation != "") {
+  	if ($lastname != "" && $firstname != "" && $email != "" && $password != "" && $occupation != "" && $state != "" && $address != "") {
 
+      //Select all responders in the same state as the reporter
+      $responder = 'responder'; 
+       $stmt = $conn->prepare("SELECT user_id FROM users WHERE user_type = ? AND status = ? AND state = ?");
+        $stmt->bind_param("sss", $responder, $status, $state);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($responder_id);
+        if($stmt->num_rows > 0 ) {
+        while($stmt->fetch()){
+
+          $responders[] = $responder_id;
+
+        //select all reporter assigned to each responder
+        $reporter = 'reporter';
+        $stmt1 = $conn->prepare("SELECT user_id FROM users WHERE assigned = ? AND user_type = ?");
+        $stmt1->bind_param("is", $responder_id, $reporter);
+        $stmt1->execute();
+        $stmt1->store_result();
+        $assigned = $stmt1->num_rows;
+
+        $assigned_reporters[] = $assigned;
+
+        }}else{
+
+        //If no responder in reporter's state, select all responders in the other states
+           $stmt = $conn->prepare("SELECT user_id FROM users WHERE user_type = ? AND status = ?");
+        $stmt->bind_param("ss", $responder, $status);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($responder_id);
+        if($stmt->num_rows > 0 ) {
+        while($stmt->fetch()){
+
+          $responders[] = $responder_id;
+
+        //select all reporter assigned to each responder
+        $reporter = 'reporter';
+        $stmt1 = $conn->prepare("SELECT user_id FROM users WHERE assigned = ? AND user_type = ?");
+        $stmt1->bind_param("is", $responder_id, $reporter);
+        $stmt1->execute();
+        $stmt1->store_result();
+        $assigned = $stmt1->num_rows;
+
+        $assigned_reporters[] = $assigned;
+
+        }}
+        }
+
+        //select the least number of reporter assigned to each responder
+        $least_assigned = min($assigned_reporters);
+        $key = array_search($least_assigned, $assigned_reporters);
+
+        //select the responder with the least reporter
+        $assigned_responder = $responders[$key];
+
+        //check for duplicate
   		 $stmt = $conn->prepare("SELECT email FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -35,12 +96,22 @@ function test_input($text){
             exit;
         }else{
   		
-  		$status = 'active';
-  		 $stmt = $conn->prepare("INSERT INTO users (lastname, firstname, email, occupation, password, status, user_type) VALUES ( ?, ?, ?, ?, ?, ?, ?)");
-          $stmt->bind_param("sssssss", $lastname, $firstname, $email, $occupation, $password, $status, $user_type);
+      //insert reporter into database
+  		 $stmt = $conn->prepare("INSERT INTO users (assigned, lastname, firstname, email, occupation, state, address, password, status, user_type, date_reg) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+          $stmt->bind_param("issssssssss", $assigned_responder, $lastname, $firstname, $email, $occupation, $state, $address, $password, $status, $user_type, $date);
           if($stmt->execute()){
+            $user_id = $stmt->insert_id;
 
-        $_SESSION["user_id"] = $stmt->insert_id;
+            $subject = 'Welcome!';
+            $notification_slug = rand();
+            $body = '<p>Hello dear!</p><p>We are happy to have you. This platform will help you get help on any situation, make report as an eyewitness or a victim and get response from professional responders.</p><p>We hope you would make use of this opportunity to the fullest.</p><p>Thanks and best regards<br>SpeakUp Board of Director</p>';
+            $notification_status = 'unread';
+
+            $stmt = $conn->prepare("INSERT INTO notifications (user_id, subject, notification_slug, body, status, date_sent) VALUES ( ?, ?, ?, ?, ?, ?)");
+          $stmt->bind_param("isssss", $user_id, $subject, $notification_slug, $body, $notification_status, $date);
+          $stmt->execute();
+
+        $_SESSION["user_id"] = $user_id;
         $_SESSION["user_type"] = $user_type;
 
           echo json_encode( array("status" => 1, "message" => "Signed up successfully!") );
@@ -51,6 +122,8 @@ function test_input($text){
   }
 
 
+
+   //SIGNUP RESPONDER
   if ($request == 2) {
   	$lastname = test_input($_POST["lastname"]);
   	$firstname = test_input($_POST["firstname"]);
@@ -68,6 +141,7 @@ function test_input($text){
   	$cv = test_input($_FILES['cv']['name']);
   	$motive = test_input($_POST["motive"]);
   	$user_type = 'responder';
+    $date = date("Y-m-d H:i:s");
 
   	if ($lastname != "" && $firstname != "" && $email != "" && $phone != "" && $password != "" &&  $gender != "" && $dob != "" && $state != "" && $address != "" && $occupation != "" && $organization != "" && $position != "" && $cv != "" && $motive != "" ) {
 
@@ -79,7 +153,7 @@ function test_input($text){
            
             $file_type = array('docx','pdf','doc');
            if(!in_array($extension,$file_type)){
-            echo json_encode( array("status" => 0,"message" => $file_name) );
+            echo json_encode( array("status" => 0,"message" => 'Please upload a word document or a pdf file') );
             exit;
               }
 
@@ -92,8 +166,8 @@ function test_input($text){
             exit;
         }else{
   		$status = 'reviewing';
-  		$stmt = $conn->prepare("INSERT INTO users (lastname, firstname, email, phone, password, gender, status, user_type, dob, state, address, occupation, organization, position, cv, motive) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-          $stmt->bind_param("ssssssssssssssss", $lastname, $firstname, $email, $phone, $password, $gender, $status, $user_type, $dob, $state, $address, $occupation, $organization, $position, $file_name, $motive);
+  		$stmt = $conn->prepare("INSERT INTO users (lastname, firstname, email, phone, password, gender, status, user_type, dob, state, address, occupation, organization, position, cv, motive, date_reg) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+          $stmt->bind_param("sssssssssssssssss", $lastname, $firstname, $email, $phone, $password, $gender, $status, $user_type, $dob, $state, $address, $occupation, $organization, $position, $file_name, $motive, $date);
           if($stmt->execute()){
             $move= move_uploaded_file($_FILES['cv']['tmp_name'], $target);
           echo json_encode( array("status" => 1, "message" => "Signed up successfully!") );
@@ -104,6 +178,7 @@ function test_input($text){
 
 
 
+   //lOGIN USERS
   if ($request == 3) {
 
   	$email = test_input($_POST["email"]);
@@ -144,7 +219,7 @@ function test_input($text){
   	}
   }
 
-
+//CHATBOT MESSAGES
    if ($request == 4) {
 
   	$msg = test_input($_POST["msg"]);

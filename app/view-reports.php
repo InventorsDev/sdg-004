@@ -13,7 +13,7 @@ $user_type = test_input($_SESSION["user_type"]);
         $stmt->bind_result($lastname, $firstname);
         $stmt->fetch();
 
-if($user_type != 'reporter' ){
+if($user_type != 'responder' ){
       header('location: ../404');
       exit();
       } 
@@ -31,7 +31,7 @@ if($user_type != 'reporter' ){
 <html lang="en">
 <head>
 
-     <title>Report | SpeakUp</title>
+     <title>View Report | SpeakUp</title>
      
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -66,8 +66,9 @@ if($user_type != 'reporter' ){
 
      
       <div class="list-group list-group-flush">
-        <a href="<?php echo $user_type; ?>" class="list-group-item list-group-item-action">Help me!</a>
-        <a href="reports" class="list-group-item list-group-item-action active">Reports</a>
+        <a href="responder" class="list-group-item list-group-item-action">Dashbboard</a>
+        <a href="help" class="list-group-item list-group-item-action">Help Requests</a>
+        <a href="view-reports" class="list-group-item list-group-item-action active">View Reports</a>
         <a href="#" class="list-group-item list-group-item-action">Profile</a>
       </div>
     </div>
@@ -79,21 +80,16 @@ if($user_type != 'reporter' ){
  
   <?php include_once 'includes/navbar.php'; ?>
 
-      <div class="container-fluid">
-
-          <button class="btn btn-info mt-3" type="button" id="make-new">Make New Report</button>
-        
+      <div class="container-fluid">        
 
         <div class="row">
           <div class="offset-md-1 col-md-10">
 
-
-            <div class="track-report">
-              <h3 class="mt-3 mb-3 text-center">Track Submitted Reports</h3>
+              <h3 class="mt-5 mb-3 text-center">Reports From Your Reporters</h3>
               <div class="accordion" id="view-reports">                
 
               <?php
-               $stmt = $conn->prepare("SELECT report_id, user_id, submitted_as, title, description, evidence, status, date_added FROM reports WHERE user_id = ?");
+               $stmt = $conn->prepare("SELECT report_id, user_id, submitted_as, title, description, evidence, status, date_added FROM reports WHERE responder_id = ?");
               $stmt->bind_param("i", $user_id);
               $stmt->execute();
               $stmt->store_result();
@@ -138,6 +134,10 @@ if($user_type != 'reporter' ){
                    } 
                    ?>
                    
+                   <div class="btn-group">
+                    <button class="btn btn-primary btn-sm mt-3">Open report file</button>
+                    <button class="btn btn-danger btn-sm mt-3">Dismiss report</button>
+                  </div>
                  </div>
                 </div>
               </div>
@@ -154,48 +154,6 @@ if($user_type != 'reporter' ){
               ?>
 
           </div>
-
-            </div>
-
-
-            <div class="new-report" style="display: none;">
-        <form action="" autocomplete="off" id="report-form" class="form-horiontal" method="post">
-        <h3 class="mt-2 text-center">Submit a New Report</h3>
-
-        <div class="form-row mb-4">
-        <label>Report Title</label>
-        <input type="text" id="report-title" class="form-control" placeholder="Enter report title">
-        <div class="invalid-feedback">Please enter report title</div>
-        </div>
-
-        <div class="form-row mb-4">
-        <label>Report Description</label>
-        <textarea class="form-control" id="description" placeholder="Describe your situation..." rows="3" cols="3"></textarea>
-        <div class="invalid-feedback">Please enter report description</div>
-      </div>
-
-        <div class="form-row mb-4">
-        <label>Upload Evidence</label>
-      <div class="custom-file">
-                            <input type="file" id="files" class="form-control custom-file-input" multiple>
-                          <label class="custom-file-label" id="files1" for="files">Select curriculum vitae</label>
-                            <p id="cv_alert" class="form-alert"></p> 
-                          </div>
-                        </div>
-
-        <div class="form-row mb-4">
-        <div class="form-con=trol custom-checkbox ml-4" >
-          <input type="checkbox" value="no" class="custom-control-input" id="anonymous">
-          <label class="custom-control-label" for="anonymous">Submit as anonymous</label>
-        </div>
-      </div>
-
-        <div class="form-group">
-        <button class="btn btn-dark mr-4" type="button" id="close-new">Cancel</button>
-        <button class="btn btn-primary" type="button" id="report" >Submit report</button>
-      </div>
-    </form>
-  </div>
 
       </div>
     </div>

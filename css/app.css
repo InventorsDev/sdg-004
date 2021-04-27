@@ -343,9 +343,7 @@ font-size: var(--p-font-size);
 }
 .dropdown-menu .message-item{
   padding-left: 10px;
-  padding-right: 100px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--featured-bg);
+  padding-right: 80px;
 }
 
 .dropdown-menu .message-item .photo img {
@@ -357,37 +355,27 @@ font-size: var(--p-font-size);
 }
 
 .dropdown-menu .message-item .subject {
-
     display: block;
-
 }
 
 .dropdown-menu .message-item .subject .from {
     font-size: var(--last-font-size);
-    font-weight: 1000;
 }
 
 
 
 .dropdown-menu .message-item .subject .time {
-
     font-size: 11px;
-
     font-style: italic;
-
-    font-weight: bold;
-
     position: absolute;
-
     right: 5px;
-
 }
 
 
 .dropdown-menu .message-item .message {
-
     display: block !important;
     font-size: 11px;
+    min-width: 150px;
 }
 
 .dropdown-menu .new{
@@ -425,15 +413,10 @@ font-size: var(--p-font-size);
 }
 
 .dropdown-menu .notification-item .subject .time {
-
     font-size: 11px;
-
     font-style: italic;
-
     font-weight: bold;
-
     position: absolute;
-
     right: 5px;
 
 }
@@ -498,6 +481,36 @@ margin-top: 30px;
 
 
 /*---------------------------------------
+404         
+     -----------------------------------------*/
+.body-full-height {
+  height: 100%;
+}
+
+.body-full-height body {
+  height: 100%;
+}
+
+.notfound-container {
+  float: left;
+  width: 100%;
+  min-height: 100%;
+  background: var(--primary-color);
+}
+
+.notfound-container .box {
+  color: var(--white-color);
+  max-width: 800px;
+  margin: 300px auto 0;
+  text-align: center;
+}
+
+.notfound-container .box h1, .notfound-container .box p{
+  color: var(--white-color);
+}
+
+
+/*---------------------------------------
    HELP         
   -----------------------------------------*/
 
@@ -528,6 +541,10 @@ margin-top: 30px;
     border-radius: 10px;
   }
 
+   .card .preview{
+    border-bottom: 1px solid var(--featured-bg);
+  }
+
   .card .card-body a{
     color: var(--title-color);
     text-decoration: none;
@@ -535,6 +552,17 @@ margin-top: 30px;
 
   .card .card-text{
     font-size: var(--menu-font-size);
+  }
+
+
+  .card .card-body .footer{
+    text-align: right;
+  }
+
+  @media (max-width: 768px) {
+    .card .card-body .footer{
+      text-align: left;
+    }
   }
 
 
