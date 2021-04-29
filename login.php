@@ -25,69 +25,72 @@
 
 
 
-<!-- Login-->
-<div class="login-container">
-        
-            <div class="login-box" data-aos="fade-up">
-              <a href="./"><h3 class="login-header">SpeakUp</h3></a>
-                <div class="login-body">
-                    <div class="login-title"><strong>Log In</strong> to your account</div>
+  <!-- Login-->
+  <div class="login-container">
+    
+    <div class="login-box" data-aos="fade-up">
+      <a href="./"><h3 class="login-header">SpeakUp</h3></a>
+      <div class="login-body">
+        <div class="login-title"><strong>Log In</strong> to your account</div>
 
-                    <?php 
-                    session_start();
-                    if(isset($_SESSION['msg'])){ ?>
-                      <div id="alert1_box" class="error_alert" >
-                 <span aria-label="close" onclick="close_alert('alert1_box')" >&times;</span>
-              <p><i class="fa fa-exclamation-circle"></i> <span id="alert1">Session expired! Please login again</span></p>
-             </div>
-                   <?php }  unset($_SESSION['msg']); ?>
+        <!-- Alert box-->
+        <?php 
+        session_start();
+        if(isset($_SESSION['msg'])){ ?>
+          <div id="alert1_box" class="error_alert" >
+           <span aria-label="close" onclick="close_alert('alert1_box')" >&times;</span>
+           <p><i class="fa fa-exclamation-circle"></i> <span id="alert1">Session expired! Please login again</span></p>
+         </div>
+       <?php }  unset($_SESSION['msg']); ?>
 
-                     <div id="alert_box" style="display: none;" class="error_alert" >
-          <span aria-label="close" onclick="close_alert('alert_box')" >&times;</span>
-             <p><i class="fa fa-exclamation-circle"></i> <span id="alert"></span></p>
-             </div>
+       <div id="alert_box" style="display: none;" class="error_alert" >
+        <span aria-label="close" onclick="close_alert('alert_box')" >&times;</span>
+        <p><i class="fa fa-exclamation-circle"></i> <span id="alert"></span></p>
+      </div>
 
-                    <form action="" autocomplete="off" class="form-horiontal" method="post">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <input type="text" id="email" class="form-control" placeholder="E-mail"/>
-                            <div class="invalid-feedback" id="email_alert">Please enter your email address</div>
-                        </div>
-                    </div>
+      <!-- Alert box ends-->
 
-                        <div class="col-md-12"> 
-                    <div class="input-group">
-                            <input type="password" id="password" class="form-control" placeholder="Password"/>
-                      <div class="input-group-append">
-                      <div class="input-group-text" id="show-hide"><span class="eye fa fa-eye"></span></div>
-                    </div> </div>
-                     <p id="password_alert" class="form-alert mt-n3 mb-n4"></p>
-                    </div>
+      <form action="" autocomplete="off" class="form-horiontal" method="post">
+        <div class="form-group">
+          <div class="col-md-12">
+            <input type="text" id="email" class="form-control" placeholder="E-mail"/>
+            <div class="invalid-feedback" id="email_alert">Please enter your email address</div>
+          </div>
+        </div>
 
-                    <div class="form-row mt-5">
-                        <div class="col-md-6">
-                            <a href="#" class="btn btn-link">Forgot your password?</a>
-                        </div>
-                        <div class="col-md-6">
-                            <button class="btn btn-info btn-block" type="button" id="login">Log In</button>
-                        </div>
-                    </div>
-                    <div class="login-subtitle">
-                        Don't have an account yet? <a href="signup">Create an account</a>
-                    </div>
-                    </form>
-                </div>
-                <div class="login-footer">
-                    <div class="pull-left">
-                        &copy; <script>document.write(new Date().getFullYear());</script> SpeakUp
-                    </div>
-                    <div class="pull-right">
-                        <a href="tips">Tips</a> |
-                        <a href="privacy">Privacy</a>
-                    </div>
-                </div>
+        <div class="col-md-12"> 
+          <div class="input-group">
+            <input type="password" id="password" class="form-control" placeholder="Password"/>
+            <div class="input-group-append">
+              <div class="input-group-text" id="show-hide"><span class="eye fa fa-eye"></span></div>
+            </div> </div>
+            <p id="password_alert" class="form-alert mt-n3 mb-n4"></p>
+          </div>
+
+          <div class="form-row mt-5">
+            <div class="col-md-6">
+              <a href="#" class="btn btn-link">Forgot your password?</a>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-info btn-block" type="button" id="login">Log In</button>
             </div>
           </div>
+          <div class="login-subtitle">
+            Don't have an account yet? <a href="signup">Create an account</a>
+          </div>
+        </form>
+      </div>
+      <div class="login-footer">
+        <div class="pull-left">
+          &copy; <script>document.write(new Date().getFullYear());</script> SpeakUp
+        </div>
+        <div class="pull-right">
+          <a href="tips">Tips</a> |
+          <a href="privacy">Privacy</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

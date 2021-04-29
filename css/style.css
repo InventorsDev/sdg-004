@@ -171,7 +171,7 @@ body {
     .btn-outline-faq{
       background: none;
       color: var(--dark-color);
-      border: 2px solid var(--dark-color);
+      border: 1px solid var(--dark-color);
     }
     
     .custom-btn:hover,
@@ -588,10 +588,8 @@ body {
       -----------------------------------------*/
 
       .frequently-question {
-        padding: 120px 0px;
         background: var(--featured-bg);
       }
-
 
 
 

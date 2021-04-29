@@ -22,8 +22,8 @@
 
 </head>
 
- <!-- MENU BAR -->
- <nav class="navbar navbar-expand-lg">
+<!-- MENU BAR -->
+<nav class="navbar navbar-expand-lg">
   <div class="container">
     <a class="navbar-brand" href="./">
       <i class="fa fa-bullhorn"></i>
@@ -57,9 +57,9 @@
 </div>
 </nav>
 
-<!-- SIGNUP -->
+<!-- TIPS AND GUIDE SECTION BEGIN -->
 
-<section class="tips section-padding-half pb-20" id="signup" >
+<section class="tips section-padding-half pb-20">
   <div class="container">
    <div class="row">
     <div class="col-lg-12 col-12 signup-header">
@@ -68,128 +68,130 @@
     </div>
   </div>
 
-    <div class="row" data-aos="fade-up" data-aos-delay="100">
-                <div class="col-md-4">
-                    <div class="tips-wrap">
-                        <a href="#" class="tips-img">
-                            <img src="images/tips/tips-image1.jpg" class="img-fluid tips-img" alt="#">
-                        </a>
-                        <div class="tips-avatar">
-                            <img src="images/avatar.jpg" alt="#">
-                            <p>By Adam Khiwak </p>
-                        </div>
-                        <div class="tips-content_wrap">
-                            <a href="#" class="tips-title">
-                                <h5>Introducing zero commission</h5>
-                            </a>
-                            <p>Credibly benchmark scalable web-readiness via e-business users. Authoritatively fabricate cutting-edge potentialities and world-class relationships. Progressively redefine.</p>
-                            <a href="tips-detail.html">Read More ➝</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="tips-wrap">
-                        <a href="#" class="tips-img">
-                            <img src="images/tips/tips-image2.jpg" class="img-fluid tips-img" alt="#">
-                        </a>
-                        <div class="tips-avatar">
-                            <img src="images/avatar.jpg" alt="#">
-                            <p>By Adam Khiwak </p>
-                        </div>
-                        <div class="tips-content_wrap">
-                            <a href="#" class="tips-title">
-                                <h5>Helping new restaurateurs find their feet</h5>
-                            </a>
-                            <p>Enthusiastically visualize premier total linkage with optimal synergy. Enthusiastically envisioneer turnkey alignments before excellent outside the.</p>
-                            <a href="tips-detail.html">Read More ➝</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="tips-wrap">
-                        <a href="#" class="tips-img">
-                            <img src="images/tips/tips-image3.jpg" class="img-fluid tips-img" alt="#">
-                        </a>
-                        <div class="tips-avatar">
-                            <img src="images/avatar.jpg" alt="#">
-                            <p>By Adam Khiwak </p>
-                        </div>
-                        <div class="tips-content_wrap">
-                            <a href="#" class="tips-title">
-                                <h5> Introducing the Food Ratings</h5>
-                            </a>
-                            <p>Progressively foster client-focused sources through sustainable collaboration and idea-sharing. Seamlessly aggregate effective testing procedures rather than.</p>
-                            <a href="tips-detail.html">Read More ➝</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row" data-aos="fade-up" data-aos-delay="100">
-                <div class="col-md-4">
-                    <div class="tips-wrap">
-                        <a href="#" class="tips-img">
-                            <img src="images/tips/tips-image4.jpg" class="img-fluid tips-img" alt="#">
-                        </a>
-                        <div class="tips-avatar">
-                            <img src="images/avatar.jpg" alt="#">
-                            <p>By Adam Khiwak </p>
-                        </div>
-                        <div class="tips-content_wrap">
-                            <a href="#" class="tips-title">
-                                <h5>3 million orders in a month</h5>
-                            </a>
-                            <p>Authoritatively formulate synergistic benefits after error-free sources. Phosfluorescently facilitate out-of-the-box technologies via backward-compatible customer service. Quickly.</p>
-                            <a href="tips-detail.html">Read More ➝</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="tips-wrap">
-                        <a href="#" class="tips-img">
-                            <img src="images/tips/tips-image1.jpg" class="img-fluid tips-img" alt="#">
-                        </a>
-                        <div class="tips-avatar">
-                            <img src="images/avatar.jpg" alt="#">
-                            <p>By Adam Khiwak </p>
-                        </div>
-                        <div class="tips-content_wrap">
-                            <a href="#" class="tips-title">
-                                <h5>Life is short, eat dessert first</h5>
-                            </a>
-                            <p>Proactively promote top-line content rather than standards compliant information. Dramatically strategize team driven manufactured products through.</p>
-                            <a href="tips-detail.html">Read More ➝</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="tips-wrap">
-                        <a href="#" class="tips-img">
-                            <img src="images/tips/tips-image2.jpg" class="img-fluid tips-img" alt="#">
-                        </a>
-                        <div class="tips-avatar">
-                            <img src="images/avatar.jpg" alt="#">
-                            <p>By Adam Khiwak </p>
-                        </div>
-                        <div class="tips-content_wrap">
-                            <a href="#" class="tips-title">
-                                <h5>5 Easy Tips To Boost Your Sales</h5>
-                            </a>
-                            <p>Completely orchestrate fully tested solutions for customer directed applications. Monotonectally harness world-class information via excellent potentialities.</p>
-                            <a href="tips-detail.html">Read More ➝</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-              <div class="col-12 text-center mt-4">
-              <button class="btn btn-primary">View more <i class="fa fa-long-arrow-right"></i></button>
-            </div>
-          </div>
-
-
+  <div class="row" data-aos="fade-up" data-aos-delay="100">
+    <div class="col-md-4">
+      <div class="tips-wrap">
+        <a href="#" class="tips-img">
+          <img src="images/tips/tips-image1.jpg" class="img-fluid tips-img" alt="#">
+        </a>
+        <div class="tips-avatar">
+          <img src="images/avatar.jpg" alt="#">
+          <p>By Oluwakeji Onabajo </p>
+        </div>
+        <div class="tips-content_wrap">
+          <a href="#" class="tips-title">
+            <h5>SpeakUp App Launch</h5>
+          </a>
+          <p>We are inspired to provide a swift response to tackle this under reported cases and challenge of sexual harassment, rape, sex for grade and other gender based violence  in our school ...</p>
+          <a href="#">Read More ➝</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="tips-wrap">
+        <a href="#" class="tips-img">
+          <img src="images/tips/tips-image2.jpg" class="img-fluid tips-img" alt="#">
+        </a>
+        <div class="tips-avatar">
+          <img src="images/avatar.jpg" alt="#">
+          <p>By Oluwakeji Onabajo </p>
+        </div>
+        <div class="tips-content_wrap">
+          <a href="#" class="tips-title">
+            <h5>Adejoke Spoke Up!</h5>
+          </a>
+          <p>We got a report from a student of Olusegun Agagu University of Science and Technology OAUSTECH, Okitipupa
+          From a final year student of Microbiology, department of Biological Science. Her...</p>
+          <a href="#">Read More ➝</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="tips-wrap">
+        <a href="#" class="tips-img">
+          <img src="images/tips/tips-image3.jpg" class="img-fluid tips-img" alt="#">
+        </a>
+        <div class="tips-avatar">
+          <img src="images/avatar.jpg" alt="#">
+          <p>By Oluwakeji Onabajo </p>
+        </div>
+        <div class="tips-content_wrap">
+          <a href="#" class="tips-title">
+            <h5> Introducing the Bystanders</h5>
+          </a>
+          <p>Progressively foster client-focused sources through sustainable collaboration and idea-sharing. Seamlessly aggregate effective testing procedures rather than.</p>
+          <a href="#">Read More ➝</a>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <div class="row" data-aos="fade-up" data-aos-delay="100">
+    <div class="col-md-4">
+      <div class="tips-wrap">
+        <a href="#" class="tips-img">
+          <img src="images/tips/tips-image4.jpg" class="img-fluid tips-img" alt="#">
+        </a>
+        <div class="tips-avatar">
+          <img src="images/avatar.jpg" alt="#">
+          <p>By Oluwakeji Onabajo </p>
+        </div>
+        <div class="tips-content_wrap">
+          <a href="#" class="tips-title">
+            <h5>Getting Help In The Digital Age</h5>
+          </a>
+          <p>We are in a digital age, the internet is available answer our questions.
+          It is left to us to maximize this opportunity and others around us</p>
+          <a href="#">Read More ➝</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="tips-wrap">
+        <a href="#" class="tips-img">
+          <img src="images/tips/tips-image1.jpg" class="img-fluid tips-img" alt="#">
+        </a>
+        <div class="tips-avatar">
+          <img src="images/avatar.jpg" alt="#">
+          <p>By Oluwakeji Onabajo </p>
+        </div>
+        <div class="tips-content_wrap">
+          <a href="#" class="tips-title">
+            <h5>Life is short, eat dessert first</h5>
+          </a>
+          <p>Proactively promote top-line content rather than standards compliant information. Dramatically strategize team driven manufactured products through.</p>
+          <a href="#">Read More ➝</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="tips-wrap">
+        <a href="#" class="tips-img">
+          <img src="images/tips/tips-image2.jpg" class="img-fluid tips-img" alt="#">
+        </a>
+        <div class="tips-avatar">
+          <img src="images/avatar.jpg" alt="#">
+          <p>By Oluwakeji Onabajo </p>
+        </div>
+        <div class="tips-content_wrap">
+          <a href="#" class="tips-title">
+            <h5>5 Easy Tips To Boost Your Self confidence</h5>
+          </a>
+          <p>Completely orchestrate fully tested solutions for individual directed applications. Monotonectally harness world-class information via excellent potentialities.</p>
+          <a href="#">Read More ➝</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 text-center mt-4">
+      <button class="btn btn-primary">View more <i class="fa fa-long-arrow-right"></i></button>
+    </div>
+  </div>
+
+
+</div>
 </section>
 
 
