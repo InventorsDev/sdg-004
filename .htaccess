@@ -12,8 +12,9 @@ RewriteRule ^([^\.]+)$ $1.php [NC,L]
 # L = Last. makes this the last rule that this specific condition would match
 # QSA = Query String Append. just in case you've gor something like ?like=penguins on the end which you want to keep and pass to the distination file 
 
-# Redirect to 404
-RewriteRule ^app/404 ../404.php [NC,L]
+
+# disallow access to folders
+Options -Indexes
 
 # Other redirects
 RewriteRule ^notifications/([0-9a-zA-Z_-]+) notifications.php?slug=$1 [NC,L]

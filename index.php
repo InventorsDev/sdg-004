@@ -77,8 +77,8 @@
   </div>
 
   <div class="col-md-4">
-    <div class="btn-center"><button class="custom-btn btn-bg btn" data-aos="fade-up" data-aos-delay="100">Help Me!</button></div>
-    <div class="btn-center"><button class="btn btn-outline btn-primary" data-aos="fade-up" data-aos-delay="200"><i class="fa fa-phone mr-2"></i> Make a report</button></div>
+    <div class="btn-center"><button class="custom-btn btn-bg btn" data-toggle="modal" data-target="#chatbot" data-aos="fade-up" data-aos-delay="100">Help Me!</button></div>
+    <div class="btn-center"><a href="app/reports" class="btn btn-outline btn-primary" data-aos="fade-up" data-aos-delay="200"><i class="fa fa-phone mr-2"></i> Make a report</a></div>
   </div>
 
   <div class="col-md-4">
@@ -177,7 +177,7 @@
           <small>Sex For Grade</small>
 
           <h3>
-           <a href="featured-detail.html">
+           <a href="#">
             <span>Jane Had Been able to survive what she can a life time trauma</span>
             <i class="fa fa-angle-right featured-icon"></i>
           </a>
@@ -192,7 +192,7 @@
       <small>Rape Attempt</small>
 
       <h3>
-       <a href="featured-detail.html">
+       <a href="#">
         <span>Jane Had Been able to survive what she can a life time trauma</span>
         <i class="fa fa-angle-right featured-icon"></i>
       </a>
@@ -207,7 +207,7 @@
   <small>Bullying</small>
 
   <h3>
-   <a href="featured-detail.html">
+   <a href="#">
     <span>Jane Had Been able to survive what she can a life time trauma</span>
     <i class="fa fa-angle-right featured-icon"></i>
   </a>
@@ -222,7 +222,7 @@
   <small>Molestation</small>
 
   <h3>
-   <a href="featured-detail.html">
+   <a href="#">
     <span>Race Bicycle</span>
     <i class="fa fa-angle-right featured-icon"></i>
   </a>
@@ -237,7 +237,7 @@
   <small>Video</small>
 
   <h3>
-   <a href="featured-detail.html">
+   <a href="#">
     <span>Ultimate HealthCare</span>
     <i class="fa fa-angle-right featured-icon"></i>
   </a>
@@ -289,14 +289,103 @@
 
 
 
-<!-- ***** Frequently Question Start ***** -->
-<section class="frequently-question section-padding" id="frequently-question">
+<!--  Frequently Question Start  -->
+<section class="frequently-question section-padding-half">
  <div class="container">
+  <div class="row">
 
-  <!-- FAQ Code goes here-->
+  <div class="col-lg-12 col-12">
+      <h2 class="text-center mb-3" data-aos="fade-up">Frequently Asked Questions</h2>
+    </div>
+
+    <div class="col-md-6 mb-5">
+      <h3 class="btn-center">Stay Strong, Stay Right, Speak Up</h3>
+      <p class="text-justify">We are inspired to provide a swift response to tackle this under reported cases and challenge of sexual harassment, rape, sex for grade and other gender based violence  in our school (Primary, secondary and University), immediate community and the world at large.</p>
+
+      <p>Individuals can report case as a victim or an eyewitness on sex for grades, rape sexual harassment, bullying and gender based violence, etc. They can also get tips and guides. Our aim is to help provide help and solutions to this ravaging under reported issues baffling our society. We follow up reported cases, giving guides and tips on possible way out based on the report and help asked for. 
+      </p>
+
+    <div class="btn-center mt-4"><a href="app/reports" class="btn btn-outline-faq btn-primary" data-aos="fade-up" data-aos-delay="100"><i class="fa fa-phone mr-2"></i> Make a report</a></div>
+    </div>
+
+    <div class="col-md-6">
+              <div class="accordion" id="frequently-question">     
+               <div class="card">
+                  <div class="card-body" id="heading_one">
+                      <a href="#collapse_one" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapse_one">
+                      <h5 class="card-title mb-n1">How to get help when needed?</h5></a>
+                  </div>
+                <div id="collapse_one" class="collapse" aria-labelledby="heading_one" data-parent="#frequently-question">
+                  <div class="card-body">
+                    Need help? The speakUp chatbot is here for you to respondent to any of your question. 
+                    Unable to answer your questions? Never mind, you be assigned to a professional responder on signup
+                   
+                 </div>
+                </div>
+              </div>
+
+              <div class="card">
+                  <div class="card-body" id="heading_two">
+                      <a href="#collapse_two" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapse_two">
+                      <h5 class="card-title mb-n1">How is my reports handled?</h5></a>
+                  </div>
+                <div id="collapse_two" class="collapse" aria-labelledby="heading_two" data-parent="#frequently-question">
+                  <div class="card-body">
+                    This platform is a confidence reporting platform, you can report as either a victim or an eye witness.
+                    Also your personally is well protected as you can submit a report as an anonymous or a bystannder.
+                    Your report submitted with solid evidence would be addressed by our well equipped responders 
+                   
+                 </div>
+                </div>
+              </div>
+
+              <div class="card">
+                  <div class="card-body" id="heading_three">
+                      <a href="#collapse_three" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapse_three">
+                      <h5 class="card-title mb-n1">What can I  do before help comes</h5></a>
+                  </div>
+                <div id="collapse_three" class="collapse" aria-labelledby="heading_three" data-parent="#frequently-question">
+                  <div class="card-body">
+                   Kindly stay calm, do not be stressed up. Report to a trusted person not to stay alone.
+                   Try as muxh as possible to gether evidences, either voice record, video record or even written document of the seen.
+                   
+                 </div>
+                </div>
+              </div>
+
+              <div class="card">
+                  <div class="card-body" id="heading_four">
+                      <a href="#collapse_four" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapse_four">
+                      <h5 class="card-title mb-n1">I need Tips and Guides</h5></a>
+                  </div>
+                <div id="collapse_four" class="collapse" aria-labelledby="heading_four" data-parent="#frequently-question">
+                  <div class="card-body">
+                   The website is equipped with enough tips and guides for any situationn.
+                   
+                 </div>
+                </div>
+              </div>
+
+              <div class="card">
+                  <div class="card-body" id="heading_five">
+                      <a href="#collapse_five" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapse_five">
+                      <h5 class="card-title mb-n1">How can I speak with a responder?</h5></a>
+                  </div>
+                <div id="collapse_five" class="collapse" aria-labelledby="heading_five" data-parent="#frequently-question">
+                  <div class="card-body">
+                   Upon signup you would get a response from an assigned responder with a minute. Always available to give help
+                   
+                 </div>
+                </div>
+              </div>
+      
+    </div>
+  </div>
+
+</div>
 </div>
 </section>
-<!-- ***** Frequently Question End ***** -->
+<!-- Frequently Question End-->
 
 <button class="float btn" id="menu-share" data-toggle="modal" data-target="#chatbot"><i class="fa fa-wechat"></i></button>
 
