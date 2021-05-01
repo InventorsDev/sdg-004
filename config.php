@@ -13,7 +13,7 @@ $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $c
 
 /*
 $host = "localhost"; /* Host name *
-$user = "root"; /* User */
+$user = "root"; /* User *
 $password = ""; /* Password *
 $dbname = "speakup"; /* Database name *
 
@@ -25,3 +25,4 @@ if ($conn->connect_error) {
 } 
 //echo "Connected successfully"; */
 
+?>
