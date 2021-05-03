@@ -35,9 +35,9 @@ Users can also read up tips and guides that the user can make use of to keep the
 4. You will get the response
 
 ## Contributors
-Oluwakeji Onabajo - [@OnabajoOluwakeji](https://github.com/OnabajoOluwakeji) 
-Samuel Ogunniran - [@samstick1](https://github.com/samstick1) 
-Joy Talabi - [@Joyce199](https://github.com/Joyce199) 
+Oluwakeji Onabajo - [@OnabajoOluwakeji](https://github.com/OnabajoOluwakeji)\
+Samuel Ogunniran - [@samstick1](https://github.com/samstick1) \
+Joy Talabi - [@Joyce199](https://github.com/Joyce199) \
 Silas Adebayo - [@Sylers](https://github.com/Sylers)
 
 
