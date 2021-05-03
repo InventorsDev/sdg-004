@@ -70,6 +70,7 @@ $user_type = test_input($_SESSION["user_type"]);
         <a href="responder" class="list-group-item list-group-item-action active">Dashbboard</a>
         <a href="help" class="list-group-item list-group-item-action">Help Requests</a>
         <a href="view-reports" class="list-group-item list-group-item-action">View Reports</a>
+        <a href="share-tips" class="list-group-item list-group-item-action">Share Tips</a>
         <a href="#" class="list-group-item list-group-item-action">Profile</a>
       </div>
     </div>
@@ -144,7 +145,7 @@ $user_type = test_input($_SESSION["user_type"]);
     </div>
       </div>
 
-      <div class="text-right container-fluid">
+      <div class="text-center container-fluid">
         <div class="credits">
           Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | SpeakUp
          

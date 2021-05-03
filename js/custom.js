@@ -1,5 +1,4 @@
-
-  $(function () {
+$(function () {
 
     // MENU
     $('.nav-link').on('click',function(){
@@ -565,8 +564,13 @@
                   });
 
 
-
-
+//Tooggle Tips Section
+    // $('#reporter').click(function(){
+    //   $('#signup-as').hide();
+    //   $('#signup-as-reporter').show().fadeIn("slow");
+    //   document.getElementById("signup").style.paddingTop='23px';
+    //   $('#as').html('Signing up as a <strong id="as">Reporter</strong>');
+    // });
   });
 
 

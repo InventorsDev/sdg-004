@@ -1,3 +1,15 @@
+<?php 
+include_once 'functions.php';
+
+$login = '';
+$basename = "/gitSpeakUp/sdg-004/tips";
+
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
+  $user_id = preg_replace('#[^0-9]#','',$_SESSION['user_id']);
+  $user_type = test_input($_SESSION["user_type"]);
+  $login = true;
+}
+?>
 <!DOCTYPE html>
 <html lang="en" class="body-full-height">
 <head>
@@ -46,11 +58,13 @@
       <li class="nav-item">
         <a href="home#frequently-question" class="nav-link smoothScroll">FAQ's</a>
       </li>
+      <?php if(!$login){ ?>
       <li class="nav-item">
         <a href="signup" class="nav-link">Signup</a>
       </li>
+      <?php } ?>
       <li class="nav-item">
-        <a href="login" class="nav-link login">Login</a>
+        <a href="login" class="nav-link login"><?php if($login){ echo "Logout"; }else{ echo "Login"; } ?></a>
       </li>
     </ul>
   </div>
@@ -58,8 +72,7 @@
 </nav>
 
 <!-- SIGNUP -->
-
-<section class="tips section-padding-half pb-20" id="signup" >
+  <section class="tips section-padding-half pb-20" id="tips-and-guides">
   <div class="container">
    <div class="row">
     <div class="col-lg-12 col-12 signup-header">
@@ -69,128 +82,70 @@
   </div>
 
     <div class="row" data-aos="fade-up" data-aos-delay="100">
+                <?php
+                  $limit = 6;
+                  $tips_available = false;
+                  $stmt = $conn->prepare("SELECT posted_by, tips_title, tips_content, cover_image, date_added FROM tips_guides ORDER BY date_added DESC LIMIT ?");
+                  $stmt->bind_param("i", $limit);
+                  $stmt->execute();
+                  $stmt->store_result();
+                  $stmt->bind_result($posted_by, $tips_title, $tips_content, $cover_image, $date_added);
+                  if($stmt->num_rows){
+                    $tips_available = true;
+                    while ($stmt->fetch()) {
+                       $count= strlen($tips_content);
+                       $message = "";
+                       if($count > 35){
+                        $newcount = 35; 
+                        // Define how many character you want to display.
+                        $message = substr($tips_content, 0, $newcount).'...'; 
+                      }
+                      // $date_sent = time_Ago($date_sent);
+                ?>
                 <div class="col-md-4">
                     <div class="tips-wrap">
                         <a href="#" class="tips-img">
-                            <img src="images/tips/tips-image1.jpg" class="img-fluid tips-img" alt="#">
+                            <img src=<?php echo $cover_image; ?> class="img-fluid tips-img" alt="#">
                         </a>
                         <div class="tips-avatar">
                             <img src="images/avatar.jpg" alt="#">
-                            <p>By Adam Khiwak </p>
+                            <p><?php echo $posted_by; ?></p>
                         </div>
                         <div class="tips-content_wrap">
                             <a href="#" class="tips-title">
-                                <h5>Introducing zero commission</h5>
+                                <h5><?php echo $tips_title; ?></h5>
                             </a>
-                            <p>Credibly benchmark scalable web-readiness via e-business users. Authoritatively fabricate cutting-edge potentialities and world-class relationships. Progressively redefine.</p>
-                            <a href="tips-detail.html">Read More ➝</a>
+                            <p><?php echo $message; ?></p>
+                            <a href=<?php echo $basename.'/'.$tips_title; ?> class="tips-category" >Read More ➝</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="tips-wrap">
-                        <a href="#" class="tips-img">
-                            <img src="images/tips/tips-image2.jpg" class="img-fluid tips-img" alt="#">
-                        </a>
-                        <div class="tips-avatar">
-                            <img src="images/avatar.jpg" alt="#">
-                            <p>By Adam Khiwak </p>
-                        </div>
-                        <div class="tips-content_wrap">
-                            <a href="#" class="tips-title">
-                                <h5>Helping new restaurateurs find their feet</h5>
-                            </a>
-                            <p>Enthusiastically visualize premier total linkage with optimal synergy. Enthusiastically envisioneer turnkey alignments before excellent outside the.</p>
-                            <a href="tips-detail.html">Read More ➝</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="tips-wrap">
-                        <a href="#" class="tips-img">
-                            <img src="images/tips/tips-image3.jpg" class="img-fluid tips-img" alt="#">
-                        </a>
-                        <div class="tips-avatar">
-                            <img src="images/avatar.jpg" alt="#">
-                            <p>By Adam Khiwak </p>
-                        </div>
-                        <div class="tips-content_wrap">
-                            <a href="#" class="tips-title">
-                                <h5> Introducing the Food Ratings</h5>
-                            </a>
-                            <p>Progressively foster client-focused sources through sustainable collaboration and idea-sharing. Seamlessly aggregate effective testing procedures rather than.</p>
-                            <a href="tips-detail.html">Read More ➝</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row" data-aos="fade-up" data-aos-delay="100">
-                <div class="col-md-4">
-                    <div class="tips-wrap">
-                        <a href="#" class="tips-img">
-                            <img src="images/tips/tips-image4.jpg" class="img-fluid tips-img" alt="#">
-                        </a>
-                        <div class="tips-avatar">
-                            <img src="images/avatar.jpg" alt="#">
-                            <p>By Adam Khiwak </p>
-                        </div>
-                        <div class="tips-content_wrap">
-                            <a href="#" class="tips-title">
-                                <h5>3 million orders in a month</h5>
-                            </a>
-                            <p>Authoritatively formulate synergistic benefits after error-free sources. Phosfluorescently facilitate out-of-the-box technologies via backward-compatible customer service. Quickly.</p>
-                            <a href="tips-detail.html">Read More ➝</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="tips-wrap">
-                        <a href="#" class="tips-img">
-                            <img src="images/tips/tips-image1.jpg" class="img-fluid tips-img" alt="#">
-                        </a>
-                        <div class="tips-avatar">
-                            <img src="images/avatar.jpg" alt="#">
-                            <p>By Adam Khiwak </p>
-                        </div>
-                        <div class="tips-content_wrap">
-                            <a href="#" class="tips-title">
-                                <h5>Life is short, eat dessert first</h5>
-                            </a>
-                            <p>Proactively promote top-line content rather than standards compliant information. Dramatically strategize team driven manufactured products through.</p>
-                            <a href="tips-detail.html">Read More ➝</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="tips-wrap">
-                        <a href="#" class="tips-img">
-                            <img src="images/tips/tips-image2.jpg" class="img-fluid tips-img" alt="#">
-                        </a>
-                        <div class="tips-avatar">
-                            <img src="images/avatar.jpg" alt="#">
-                            <p>By Adam Khiwak </p>
-                        </div>
-                        <div class="tips-content_wrap">
-                            <a href="#" class="tips-title">
-                                <h5>5 Easy Tips To Boost Your Sales</h5>
-                            </a>
-                            <p>Completely orchestrate fully tested solutions for customer directed applications. Monotonectally harness world-class information via excellent potentialities.</p>
-                            <a href="tips-detail.html">Read More ➝</a>
-                        </div>
-                    </div>
-                </div>
+              <?php }}else{
+                echo "
+                <div class='col-lg-12 col-12'>
+                  <p class='text-center mb-5' data-aos='fade-up'  id='as'>Yucks! There are no tips yet, check back later.</p>
+                </div>";
+              } ?>
+                
             </div>
 
             <div class="row">
               <div class="col-12 text-center mt-4">
-              <button class="btn btn-primary">View more <i class="fa fa-long-arrow-right"></i></button>
+              <button class="btn btn-primary">
+                <?php 
+                  if($tips_available){ 
+                    echo "View more <i class='fa fa-long-arrow-right'></i>";
+                  }else{
+                    echo "Tips underway <img src='images/loading.gif' width='20px' height='20px'>";
+                  } 
+                ?></button>
             </div>
           </div>
 
 
   </div>
 </section>
+
 
 
 <footer class="site-footer">

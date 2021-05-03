@@ -78,7 +78,7 @@ if($user_type != 'responder' ){
     <div id="page-content-wrapper">
 
  
-  <?php include_once 'includes/navbar.php'; ?>
+        <?php include_once 'includes/navbar.php'; ?>
 
       <div class="container-fluid">        
 

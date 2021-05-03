@@ -21,40 +21,40 @@
  <link rel="stylesheet" href="css/style.css">
 
 </head>
-
+<body>
  <!-- MENU BAR -->
  <nav class="navbar navbar-expand-lg">
-  <div class="container">
-    <a class="navbar-brand" href="./">
-      <i class="fa fa-bullhorn"></i>
-      SpeakUp
-    </a>
+    <div class="container">
+      <a class="navbar-brand" href="./">
+        <i class="fa fa-bullhorn"></i>
+        SpeakUp
+      </a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-    aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+      aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a href="home#how-it-works" class="nav-link smoothScroll">How it Works</a>
-      </li>
-      <li class="nav-item">
-        <a href="tips" class="nav-link smoothScroll">Guides & Tips</a>
-      </li>
-      <li class="nav-item">
-        <a href="home#frequently-question" class="nav-link smoothScroll">FAQ's</a>
-      </li>
-      <li class="nav-item">
-        <a href="signup" class="nav-link active">Signup</a>
-      </li>
-      <li class="nav-item">
-        <a href="login" class="nav-link login">Login</a>
-      </li>
-    </ul>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="home#how-it-works" class="nav-link smoothScroll">How it Works</a>
+          </li>
+          <li class="nav-item">
+            <a href="tips" class="nav-link smoothScroll">Guides & Tips</a>
+          </li>
+          <li class="nav-item">
+            <a href="home#frequently-question" class="nav-link smoothScroll">FAQ's</a>
+          </li>
+          <li class="nav-item">
+            <a href="signup" class="nav-link active">Signup</a>
+          </li>
+          <li class="nav-item">
+            <a href="login" class="nav-link login">Login</a>
+          </li> 
+        </ul>
+      </div>
   </div>
-</div>
 </nav>
 
 <!-- SIGNUP -->

@@ -42,7 +42,7 @@
         <a href="#how-it-works" class="nav-link smoothScroll">How it Works</a>
       </li>
       <li class="nav-item">
-        <a href="tips" class="nav-link smoothScroll">Guides & Tips</a>
+        <a href="./tips" class="nav-link smoothScroll">Guides & Tips</a>
       </li>
       <li class="nav-item">
         <a href="#frequently-question" class="nav-link smoothScroll">FAQ's</a>
