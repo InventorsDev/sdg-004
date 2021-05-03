@@ -185,7 +185,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
                     <label>Upload Evidence</label>
                     <div class="custom-file">
                       <input type="file" id="files" class="form-control custom-file-input" multiple>
-                      <label class="custom-file-label" id="files1" for="files">Select curriculum vitae</label>
+                      <label class="custom-file-label" id="files1" for="files">Upload evidence</label>
                       <p id="cv_alert" class="form-alert"></p> 
                     </div>
                   </div>
