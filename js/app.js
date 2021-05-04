@@ -169,7 +169,7 @@ $("#update-profile").click(function(){
                     	processData: false,
                     	dataType: 'json',
                     	beforeSend: function(){
-                    		document.getElementById("report").innerHTML='<img src=".../images/loading.gif" width="20px" height="20px"> Processing';
+                    		document.getElementById("report").innerHTML='<img src="../images/loading.gif" width="20px" height="20px"> Processing';
                     		document.getElementById("report").disabled=true;
                     	},
                     	success:function(response){
