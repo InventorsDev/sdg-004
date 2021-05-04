@@ -1,11 +1,27 @@
 # sdg-004
 
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
 
 ## Problem Statement
 
 We are working on SDG 3: GOOD HEALTH AND MENTAL WELL-BEING
 
 ## About
+
+[![Product Name Screen Shot][product-screenshot]](https://github.com/InventorsDev/sdg-004/blob/main/images/screenshot.png)
 
 This project is inspired to provide a swift response to tackle this under reported cases and challenge of sexual harassment, rape, sex for grade, molestation and other gender based violence in our school (Primary, secondary and University), immediate community and the world at large.
 Various people from different parts of the world have had to deal with this issue for various unique or similar reasons. This situation has gone on to impact the lives of the affected people in various ways.
@@ -49,3 +65,17 @@ Licensed under [MIT License](LICENSE)
 
 sex for grades, rape sexual harassment, bullying and gender based violence, etc. 
 
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-url]: https://github.com/InventorsDev/sdg-004/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-url]: https://github.com/InventorsDev/sdg-004/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-url]: https://github.com/InventorsDev/sdg-004/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/InventorsDev/sdg-004/issues
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[product-screenshot]: https://github.com/InventorsDev/sdg-004/blob/main/images/screenshot.png
