@@ -197,6 +197,73 @@ $("#update-profile").click(function(){
 
                 });
 
+    	//SHARE TIPS
+	$("#share-tips").click(function(){
+		var tips_title = $("#tips-title").val().trim();
+		var tips_content = $("#tips-content").val();
+        var tips_image = $("#tips-image").val().trim();
+
+		if (tips_title == '') {
+			$("#tips-title").addClass("is-invalid");
+		} else{
+			$("#tips-title").removeClass("is-invalid");
+		}
+		 if (tips_content == '') {
+			$("#tips-content").addClass("is-invalid");
+		} else{
+			$("#tips-content").removeClass("is-invalid");
+		}
+		if (tips_image == '') {
+			$("#tips-image").addClass("is-invalid");
+		} else{
+			$("#tips-image").removeClass("is-invalid");
+		}
+		if(tips_title != "" && tips_content != "" && tips_image != ""){
+		
+			var fd = new FormData();
+			var tips_image = $('#tips-image')[0].files[0];
+			//alert(file);
+
+			fd.append('request',9);
+			fd.append('tips-title',tips_title);
+			fd.append('tips-content',tips_content);
+			fd.append('tips-image',tips_image);
+
+			$.ajax({
+				url: 'ajaxfile.php',
+				type: 'post',
+				data:fd,
+				contentType: false,
+				processData: false,
+				dataType: 'json',
+					beforeSend: function(){
+				   document.getElementById("share-tips").innerHTML='<img src="../images/loading.gif" width="20px" height="20px"> Processing';
+				  document.getElementById("share-tips").disable='true';
+				},
+					success:function(response){
+					  if(response.status == 1){
+						  console.log("sucess");
+					document.getElementById("tips-form").reset();
+					document.getElementById("tips-form").reset();
+						  document.getElementById("alert_box").style.display="none";
+						  document.getElementById("alert").innerHTML='';
+						
+					$('#tips-success').modal('show');   
+				   document.getElementById("success_text").innerHTML=response.message;
+
+						}else{
+						  document.getElementById("alert_box").style.display="block";
+						  document.getElementById("alert").innerHTML=response.message;
+						}
+					 },
+				 complete: function(data){
+				  	document.getElementById("share-tips").innerHTML='Signup <i class="fa fa-sign-in"></i>';
+					document.getElementById("share-tips").disable='false';
+				},
+				});
+        
+		}
+	})
 });
 
 //SCROLL MESSAGE BOX
@@ -320,4 +387,8 @@ function update_notification(){
                   });
               }
             }
+            
 
+function close_alert(id){
+  $("#"+id).hide();
+}
