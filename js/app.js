@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+//SUBMIT HELP REQUEST
 	$('#get-help').click(function(){
 		var help = $("#help").val();
 
@@ -69,12 +70,13 @@ $("#update-profile").click(function(){
      //HELP DISCUSS
      $("#reply-message").click(function(){
       var msg = $("#help-message").val();
+      var sender = $("#sender").val();
 
       if (msg != "") {
        $.ajax({
         url:'ajaxfile.php',
         type:'post',
-        data:{request:7, msg:msg},
+        data:{request:7, msg:msg, sender:sender},
         dataType: 'json',
         beforeSend: function(){
          document.getElementById("reply-message").innerHTML='Sending...';

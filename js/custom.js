@@ -72,12 +72,10 @@ $(function () {
    },
    success:function(response){
     $("#message").val("");
+    
     var d = new Date();
-
     var html = '<li class="by-other msg"><div class="chat-content"><div class="chat-meta">'+ d.toLocaleTimeString('en-US', {hour12: true }) + '<span class="pull-right">You</span></div>' + msg + '<div class="clearfix"></div></div></li>';
-
     $(".msg:last").after(html).show().fadeIn("slow");
-
     $(".modal .modal-body").animate({ scrollTop: $('.modal .modal-body').offset().top }, 'slow');
        
     if(response.status == 1){

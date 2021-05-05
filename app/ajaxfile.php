@@ -110,7 +110,7 @@ else {
 return $date;
 } 
 
-
+//SELECT ASSIGNED RESPONDER
 $stmt = $conn->prepare("SELECT assigned FROM users WHERE user_id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -123,6 +123,7 @@ if (isset($_POST['request'])) {
 }
 
 
+//SUBMIT HELP REQUEST
 if ($request == 1) {
  $msg = test_input($_POST["help"]);
 
@@ -157,7 +158,7 @@ if ($request == 1) {
 }
 
 
-//AUTO REFRESH MESSAGE
+//AUTO REFRESH MESSAGE COUNT
 if ($request == 2) {
 
   $label = 'inbox';
@@ -178,7 +179,7 @@ if ($request == 2) {
 }
 
 
-
+//AUTO REFRESH MESSAGE
 if ($request == 3) {
 
   $label = 'inbox';
@@ -250,7 +251,7 @@ exit;
 
 
 
-//AUTO REFRESH NOTIFICATION
+//AUTO REFRESH NOTIFICATION COUNT
 if ($request == 4) {
 
   $status = 'unread';
@@ -267,6 +268,7 @@ if ($request == 4) {
 
 
 
+//AUTO REFRESH NOTIFICATION
 if ($request == 5) {
 
   $status = 'unread';
@@ -428,25 +430,27 @@ if ($request == 6) {
   }
 }}
 
-
+//REPLY CHATS
 if ($request == 7) {
   $message = test_input($_POST["msg"]);
+  $sender = test_input($_POST["sender"]);
 
   if ($message != "") {
     $status = 'unread';
-    $label = 'outbox';
     $date = date("Y-m-d H:i:s");
 
     if ($user_type == 'responder') {
-     $sender = $assigned;
-     $receiver = $user_type;
+    $label = 'inbox';
+     $sender = $sender;
+     $receiver = $user_id;
    }else{
-     $sender = $user_type;
+    $label = 'outbox';
+     $sender = $user_id;
      $receiver = $assigned;        
    }
 
    $stmt = $conn->prepare("INSERT INTO chats (sender, receiver, message, label, status, date_sent) VALUES ( ?, ?, ?, ?, ?, ?)");
-   $stmt->bind_param("iissss", $user_id, $assigned, $message, $label, $status, $date);
+   $stmt->bind_param("iissss", $sender, $receiver, $message, $label, $status, $date);
    if($stmt->execute()){
 
      $html = '<li class="help-row by-me">
