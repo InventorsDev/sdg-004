@@ -539,5 +539,46 @@ echo $html;
 exit;               
 }
 
+//SHARE TIPS
+if ($request == 9) {
+  $tips_title = test_input($_POST["tips-title"]);
+  $tips_content = test_input($_POST["tips-content"]);
+  $tips_image = test_input($_FILES['tips-image']['name']);
+  $date_added = date("Y-m-d H:i:s");
+
+  $stmt = $conn->prepare("SELECT lastname, firstname FROM users WHERE user_id = ?");
+      $stmt->bind_param("i", $user_id);
+      $stmt->execute();
+      $stmt->store_result();
+      $stmt->bind_result($lastname, $firstname);
+      $stmt->fetch();
+
+  if ($tips_title != "" && $tips_content != "" && $tips_image != "" ) {
+
+         $path = $_FILES["tips-image"]["name"];
+       $extension = pathinfo($path, PATHINFO_EXTENSION);
+       
+       // image file directory
+       $target = "images/tips/".$tips_image; 
+       
+        $file_type = array('jpeg','jpg','png', 'gif');
+       if(!in_array($extension,$file_type)){
+        echo json_encode( array("status" => 0,"message" => 'Please upload a jpeg, jpg, png or gif file') );
+        exit;
+          }
+
+          $posted_by = $firstname.' '.$lastname;
+      $stmt = $conn->prepare("INSERT INTO tips_guides (posted_by, posted_id, tips_title, tips_content, cover_image, date_added) VALUES ( ?, ?, ?, ?, ?, ?)");
+      $stmt->bind_param("ssssss", $posted_by, $user_id, $tips_title, $tips_content, $target, $date_added);
+      if($stmt->execute()){
+        $move= move_uploaded_file($_FILES['tips-image']['tmp_name'], '../'.$target);
+      echo json_encode( array("status" => 1, "message" => "Tips Shared Successfully!") );
+        exit;	
+      }else{
+          echo json_encode( array("status" => 0, "message" => "error! We're unble to share your tips!") );
+      }
+  }
+}
+
 
 ?>
