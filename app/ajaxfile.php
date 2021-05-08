@@ -542,6 +542,7 @@ exit;
 //SHARE TIPS
 if ($request == 9) {
   $tips_title = test_input($_POST["tips-title"]);
+  $title_slug = preg_replace('/[^a-z0-9]+/i', '-', trim(strtolower($tips_title)));
   $tips_content = test_input($_POST["tips-content"]);
   $tips_image = test_input($_FILES['tips-image']['name']);
   $date_added = date("Y-m-d H:i:s");
@@ -555,23 +556,34 @@ if ($request == 9) {
 
   if ($tips_title != "" && $tips_content != "" && $tips_image != "" ) {
 
+        //check for duplicate
+    $stmt = $conn->prepare("SELECT tips_title FROM tips_guides WHERE tips_title = ?");
+    $stmt->bind_param("s", $tips_title);
+    $stmt->execute();
+    $stmt->store_result();
+    if($stmt->num_rows > 0 ) {
+     echo json_encode( array("status" => 0, "message" => "Oop's! A tip with this title already exist") );
+     exit;
+   }
+
          $path = $_FILES["tips-image"]["name"];
        $extension = pathinfo($path, PATHINFO_EXTENSION);
+        $file_name = $title_slug.'.'.$extension;
        
        // image file directory
-       $target = "images/tips/".$tips_image; 
+       $target = "../images/tips/".$file_name; 
        
         $file_type = array('jpeg','jpg','png', 'gif');
-       if(!in_array($extension,$file_type)){
+       if(!in_array(strtolower($extension),$file_type)){
         echo json_encode( array("status" => 0,"message" => 'Please upload a jpeg, jpg, png or gif file') );
         exit;
           }
 
-          $posted_by = $firstname.' '.$lastname;
-      $stmt = $conn->prepare("INSERT INTO tips_guides (posted_by, posted_id, tips_title, tips_content, cover_image, date_added) VALUES ( ?, ?, ?, ?, ?, ?)");
-      $stmt->bind_param("ssssss", $posted_by, $user_id, $tips_title, $tips_content, $target, $date_added);
+      $posted_by = $firstname.' '.$lastname;
+      $stmt = $conn->prepare("INSERT INTO tips_guides (posted_by, posted_id, tips_title, title_slug, tips_content, cover_image, date_added) VALUES ( ?, ?, ?, ?, ?, ?, ?)");
+      $stmt->bind_param("sssssss", $posted_by, $user_id, $tips_title, $title_slug, $tips_content, $file_name, $date_added);
       if($stmt->execute()){
-        $move= move_uploaded_file($_FILES['tips-image']['tmp_name'], '../'.$target);
+        $move= move_uploaded_file($_FILES['tips-image']['tmp_name'], $target);
       echo json_encode( array("status" => 1, "message" => "Tips Shared Successfully!") );
         exit;	
       }else{

@@ -73,8 +73,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
       
       <div class="list-group list-group-flush">
         <a href="reporter" class="list-group-item list-group-item-action">Dashboard</a>
-        <a href="help" class="list-group-item list-group-item-action">Help me!</a>
+        <a href="help" class="list-group-item list-group-item-action">Help Me!</a>
         <a href="reports" class="list-group-item list-group-item-action active">Reports</a>
+        <a href="../tips" class="list-group-item list-group-item-action">Tips & Guides </a>
         <a href="profile" class="list-group-item list-group-item-action">Profile</a>
       </div>
     </div>

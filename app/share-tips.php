@@ -68,7 +68,8 @@ if($user_type != 'responder' ){
       <div class="list-group list-group-flush">
         <a href="responder" class="list-group-item list-group-item-action">Dashbboard</a>
         <a href="help" class="list-group-item list-group-item-action">Help Requests</a>
-        <a href="view-reports" class="list-group-item list-group-item-action active">View Reports</a>
+        <a href="view-reports" class="list-group-item list-group-item-action">View Reports</a>
+        <a href="share-tips" class="list-group-item list-group-item-action active">Share Tips</a>
         <a href="#" class="list-group-item list-group-item-action">Profile</a>
       </div>
     </div>
@@ -80,17 +81,19 @@ if($user_type != 'responder' ){
 
       <?php include_once 'includes/navbar.php'; ?>
 
-      <div class="container">
-        <div id="alert_box" style="display:none;" class="error_alert" >
-          <span aria-label="close" onclick="close_alert('alert_box')" >&times;</span>
-             <p><i class="fa fa-exclamation-circle"></i> <span id="alert"></span></p>
+      <div class="container-fluid">
+        <div class="btn-group">
+          <a class="btn btn-success mt-3" href="../tips">View tips</a>
+          <button class="btn btn-info mt-3" type="button" id="make-new">Add new tips</button>
         </div>
+
         <div class="row">
           <div class="offset-md-1 col-md-10">
+
+            <div class="add-tips">
             <h2 class="mt-4 text-center">Share Helpful Tips</h2>
             <p class="text-center mb-4">Help a soul today by entering a tip below and tap the share button to submit</p>
-          </div>
-        </div>
+
         <form action="" autocomplete="off" id="tips-form" class="form-horiontal" method="post">
         <div class="form-row">
           <div class="col-md-6 mb-3">
@@ -100,27 +103,33 @@ if($user_type != 'responder' ){
           </div>
           <div class="col-md-6 mb-3">
             <label>Cover Image</label>
-            <input type="file" id="tips-image" class="form-control" id="custom-file" />
-            <span class="invalid-feedback">Please upload your cover image</span>
-            <!-- <div class="custom-file">
+            <div class="custom-file">
               <input type="file" id="tips-image" class="form-control custom-file-input" id="custom-file" />
-              <label class="custom-file-label" id="tips-image" for="custom-file">Select a cover image</label>
+              <label class="custom-file-label" id="tips-image-name" for="custom-file">Select a cover image</label>
               <span class="invalid-feedback">Please upload your cover image</span>
-            </div> -->
+            </div>
           </div>
+        </div>
+
           <textarea class="form-control" placeholder="Describe your situation..." id="tips-content" rows="4" cols="3"></textarea>
           <div class="invalid-feedback">Please enter your tips</div>
           
               <div class="col-md-12 text-center">
-                  <button class="btn btn-info btn-lg pull-left" type="button" id="share-tips" style="margin-top: 15px;">Share Tips <i class="fa fa-sign-in"></i></button>
+                  <button class="btn btn-info text-center" type="button" id="share-tips" style="margin-top: 15px;">Share Tips <i class="fa fa-sign-in"></i></button>
               </div>
+
+        </form>
        
           </div>
+
+
+          <div id="all-tips">
+            
+          </div>
         </div>
-        </form>
 
           <!--Footer Copywright-->
-          <div class="text-center container-fluid">
+          <div class="text-right container-fluid">
           <div class="credits">
             Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | SpeakUp
           </div>

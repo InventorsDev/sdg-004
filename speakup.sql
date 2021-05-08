@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2021 at 04:33 PM
+-- Generation Time: May 08, 2021 at 11:03 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -166,6 +166,7 @@ CREATE TABLE `tips_guides` (
   `posted_by` text NOT NULL,
   `posted_id` int(11) NOT NULL,
   `tips_title` text NOT NULL,
+  `title_slug` text NOT NULL,
   `tips_content` text NOT NULL,
   `cover_image` varchar(225) NOT NULL,
   `date_added` datetime NOT NULL
@@ -175,8 +176,11 @@ CREATE TABLE `tips_guides` (
 -- Dumping data for table `tips_guides`
 --
 
-INSERT INTO `tips_guides` (`tips_id`, `posted_by`, `posted_id`, `tips_title`, `tips_content`, `cover_image`, `date_added`) VALUES
-(0, 'DIKE Oluwatuyi', 2, 'ss', 'sss', 'images/tips/301_4 - Copy - Copy.jpg', '2021-05-04 20:16:11');
+INSERT INTO `tips_guides` (`tips_id`, `posted_by`, `posted_id`, `tips_title`, `title_slug`, `tips_content`, `cover_image`, `date_added`) VALUES
+(1, 'DIKE Oluwatuyi', 2, 'ss', '', 'sss', '301_4 - Copy - Copy.jpg', '2021-05-04 20:16:11'),
+(2, 'DIKE Oluwatuyi', 2, 'Adejoke Spoke Up!', '', 'We got a report from a student of Olusegun Agagu University of Science and Technology OAUSTECH, Okitipupa\n          From a final year student of Microbiology, department of Biological Science. Her', '301_4 - Copy - Copy.jpg', '2021-05-08 22:08:36'),
+(3, 'DIKE Oluwatuyi', 2, 'Introducing the Bystanders', '', 'Progressively foster client-focused sources through sustainable collaboration and idea-sharing. Seamlessly aggregate effective testing procedures rather than.Introducing the Bystanders', 'ggggggggggggggg.png', '2021-05-08 22:12:18'),
+(4, 'DIKE Oluwatuyi', 2, 'ggggggggggggggg', 'ggggggggggggggg', 'nmqd dq d dqd dwd', 'ggggggggggggggg.png', '2021-05-08 22:33:43');
 
 -- --------------------------------------------------------
 
@@ -244,6 +248,12 @@ ALTER TABLE `reports`
   ADD PRIMARY KEY (`report_id`);
 
 --
+-- Indexes for table `tips_guides`
+--
+ALTER TABLE `tips_guides`
+  ADD PRIMARY KEY (`tips_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -276,6 +286,12 @@ ALTER TABLE `notifications`
 --
 ALTER TABLE `reports`
   MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `tips_guides`
+--
+ALTER TABLE `tips_guides`
+  MODIFY `tips_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`

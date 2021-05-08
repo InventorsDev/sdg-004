@@ -76,13 +76,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
           <a href="responder" class="list-group-item list-group-item-action">Dashbboard</a>
           <a href="help" class="list-group-item list-group-item-action">Help Requests</a>
           <a href="view-reports" class="list-group-item list-group-item-action">View Reports</a>
+        <a href="share-tips" class="list-group-item list-group-item-action active">Share Tips</a>
           <a href="Profile" class="list-group-item list-group-item-action active">Profile</a>
 
         <?php }else{
         //REPORTER MENU ?>
         <a href="reporter" class="list-group-item list-group-item-action">Dashboard</a>
-        <a href="help" class="list-group-item list-group-item-action">Help me!</a>
+        <a href="help" class="list-group-item list-group-item-action">Help Me!</a>
         <a href="reports" class="list-group-item list-group-item-action ">Reports</a>
+        <a href="../tips" class="list-group-item list-group-item-action">Tips & Guides </a>
         <a href="profile" class="list-group-item list-group-item-action  active">Profile</a>
       <?php } ?>
     </div>
