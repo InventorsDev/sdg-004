@@ -67,15 +67,15 @@ sex for grades, rape sexual harassment, bullying and gender based violence, etc.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/inventorsDev/sdg-004.svg?style=for-the-badge
 [contributors-url]: https://github.com/InventorsDev/sdg-004/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/inventorsDev/sdg-004.svg?style=for-the-badge
 [forks-url]: https://github.com/InventorsDev/sdg-004/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/inventorsDev/sdg-004.svg?style=for-the-badge
 [stars-url]: https://github.com/InventorsDev/sdg-004/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/inventorsDev/sdg-004.svg?style=for-the-badge
+[issues-url]: https://github.com/InventorsDev/sdg-004/issues
+[license-shield]: https://img.shields.io/github/license/inventorsDev/sdg-004.svg?style=for-the-badge
 [license-url]: https://github.com/InventorsDev/sdg-004/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [product-screenshot]: https://github.com/InventorsDev/sdg-004/blob/main/images/screenshot.png

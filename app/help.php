@@ -118,12 +118,18 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
           <div class="card my-scroll-border">
             <div class="card-header">
               <?php
+              //SELECT CHAT HEADER
+              if($user_type == 'responder'){
+
+               $Ruser_type = 'reporter';
+
               $stmt = $conn->prepare("SELECT sender FROM chats WHERE receiver = ? ");
               $stmt->bind_param("i", $user_id);
               $stmt->execute();
               $stmt->store_result();
               $stmt->bind_result($sender);
               $stmt->fetch();
+              echo '<input type="hidden" id="sender" value="'.$sender.'">';
 
               $stmt = $conn->prepare("SELECT lastname, firstname FROM users WHERE user_id = ? ");
               $stmt->bind_param("i", $sender);
@@ -132,11 +138,26 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
               $stmt->bind_result($Rlastname, $Rfirstname);
               $stmt->fetch();
 
-              if ($user_type == 'reporter') {
+	          }else{
+
                 $Ruser_type = 'responder';
-              }else{
-                $Ruser_type = 'reporter';          
-              }
+
+              $stmt = $conn->prepare("SELECT receiver FROM chats WHERE sender = ? ");
+              $stmt->bind_param("i", $user_id);
+              $stmt->execute();
+              $stmt->store_result();
+              $stmt->bind_result($sender);
+              $stmt->fetch();
+              echo '<input type="hidden" id="sender" value="">';
+
+              $stmt = $conn->prepare("SELECT lastname, firstname FROM users WHERE user_id = ? ");
+              $stmt->bind_param("i", $sender);
+              $stmt->execute();
+              $stmt->store_result();
+              $stmt->bind_result($Rlastname, $Rfirstname);
+              $stmt->fetch();
+
+	          }
               ?>
 
               <span class="pull-left"><img src="../images/profile-image.jpg"> 
@@ -240,7 +261,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
               <div class="col-md-9">
                 <input style="display: none;" type="file" id="replywithimage">          
                 <textarea required="required" id="help-message" type="text" class="form-control" placeholder="Type your message here..."></textarea>
-                <div id="launch_08" class="invalid-feedback"></div>
+                <div class="invalid-feedback"></div>
               </div>
               <div class="col-md-3">
                 <button type="button" class="btn btn-default"><i class="fa fa-image"></i></button>
