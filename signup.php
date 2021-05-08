@@ -1,3 +1,14 @@
+<?php 
+include_once 'functions.php';
+$login = '';
+
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
+  $user_id = preg_replace('#[^0-9]#','',$_SESSION['user_id']);
+  $user_type = test_input($_SESSION["user_type"]);
+  $login = true;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="body-full-height">
 <head>
@@ -46,12 +57,18 @@
       <li class="nav-item">
         <a href="home#frequently-question" class="nav-link smoothScroll">FAQ's</a>
       </li>
+      <?php if(!$login){ ?>
       <li class="nav-item">
-        <a href="signup" class="nav-link active">Signup</a>
+        <a href="signup" class="nav-link">Signup</a>
       </li>
       <li class="nav-item">
         <a href="login" class="nav-link login">Login</a>
       </li>
+      <?php }else{ ?>
+      <li class="nav-item">
+        <a href="app/logout" class="nav-link login">Logout</a>
+      </li>
+       <?php } ?>
     </ul>
   </div>
 </div>
@@ -501,7 +518,7 @@
 
     <div class="row">
       <div class="text-center col-md-12 col-12" >
-        <p class="copyright-text">Copyright &copy; <script>document.write(new Date().getFullYear());</script> Campus Intel
+        <p class="copyright-text">Copyright &copy; <script>document.write(new Date().getFullYear());</script> SpeakUp
           <br>Design: Inventor Build For SGD Team 004</p>
         </div>
 

@@ -1,8 +1,6 @@
 <?php 
 include_once 'functions.php';
-
 $login = '';
-$basename = "/gitSpeakUp/sdg-004/tips";
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
   $user_id = preg_replace('#[^0-9]#','',$_SESSION['user_id']);
@@ -62,10 +60,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
       <li class="nav-item">
         <a href="signup" class="nav-link">Signup</a>
       </li>
-      <?php } ?>
+
       <li class="nav-item">
-        <a href="login" class="nav-link login"><?php if($login){ echo "Logout"; }else{ echo "Login"; } ?></a>
+        <a href="login" class="nav-link login">Login</a>
       </li>
+      <?php }else{ ?>
+      <li class="nav-item">
+        <a href="app/logout" class="nav-link login">Logout</a>
+      </li>
+       <?php } ?>
     </ul>
   </div>
 </div>
@@ -83,16 +86,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
 
     <div class="row" data-aos="fade-up" data-aos-delay="100">
                 <?php
-                  $limit = 6;
-                  $tips_available = false;
-                  $stmt = $conn->prepare("SELECT posted_by, tips_title, tips_content, cover_image, date_added FROM tips_guides ORDER BY date_added DESC LIMIT ?");
+                  $limit = 9;
+                  $stmt = $conn->prepare("SELECT posted_by, tips_title, title_slug, tips_content, cover_image, date_added FROM tips_guides ORDER BY date_added DESC LIMIT ?");
                   $stmt->bind_param("i", $limit);
                   $stmt->execute();
                   $stmt->store_result();
-                  $stmt->bind_result($posted_by, $tips_title, $tips_content, $cover_image, $date_added);
-                  if($stmt->num_rows){
-                    $tips_available = true;
-                    while ($stmt->fetch()) {
+                  $stmt->bind_result($posted_by, $tips_title, $title_slug, $tips_content, $cover_image, $date_added);
+                  $tips_count = $stmt->num_rows;
+                  if($tips_count > 0){
+                    while($stmt->fetch()) {
                        $count= strlen($tips_content);
                        $message = "";
                        if($count > 35){
@@ -100,23 +102,22 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
                         // Define how many character you want to display.
                         $message = substr($tips_content, 0, $newcount).'...'; 
                       }
-                      // $date_sent = time_Ago($date_sent);
                 ?>
                 <div class="col-md-4">
                     <div class="tips-wrap">
-                        <a href="#" class="tips-img">
-                            <img src=<?php echo $cover_image; ?> class="img-fluid tips-img" alt="#">
+                        <a href="tips/<?php echo $title_slug; ?>" class="tips-img">
+                            <img src="images/tips/<?php echo $cover_image; ?>" class="img-fluid tips-img" alt="#">
                         </a>
                         <div class="tips-avatar">
                             <img src="images/avatar.jpg" alt="#">
                             <p><?php echo $posted_by; ?></p>
                         </div>
                         <div class="tips-content_wrap">
-                            <a href="#" class="tips-title">
+                            <a href="tips/<?php echo $title_slug; ?>" class="tips-title">
                                 <h5><?php echo $tips_title; ?></h5>
                             </a>
                             <p><?php echo $message; ?></p>
-                            <a href=<?php echo $basename.'/'.$tips_title; ?> class="tips-category" >Read More ➝</a>
+                            <a href="tips/<?php echo $title_slug; ?>" class="tips-category" >Read More ➝</a>
                         </div>
                     </div>
                 </div>
@@ -131,14 +132,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
 
             <div class="row">
               <div class="col-12 text-center mt-4">
-              <button class="btn btn-primary">
                 <?php 
-                  if($tips_available){ 
-                    echo "View more <i class='fa fa-long-arrow-right'></i>";
-                  }else{
-                    echo "Tips underway <img src='images/loading.gif' width='20px' height='20px'>";
-                  } 
-                ?></button>
+                  if($tips_count > 9){ 
+                    echo '<button class="btn btn-primary" id="load-more-tips" type="button">View more <i class="fa fa-long-arrow-right"></i></button>';
+                  }
+                ?>
             </div>
           </div>
 
@@ -169,7 +167,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_type'])) {
 
     <div class="row">
       <div class="text-center col-md-12 col-12" >
-        <p class="copyright-text">Copyright &copy; <script>document.write(new Date().getFullYear());</script> Campus Intel
+        <p class="copyright-text">Copyright &copy; <script>document.write(new Date().getFullYear());</script> SpeakUp
           <br>Design: Inventor Build For SGD Team 004</p>
         </div>
 

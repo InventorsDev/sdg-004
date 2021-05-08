@@ -92,7 +92,7 @@ if ($request == 1) {
     $stmt->execute();
     $stmt->store_result();
     if($stmt->num_rows > 0 ) {
-     echo json_encode( array("status" => 0, "message" => "oop's! This email already exist") );
+     echo json_encode( array("status" => 0, "message" => "Oop's! This email already exist") );
      exit;
    }else{
     

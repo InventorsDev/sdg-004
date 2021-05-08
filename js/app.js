@@ -126,6 +126,13 @@ $("#update-profile").click(function(){
    $(this).next('.custom-file-label').html(files.join(', '));
  });
 
+    $("#tips-image").on('change', function() {
+      var image_name = $(this)[0].value;
+      var split_image_name = image_name.split('\\');
+      var image_name = split_image_name[2];
+      $("#tips-image-name").text(image_name);
+    });
+
 	//SUBMIT REPORT
 	$("#report").click(function(){
 		var title = $("#report-title").val();
@@ -237,18 +244,18 @@ $("#update-profile").click(function(){
 				processData: false,
 				dataType: 'json',
 					beforeSend: function(){
-				   document.getElementById("share-tips").innerHTML='<img src="../images/loading.gif" width="20px" height="20px"> Processing';
+				   document.getElementById("share-tips").innerHTML='<img src="../images/loading.gif" width="10px" height="10px"> Processing';
 				  document.getElementById("share-tips").disable='true';
 				},
 					success:function(response){
 					  if(response.status == 1){
-						  console.log("sucess");
-					document.getElementById("tips-form").reset();
+
 					document.getElementById("tips-form").reset();
 						  document.getElementById("alert_box").style.display="none";
 						  document.getElementById("alert").innerHTML='';
 						
 					$('#tips-success').modal('show');   
+      $("#tips-image-name").text("Select a cover image");
 				   document.getElementById("success_text").innerHTML=response.message;
 
 						}else{
